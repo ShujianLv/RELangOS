@@ -1,0 +1,48 @@
+name: Investment
+description: Investment / strategic capital introduction for RELang OS.
+title: "[Investment] "
+labels: ["investment"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For investment or strategic capital conversations.
+        Please share firm context and preferred process; we will respond with materials under NDA when appropriate.
+  - type: input
+    id: firm
+    attributes:
+      label: Firm / fund
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Discussion focus
+      options:
+        - Intro / exploratory
+        - Strategic investment
+        - Corporate venture
+        - Follow-up after prior contact
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: thesis
+    attributes:
+      label: Interest thesis
+      description: Why RELang OS, check size range (optional), timeline, any intro path.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact email
+    validations:
+      required: true
+  - type: input
+    id: nda
+    attributes:
+      label: NDA preference
+      description: e.g. mutual NDA required before deck / data room
+    validations:
+      required: false

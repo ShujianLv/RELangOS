@@ -5,7 +5,12 @@
 帮助垂直设备与机队更快形成可卖、可交付、可运营的差异化：智能代理可管理，多端体验一体，现场可持续升级与复盘。
 
 → **官网**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)（中 / EN）  
-→ **产品合作**：专有软件 · [申请评估](https://github.com/ShujianLv/RELangOS/issues)
+→ **产品合作**：专有软件  
+  - [申请评估](https://github.com/ShujianLv/RELangOS/issues/new?template=evaluation.yml)  
+  - [品牌赞助](https://github.com/ShujianLv/RELangOS/issues/new?template=sponsorship.yml)  
+  - [投资意向](https://github.com/ShujianLv/RELangOS/issues/new?template=investment.yml)
+
+**评估闭环**：提交申请 → 确认受理 → NDA / 材料 → 试点或联合方案推进。
 
 ---
 

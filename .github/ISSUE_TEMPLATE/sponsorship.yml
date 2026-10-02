@@ -1,0 +1,41 @@
+name: Sponsorship
+description: Discuss brand sponsorship, event support, ecosystem programs, or co-marketing.
+title: "[Sponsorship] "
+labels: ["sponsorship"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Sponsorship helps grow RELang OS public narrative, demos, and ecosystem programs.
+        We will confirm scope, deliverables, and timeline after review.
+  - type: input
+    id: org
+    attributes:
+      label: Organization / brand
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Sponsorship interest
+      options:
+        - Brand / co-marketing
+        - Event / demo day
+        - Ecosystem / developer program
+        - Content / research sponsorship
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: intent
+    attributes:
+      label: Goals and proposed scope
+      description: Audience, budget range (optional), expected brand presence, timeline.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact email
+    validations:
+      required: true

@@ -1,0 +1,68 @@
+name: Evaluation / Partnership
+description: Request product evaluation access, NDA, or a joint solution discussion.
+title: "[Evaluation] "
+labels: ["evaluation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your interest in RELang OS.
+        After submit, we will confirm within a few business days and follow up on NDA / evaluation package / next meeting.
+  - type: input
+    id: org
+    attributes:
+      label: Organization
+      description: Company / lab / team name
+      placeholder: Acme Robotics
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your role
+      options:
+        - Product / brand
+        - System integrator / delivery
+        - Operations / field
+        - OEM / hardware
+        - Investor relations (please use Investment template if primary)
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: scenario
+    attributes:
+      label: Primary scenario
+      options:
+        - UAV companion
+        - Robotics / industrial edge
+        - Automotive cockpit
+        - Phone / watch / wearables
+        - Warehouse / logistics
+        - Energy / infrastructure inspection
+        - Multi-scenario / platform
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What do you want to evaluate?
+      description: Timeline, success criteria, and any NDA preference.
+      placeholder: 4-week technical evaluation for companion compute; need NDA before materials.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact email
+      placeholder: name@company.com
+    validations:
+      required: true
+  - type: input
+    id: region
+    attributes:
+      label: Region / timezone
+      placeholder: CN / UTC+8
+    validations:
+      required: false

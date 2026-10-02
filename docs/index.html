@@ -761,6 +761,91 @@
       max-width: 40rem;
       line-height: 1.6;
     }
+
+    .access-flow {
+      list-style: none;
+      margin: 1.25rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.75rem;
+      counter-reset: access-step;
+    }
+    @media (min-width: 800px) {
+      .access-flow {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+    }
+    .access-flow li {
+      counter-increment: access-step;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.95rem 1rem 1.05rem;
+    }
+    .access-flow li::before {
+      content: counter(access-step, decimal-leading-zero);
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--sea);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .access-flow strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+    .access-flow span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .access-paths {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 900px) {
+      .access-paths { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .access-path {
+      background: var(--bg-elev);
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      padding: 1.15rem 1.15rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .access-path .kind {
+      margin: 0;
+      color: var(--sand);
+      font-size: 0.76rem;
+      font-weight: 650;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .access-path h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      font-weight: 650;
+    }
+    .access-path p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .access-path .btn {
+      align-self: flex-start;
+      margin-top: 0.35rem;
+    }
+
     footer.site {
       border-top: 1px solid var(--line);
       padding: 1.35rem 0 2.25rem;
@@ -812,7 +897,7 @@
           <p class="lede" data-i18n-html="hero.lede"></p>
           <div class="actions">
             <a class="btn btn-primary" href="#vision" data-i18n="hero.ctaPrimary"></a>
-            <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="hero.ctaSecondary"></a>
+            <a class="btn btn-ghost" href="#access" data-i18n="hero.ctaSecondary"></a>
           </div>
         </div>
       </div>
@@ -1112,9 +1197,43 @@
         <p class="kicker" data-i18n="access.kicker"></p>
         <h2 data-i18n="access.title"></h2>
         <p class="prose" data-i18n-html="access.body"></p>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="access.cta1"></a>
-          <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS" data-i18n="access.cta2"></a>
+        <ol class="access-flow">
+          <li>
+            <strong data-i18n="access.s1t"></strong>
+            <span data-i18n="access.s1d"></span>
+          </li>
+          <li>
+            <strong data-i18n="access.s2t"></strong>
+            <span data-i18n="access.s2d"></span>
+          </li>
+          <li>
+            <strong data-i18n="access.s3t"></strong>
+            <span data-i18n="access.s3d"></span>
+          </li>
+          <li>
+            <strong data-i18n="access.s4t"></strong>
+            <span data-i18n="access.s4d"></span>
+          </li>
+        </ol>
+        <div class="access-paths">
+          <article class="access-path">
+            <p class="kind" data-i18n="access.evalKind"></p>
+            <h3 data-i18n="access.evalTitle"></h3>
+            <p data-i18n="access.evalBody"></p>
+            <a class="btn btn-primary" href="https://github.com/ShujianLv/RELangOS/issues/new?template=evaluation.yml" data-i18n="access.evalCta"></a>
+          </article>
+          <article class="access-path">
+            <p class="kind" data-i18n="access.sponsorKind"></p>
+            <h3 data-i18n="access.sponsorTitle"></h3>
+            <p data-i18n="access.sponsorBody"></p>
+            <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues/new?template=sponsorship.yml" data-i18n="access.sponsorCta"></a>
+          </article>
+          <article class="access-path">
+            <p class="kind" data-i18n="access.investKind"></p>
+            <h3 data-i18n="access.investTitle"></h3>
+            <p data-i18n="access.investBody"></p>
+            <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues/new?template=investment.yml" data-i18n="access.investCta"></a>
+          </article>
         </div>
         <p class="footnote" data-i18n-html="access.foot"></p>
       </div>
@@ -1181,15 +1300,21 @@
         "why.v1a": "产品与商业",
         "why.v1t": "品牌与产品团队",
         "why.v1d": "让垂直设备在发布时就具备可感知的智能差异：代理能做事、权限说得清、多端体验一体，形成可持续传播的产品主张。",
-        "why.v1line": "可卖点更具体 · 品类差异更快 · 多形态复用同一能力",
+        "why.v1p1": "可卖点更具体：可恢复作业、可审计代理、多终端一体",
+        "why.v1p2": "更快建立品类差异，减少「功能清单式」同质化竞争",
+        "why.v1p3": "同一套能力覆盖座舱、穿戴、仓储、巡检与工业边缘等多形态",
         "why.v2a": "交付与工程",
         "why.v2t": "系统集成与交付",
         "why.v2d": "把权限边界、故障边界与外设边界写进系统，使联调状态可观测、验收标准可对齐，缩短从样机到量产交付的路径。",
-        "why.v2line": "边界清晰可验收 · 联调可观测 · 交付模板可复用",
+        "why.v2p1": "边界清晰，减少扯皮与反复确认",
+        "why.v2p2": "联调过程可观测，问题定位更快",
+        "why.v2p3": "硬件与软件接口更易形成可复用交付模板",
         "why.v3a": "运营与现场",
         "why.v3t": "运营与现场团队",
         "why.v3d": "面向设备上线后的日常运行：升级、协同、异常处理与复盘形成统一节奏，适用于穿戴、座舱、仓储、巡检到工业与伴控等场景。",
-        "why.v3line": "远程升级自愈 · 多端统一协同 · 关键作业可复盘",
+        "why.v3p1": "远程升级与模块自愈，降低停机与回厂维护成本",
+        "why.v3p2": "多端与多岗位统一协同，减少临时脚本和口头对接",
+        "why.v3p3": "关键作业可回放，便于售后说明、合规与事故复盘",
         "why.windowT": "窗口在产品结构，而不在功能堆叠",
         "why.windowD": "端侧模型、专用加速与代理能力已经成熟，真正稀缺的是把它们组织成可卖产品与可日常运营系统的底座。RELang OS 正是为此而生：用代理、权限与协同重新定义设备价值。",
         "why.tag1": "可卖的智能差异",
@@ -1251,11 +1376,29 @@
         "compare.r8c": "Gleam UI · Compositor",
         "compare.note": "首发聚焦垂直设备与现场机队，与消费手机生态形成互补定位。",
         "access.kicker": "合作",
-        "access.title": "公开了解产品，授权评估合作",
-        "access.body": "本站与公开仓库用于品牌介绍与商务联络。完整产品为专有软件，可通过评估授权、联合方案或 NDA 开启合作。",
-        "access.cta1": "申请评估合作",
-        "access.cta2": "查看公开介绍",
-        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>。",
+        "access.title": "评估合作如何闭环，赞助与投资如何进入",
+        "access.body": "公开站点只承载叙事与入口。完整产品为专有软件。请按路径提交申请；我们会在工作日内确认，并按评估 / 赞助 / 投资流程推进至 NDA、材料与后续会议。",
+        "access.s1t": "提交申请",
+        "access.s1d": "选择评估、赞助或投资模板，填写组织、场景与联系方式。",
+        "access.s2t": "确认受理",
+        "access.s2d": "我们确认需求与匹配度，并回复下一步材料与时间安排。",
+        "access.s3t": "授权与材料",
+        "access.s3d": "按需要签署 NDA，提供评估包、赞助方案或投资材料。",
+        "access.s4t": "推进合作",
+        "access.s4d": "进入联合方案、试点评估、赞助落地或投资尽调沟通。",
+        "access.evalKind": "Product",
+        "access.evalTitle": "申请评估合作",
+        "access.evalBody": "面向产品、集成与运营团队：评估授权、联合方案与技术试点。",
+        "access.evalCta": "提交评估申请",
+        "access.sponsorKind": "Sponsorship",
+        "access.sponsorTitle": "品牌赞助",
+        "access.sponsorBody": "支持官网叙事、演示日、生态计划与联合传播，换取品牌露出与共创机会。",
+        "access.sponsorCta": "提交赞助意向",
+        "access.investKind": "Investment",
+        "access.investTitle": "投资与战略资本",
+        "access.investBody": "面向基金与战略投资方：介绍沟通、材料交换与尽调安排（通常先 NDA）。",
+        "access.investCta": "提交投资意向",
+        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href="https://github.com/ShujianLv/RELangOS/blob/main/LICENSE">LICENSE</a>。公开仓库仅作联络入口，不含产品源码。",
         "img.mesh.alt": "多设备协同示意：手机、平板与边缘终端连成一体",
         "img.mesh.cap": "个人设备群在发现并建立会话后安全互通。",
         "img.arch.alt": "RELang OS 产品分层：应用与代理、系统服务、运行时、体验层、内核",
@@ -1333,15 +1476,21 @@
         "why.v1a": "Product & business",
         "why.v1t": "Brands & product teams",
         "why.v1d": "Ship vertical devices with tangible intelligent differentiation: agents that get work done, permissions that can be explained, and a unified multi-device experience — a story the market can remember.",
-        "why.v1line": "Clearer sellable value · Faster category edge · One capability across form factors",
+        "why.v1p1": "Concrete sellable value: recoverable work, auditable agents, multi-terminal unity",
+        "why.v1p2": "Faster category differentiation beyond feature-checklist competition",
+        "why.v1p3": "One capability set across cockpit, wearables, logistics, inspection, and industrial edge",
         "why.v2a": "Delivery & engineering",
         "why.v2t": "Integrators & delivery",
         "why.v2d": "Permissions, failure domains, and peripherals are explicit in the system, so bring-up is observable and acceptance criteria align — shortening the path from prototype to production.",
-        "why.v2line": "Clear boundaries · Observable bring-up · Reusable delivery templates",
+        "why.v2p1": "Clear boundaries reduce delivery friction",
+        "why.v2p2": "Observable bring-up speeds diagnosis",
+        "why.v2p3": "Reusable templates across hardware and software interfaces",
         "why.v3a": "Operations & field",
         "why.v3t": "Operations & field teams",
         "why.v3d": "For day-to-day running after devices ship: a shared rhythm for updates, collaboration, exception handling, and review — across wearables, cockpits, logistics, inspection, industrial edge, and companion control.",
-        "why.v3line": "Remote update & self-heal · Unified multi-device ops · Replayable critical work",
+        "why.v3p1": "Remote updates and self-healing reduce downtime and return maintenance",
+        "why.v3p2": "Roles and devices share one collaboration model — fewer ad-hoc scripts and verbal handoffs",
+        "why.v3p3": "Replayable work supports after-sales, compliance, and incident review",
         "why.windowT": "The window is structural, not a feature pile-up",
         "why.windowD": "On-device models, accelerators, and agents are ready. What’s scarce is a system foundation that turns them into sellable products and day-to-day operable systems. RELang OS exists for that: redefine device value through agents, permissions, and collaboration.",
         "why.tag1": "Sellable intelligence",
@@ -1403,11 +1552,29 @@
         "compare.r8c": "Gleam UI · Compositor",
         "compare.note": "Launch focus is vertical devices and field fleets — complementary to the consumer-phone ecosystem.",
         "access.kicker": "Partner",
-        "access.title": "Learn publicly, evaluate by authorization",
-        "access.body": "This site and the public repo are for brand introduction and business contact. The full product is proprietary software, available through evaluation, joint solutions, or NDA.",
-        "access.cta1": "Request evaluation",
-        "access.cta2": "Public overview",
-        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. See <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>.",
+        "access.title": "How evaluation closes the loop — and how sponsorship & investment enter",
+        "access.body": "This public site is narrative and entry only. The product is proprietary. Submit via the path below; we confirm within business days and proceed through NDA, materials, and follow-up meetings for evaluation, sponsorship, or investment.",
+        "access.s1t": "Submit",
+        "access.s1d": "Pick evaluation, sponsorship, or investment, and share org, scenario, and contact.",
+        "access.s2t": "Confirm",
+        "access.s2d": "We confirm fit and reply with next materials and timing.",
+        "access.s3t": "Authorize & materials",
+        "access.s3d": "Sign NDA when needed; receive evaluation pack, sponsorship plan, or investment materials.",
+        "access.s4t": "Advance",
+        "access.s4d": "Move into joint solution, pilot evaluation, sponsorship delivery, or diligence talks.",
+        "access.evalKind": "Product",
+        "access.evalTitle": "Request evaluation",
+        "access.evalBody": "For product, integrator, and operations teams: evaluation access, joint solutions, and technical pilots.",
+        "access.evalCta": "Submit evaluation request",
+        "access.sponsorKind": "Sponsorship",
+        "access.sponsorTitle": "Brand sponsorship",
+        "access.sponsorBody": "Support public narrative, demo days, ecosystem programs, and co-marketing for brand presence and co-creation.",
+        "access.sponsorCta": "Submit sponsorship interest",
+        "access.investKind": "Investment",
+        "access.investTitle": "Investment & strategic capital",
+        "access.investBody": "For funds and strategic investors: intro talks, materials exchange, and diligence (usually NDA first).",
+        "access.investCta": "Submit investment interest",
+        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. See <a href="https://github.com/ShujianLv/RELangOS/blob/main/LICENSE">LICENSE</a>. The public repo is a contact entry only — no product source.",
         "img.mesh.alt": "Multi-device collaboration: phone, tablet, and edge terminals as one",
         "img.mesh.cap": "Personal clusters connect after discovery and session setup.",
         "img.arch.alt": "RELang OS layers: apps & agents, services, runtime, experience, kernel",
