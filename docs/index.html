@@ -449,30 +449,13 @@
       font-size: 0.92rem;
       line-height: 1.65;
     }
-    .value-points {
-      list-style: none;
-      margin: 0.15rem 0 0;
-      padding: 0.7rem 0 0;
+    .value-line {
+      margin: 0.15rem 0 0 !important;
+      padding-top: 0.7rem;
       border-top: 1px solid var(--line);
-      display: grid;
-      gap: 0.45rem;
-    }
-    .value-points li {
-      position: relative;
-      padding-left: 0.85rem;
-      color: var(--ink);
-      font-size: 0.86rem;
-      line-height: 1.5;
-    }
-    .value-points li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 0.35rem;
-      height: 0.35rem;
-      border-radius: 50%;
-      background: var(--moss);
+      color: var(--ink) !important;
+      font-size: 0.84rem !important;
+      line-height: 1.55 !important;
     }
     .why-highlight {
       margin-top: 1.5rem;
@@ -926,31 +909,19 @@
             <p class="audience" data-i18n="why.v1a"></p>
             <h3 data-i18n="why.v1t"></h3>
             <p data-i18n="why.v1d"></p>
-            <ul class="value-points">
-              <li data-i18n="why.v1p1"></li>
-              <li data-i18n="why.v1p2"></li>
-              <li data-i18n="why.v1p3"></li>
-            </ul>
+            <p class="value-line" data-i18n="why.v1line"></p>
           </article>
           <article>
             <p class="audience" data-i18n="why.v2a"></p>
             <h3 data-i18n="why.v2t"></h3>
             <p data-i18n="why.v2d"></p>
-            <ul class="value-points">
-              <li data-i18n="why.v2p1"></li>
-              <li data-i18n="why.v2p2"></li>
-              <li data-i18n="why.v2p3"></li>
-            </ul>
+            <p class="value-line" data-i18n="why.v2line"></p>
           </article>
           <article>
             <p class="audience" data-i18n="why.v3a"></p>
             <h3 data-i18n="why.v3t"></h3>
             <p data-i18n="why.v3d"></p>
-            <ul class="value-points">
-              <li data-i18n="why.v3p1"></li>
-              <li data-i18n="why.v3p2"></li>
-              <li data-i18n="why.v3p3"></li>
-            </ul>
+            <p class="value-line" data-i18n="why.v3line"></p>
           </article>
         </div>
         <div class="why-highlight">
@@ -1210,21 +1181,15 @@
         "why.v1a": "产品与商业",
         "why.v1t": "品牌与产品团队",
         "why.v1d": "让垂直设备在发布时就具备可感知的智能差异：代理能做事、权限说得清、多端体验一体，形成可持续传播的产品主张。",
-        "why.v1p1": "可卖点更具体：可恢复作业、可审计代理、多终端一体",
-        "why.v1p2": "更快建立品类差异，减少「功能清单式」同质化竞争",
-        "why.v1p3": "同一套能力覆盖座舱、穿戴、仓储、巡检与工业边缘等多形态",
+        "why.v1line": "可卖点更具体 · 品类差异更快 · 多形态复用同一能力",
         "why.v2a": "交付与工程",
         "why.v2t": "系统集成与交付",
         "why.v2d": "把权限边界、故障边界与外设边界写进系统，使联调状态可观测、验收标准可对齐，缩短从样机到量产交付的路径。",
-        "why.v2p1": "边界清晰，减少扯皮与反复确认",
-        "why.v2p2": "联调过程可观测，问题定位更快",
-        "why.v2p3": "硬件与软件接口更易形成可复用交付模板",
+        "why.v2line": "边界清晰可验收 · 联调可观测 · 交付模板可复用",
         "why.v3a": "运营与现场",
         "why.v3t": "运营与现场团队",
         "why.v3d": "面向设备上线后的日常运行：升级、协同、异常处理与复盘形成统一节奏，适用于穿戴、座舱、仓储、巡检到工业与伴控等场景。",
-        "why.v3p1": "远程升级与模块自愈，降低停机与回厂维护成本",
-        "why.v3p2": "多端与多岗位统一协同，减少临时脚本和口头对接",
-        "why.v3p3": "关键作业可回放，便于售后说明、合规与事故复盘",
+        "why.v3line": "远程升级自愈 · 多端统一协同 · 关键作业可复盘",
         "why.windowT": "窗口在产品结构，而不在功能堆叠",
         "why.windowD": "端侧模型、专用加速与代理能力已经成熟，真正稀缺的是把它们组织成可卖产品与可日常运营系统的底座。RELang OS 正是为此而生：用代理、权限与协同重新定义设备价值。",
         "why.tag1": "可卖的智能差异",
@@ -1368,21 +1333,15 @@
         "why.v1a": "Product & business",
         "why.v1t": "Brands & product teams",
         "why.v1d": "Ship vertical devices with tangible intelligent differentiation: agents that get work done, permissions that can be explained, and a unified multi-device experience — a story the market can remember.",
-        "why.v1p1": "Concrete sellable value: recoverable work, auditable agents, multi-terminal unity",
-        "why.v1p2": "Faster category differentiation beyond feature-checklist competition",
-        "why.v1p3": "One capability set across cockpit, wearables, logistics, inspection, and industrial edge",
+        "why.v1line": "Clearer sellable value · Faster category edge · One capability across form factors",
         "why.v2a": "Delivery & engineering",
         "why.v2t": "Integrators & delivery",
         "why.v2d": "Permissions, failure domains, and peripherals are explicit in the system, so bring-up is observable and acceptance criteria align — shortening the path from prototype to production.",
-        "why.v2p1": "Clear boundaries reduce delivery friction",
-        "why.v2p2": "Observable bring-up speeds diagnosis",
-        "why.v2p3": "Reusable templates across hardware and software interfaces",
+        "why.v2line": "Clear boundaries · Observable bring-up · Reusable delivery templates",
         "why.v3a": "Operations & field",
         "why.v3t": "Operations & field teams",
         "why.v3d": "For day-to-day running after devices ship: a shared rhythm for updates, collaboration, exception handling, and review — across wearables, cockpits, logistics, inspection, industrial edge, and companion control.",
-        "why.v3p1": "Remote updates and self-healing reduce downtime and return maintenance",
-        "why.v3p2": "Roles and devices share one collaboration model — fewer ad-hoc scripts and verbal handoffs",
-        "why.v3p3": "Replayable work supports after-sales, compliance, and incident review",
+        "why.v3line": "Remote update & self-heal · Unified multi-device ops · Replayable critical work",
         "why.windowT": "The window is structural, not a feature pile-up",
         "why.windowD": "On-device models, accelerators, and agents are ready. What’s scarce is a system foundation that turns them into sellable products and day-to-day operable systems. RELang OS exists for that: redefine device value through agents, permissions, and collaboration.",
         "why.tag1": "Sellable intelligence",
