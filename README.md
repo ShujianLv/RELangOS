@@ -2,7 +2,7 @@
 
 **为智能代理与多端协同而生的操作系统。**
 
-设备正在替人完成任务、在多端之间接力、在现场自行恢复。RELang OS 把智能代理、可信权限与多端协同做成操作系统原语，面向垂直设备与现场机队。
+设备正在替人完成任务、在多端之间接力、在现场自行恢复。RELang OS 把智能代理、可信权限与多端协同做成操作系统原语，面向垂直设备与多端形态。
 
 → **官网**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)（中 / EN）  
 → **合作入口**（公开仓仅作联络，不含产品源码）：  
@@ -40,7 +40,7 @@
 
 **An OS built for agents and multi-device work.**
 
-Devices are finishing jobs for people, handing work across screens, and recovering in the field. RELang OS makes intelligent agents, trusted permissions, and multi-device collaboration first-class OS primitives — for vertical devices and field fleets.
+Devices are finishing jobs for people, handing work across screens, and recovering in the field. RELang OS makes intelligent agents, trusted permissions, and multi-device collaboration first-class OS primitives — for vertical devices and multi-device form factors.
 
 → **Website**: [https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/) (ZH / EN)  
 → **Partner entry** (this public repo is contact only — no product source):  
