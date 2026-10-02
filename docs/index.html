@@ -7,7 +7,7 @@
   <title>RELang OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --ink: #e8eef6;
@@ -23,16 +23,17 @@
       --bg-elev: #101822;
       --max: 68rem;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font: "Noto Sans SC", "DM Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "DM Sans", system-ui, sans-serif;
+      font-family: var(--font);
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.65;
-      font-size: 1.05rem;
+      line-height: 1.7;
+      font-size: 1rem;
       -webkit-font-smoothing: antialiased;
     }
     a { color: var(--sea); text-decoration: none; }
@@ -103,23 +104,24 @@
       width: 100%;
     }
     .hero h1 {
-      font-family: "Instrument Serif", Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(2.15rem, 4.5vw, 3.35rem);
-      line-height: 1.22;
-      letter-spacing: -0.02em;
-      margin: 0 0 1.1rem;
-      max-width: 22em;
+      font-family: var(--font);
+      font-weight: 650;
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+      margin: 0 0 1rem;
+      max-width: none;
     }
     .hero h1 .break {
       display: block;
     }
     .hero .lede {
-      font-size: clamp(1rem, 1.6vw, 1.125rem);
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
       color: var(--muted);
-      max-width: 38rem;
-      line-height: 1.7;
-      margin: 0 0 1.75rem;
+      max-width: 40rem;
+      line-height: 1.75;
+      margin: 0 0 1.5rem;
+      font-weight: 400;
     }
     .hero .lede em {
       font-style: normal;
@@ -163,13 +165,24 @@
       font-weight: 600;
     }
     .section h2 {
-      font-family: "Instrument Serif", Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(1.55rem, 2.8vw, 2.1rem);
-      line-height: 1.3;
-      letter-spacing: -0.015em;
-      margin: 0 0 1rem;
-      max-width: 28rem;
+      font-family: var(--font);
+      font-weight: 650;
+      font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+      line-height: 1.45;
+      letter-spacing: 0.01em;
+      margin: 0 0 0.9rem;
+      max-width: none;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+    .section h2 .break {
+      display: inline;
+    }
+    @media (max-width: 640px) {
+      .section h2 .break,
+      .hero h1 .break {
+        display: block;
+      }
     }
     .section .prose {
       color: var(--muted);
@@ -202,10 +215,12 @@
       .principles li { grid-template-columns: 3.5rem 1fr; }
     }
     .principles .num {
-      font-family: "Instrument Serif", Georgia, serif;
-      font-size: 1.25rem;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--faint);
-      line-height: 1.35;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
     }
     .principles h3 {
       margin: 0 0 0.3rem;
@@ -242,12 +257,13 @@
     }
     .feature:first-of-type { border-top: none; padding-top: 0; }
     .feature h3 {
-      font-family: "Instrument Serif", Georgia, serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin: 0 0 0.5rem;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
+      font-family: var(--font);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 0.45rem;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      word-break: keep-all;
     }
     .feature p { margin: 0; color: var(--muted); max-width: 40rem; font-size: 0.98rem; line-height: 1.7; }
     .feature .meta {
@@ -319,7 +335,7 @@
     .close {
       text-align: left;
     }
-    .close h2 { max-width: 22rem; }
+    .close h2 { max-width: none; }
     .footnote {
       margin-top: 1.75rem;
       font-size: 0.85rem;
@@ -375,7 +391,7 @@
     <p class="kicker">原理</p>
     <div class="split split-2">
       <div>
-        <h2>操作系统该如何对待失败、权限与智能</h2>
+        <h2>操作系统该如何对待失败、<span class="break">权限与智能</span></h2>
         <p class="prose">
           多数移动栈按「人点 App」设计：粗粒度权限、单机 IPC、全局式服务进程。
           当设备开始替你调用工具、跨端完成一件事、在野外自我恢复时，这些假设会先碎裂。
@@ -421,7 +437,7 @@
 
   <section class="section" id="arch">
     <p class="kicker">架构</p>
-    <h2>一层运行时，贯通应用、服务与代理</h2>
+    <h2>一层运行时，<span class="break">贯通应用、服务与代理</span></h2>
     <p class="prose">
       开发者面对的是统一的 RVM 与能力模型。换设备时换的是 HAL 与产品 Profile，不是另一套应用运行时。
       UI 状态留在进程里，像素路径在 Rust 原生层 — 避免把帧钟绑在全局 GC 上。
@@ -474,7 +490,7 @@
         <p>任务软件可热升级；子模块故障可恢复；编队与地面站走同一 mesh 叙事，而不是临时拼 MQTT 脚本。</p>
       </article>
     </div>
-    <div class="feature" style="margin-top:2.5rem;border-top:1px solid var(--line);padding-top:2rem;">
+    <div class="feature" style="margin-top:1.75rem;border-top:1px solid var(--line);padding-top:1.5rem;">
       <h3>窗口期在架构，不在功能清单</h3>
       <p>
         端侧模型、NPU、MCP / A2A、开源 GPU 驱动与内存安全语言同时就绪。
@@ -486,7 +502,7 @@
 
   <section class="section" id="caps">
     <p class="kicker">特性</p>
-    <h2>系统一等公民，而不是外挂</h2>
+    <h2>系统一等公民，<span class="break">而不是外挂</span></h2>
 
     <article class="feature">
       <h3>AI 代理原生</h3>
@@ -537,7 +553,7 @@
 
   <section class="section" id="field">
     <p class="kicker">垂直 · FieldCompanion</p>
-    <h2>无人机与机器人：做任务 OS，不当飞控</h2>
+    <h2>无人机与机器人：<span class="break">做任务 OS，不当飞控</span></h2>
     <p class="prose">
       现场伴飞 / 伴控是同一垂直 Profile。RELang 负责作业编排、感知闭环、围栏与安全<strong>意图</strong>、多机协同与 OTA；
       姿态环、伺服周期与安全 PLC 留在 PX4、ArduPilot、运动控制器或厂商栈。经 MAVLink / ROS 2 等桥对接 — framework 不直接 ioctl。
@@ -583,7 +599,7 @@
 
   <section class="section close" id="access">
     <p class="kicker">下一步</p>
-    <h2>公开的是故事与入口；产品是专有软件</h2>
+    <h2>公开的是故事与入口；<span class="break">产品是专有软件</span></h2>
     <p class="prose">
       <strong>RELang OS 不是开源项目。</strong>
       本站与 GitHub 宣传仓只承载叙事与联系方式，不含产品源码。
