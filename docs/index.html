@@ -546,8 +546,11 @@
       gap: 1.25rem;
       margin-top: 1.5rem;
     }
-    @media (min-width: 800px) {
-      .field-cards { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (min-width: 700px) {
+      .field-cards { grid-template-columns: 1fr 1fr; gap: 1.35rem; }
+    }
+    @media (min-width: 1100px) {
+      .field-cards { grid-template-columns: repeat(3, 1fr); gap: 1.35rem; }
     }
     .field-card {
       background: var(--bg-elev);
@@ -959,6 +962,50 @@
               <p class="bound" data-i18n="field.d2b"></p>
             </div>
           </article>
+          <article class="field-card">
+            <figure class="visual">
+              <img src="assets/relang-vert-auto.jpg" width="1600" height="900" alt="" data-i18n-alt="img.auto.alt" loading="lazy" />
+              <figcaption data-i18n="img.auto.cap"></figcaption>
+            </figure>
+            <div class="body">
+              <h3 data-i18n="field.d3t"></h3>
+              <p data-i18n="field.d3d"></p>
+              <p class="bound" data-i18n="field.d3b"></p>
+            </div>
+          </article>
+          <article class="field-card">
+            <figure class="visual">
+              <img src="assets/relang-vert-handheld.jpg" width="1600" height="900" alt="" data-i18n-alt="img.handheld.alt" loading="lazy" />
+              <figcaption data-i18n="img.handheld.cap"></figcaption>
+            </figure>
+            <div class="body">
+              <h3 data-i18n="field.d4t"></h3>
+              <p data-i18n="field.d4d"></p>
+              <p class="bound" data-i18n="field.d4b"></p>
+            </div>
+          </article>
+          <article class="field-card">
+            <figure class="visual">
+              <img src="assets/relang-vert-logistics.jpg" width="1600" height="900" alt="" data-i18n-alt="img.logistics.alt" loading="lazy" />
+              <figcaption data-i18n="img.logistics.cap"></figcaption>
+            </figure>
+            <div class="body">
+              <h3 data-i18n="field.d5t"></h3>
+              <p data-i18n="field.d5d"></p>
+              <p class="bound" data-i18n="field.d5b"></p>
+            </div>
+          </article>
+          <article class="field-card">
+            <figure class="visual">
+              <img src="assets/relang-vert-energy.jpg" width="1600" height="900" alt="" data-i18n-alt="img.energy.alt" loading="lazy" />
+              <figcaption data-i18n="img.energy.cap"></figcaption>
+            </figure>
+            <div class="body">
+              <h3 data-i18n="field.d6t"></h3>
+              <p data-i18n="field.d6d"></p>
+              <p class="bound" data-i18n="field.d6b"></p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1083,15 +1130,27 @@
         "caps.c4d": "业务与界面分层设计，在手机、平板、车机与手持终端上保持可控、一致的产品体验。",
         "caps.c5t": "可审计、可回放",
         "caps.c5d": "关键会话可录制回放，支撑合规审查、售后说明与现场事故复盘，让智能作业留得下证据。",
-        "field.kicker": "垂直场景 · FieldCompanion",
-        "field.title": "无人机与机器人的任务操作系统",
-        "field.lede": "FieldCompanion 为伴飞 / 伴控提供统一方案：作业编排、感知决策、围栏与安全<strong>意图</strong>、多机协同与远程升级由 RELang 承担；姿态、伺服与安全回路继续由专业控制栈完成，经行业接口协同。",
+        "field.kicker": "垂直场景",
+        "field.title": "从现场机队到座舱与仓储的可落地场景",
+        "field.lede": "RELang OS 以同一套代理、权限与多端协同底座，服务多类垂直产品。FieldCompanion 覆盖伴飞 / 伴控；同时延伸到车机、手持终端、仓储物流与能源巡检等交付场景。",
         "field.d1t": "无人机伴飞",
-        "field.d1d": "机载任务电脑运行巡检流程、视觉识别、禁飞协调与地面站联动，与飞控形成清晰分工的完整方案。",
+        "field.d1d": "机载任务电脑运行巡检流程、视觉识别、禁飞协调与地面站联动，与飞控形成完整方案。",
         "field.d1b": "常见落地：工业巡检 · 物流末端 · 多机协同",
         "field.d2t": "机器人与工业边缘",
         "field.d2d": "在工控机 / 智能盒上承载工艺流程、视觉引导、换型与人机协同，并与运动控制、安全设备协同工作。",
         "field.d2b": "常见落地：AMR · 巡检 · 臂旁智能盒",
+        "field.d3t": "车机与座舱",
+        "field.d3d": "把座舱交互、手机接力与车端智能代理放进同一协同体验，权限可审计，关键动作可复盘。",
+        "field.d3b": "常见落地：智能座舱 · 车机助手 · 车手机一体",
+        "field.d4t": "手持现场终端",
+        "field.d4d": "巡检、运维与作业指导手持设备，支持离线续航作业、现场回传与多终端协同。",
+        "field.d4b": "常见落地：设施巡检 · 运维作业 · 现场验收",
+        "field.d5t": "仓储与物流边缘",
+        "field.d5d": "仓内边缘盒与手持 / 车载终端统一调度作业与代理辅助，提升分拣、盘点与调度效率。",
+        "field.d5b": "常见落地：智慧仓储 · 末端配送 · 场站调度",
+        "field.d6t": "能源与基础设施巡检",
+        "field.d6d": "边缘计算与现场终端支撑电站、管线与设施巡检，任务可远程升级，过程可审计复盘。",
+        "field.d6b": "常见落地：电力巡检 · 管线巡检 · 场站运维",
         "compare.kicker": "对照",
         "compare.title": "一张熟悉的对照表",
         "compare.lede": "借用 Android 帮助决策者快速建立直觉，理解 RELang 的产品定位与差异。",
@@ -1204,15 +1263,27 @@
         "caps.c4d": "Business and presentation stay layered, so phone, tablet, auto, and handheld keep a controllable, consistent product feel.",
         "caps.c5t": "Auditable and replayable",
         "caps.c5d": "Critical sessions can be recorded and replayed for compliance, after-sales explanation, and field review — intelligent work leaves evidence.",
-        "field.kicker": "Vertical · FieldCompanion",
-        "field.title": "A mission OS for drones and robots",
-        "field.lede": "FieldCompanion unifies companion flight and companion control: RELang covers mission orchestration, perception decisions, geofence/safety intent, multi-vehicle collaboration, and remote updates. Attitude, servos, and safety loops remain on specialist stacks, coordinated through industry interfaces.",
+        "field.kicker": "Verticals",
+        "field.title": "From fleets to cockpit, handhelds, and logistics",
+        "field.lede": "RELang OS uses one foundation of agents, trusted permissions, and multi-device collaboration across vertical products. FieldCompanion covers companion flight and control, extending into auto cockpits, handheld terminals, logistics edge, and infrastructure inspection.",
         "field.d1t": "UAV companion",
-        "field.d1d": "Onboard mission computers run inspection flows, vision, geofence coordination, and ground-station linkage — a complete offer alongside the flight controller.",
+        "field.d1d": "Onboard mission computers run inspection flows, vision, geofence coordination, and ground-station linkage — a complete offer with the flight controller.",
         "field.d1b": "Common deployments: industrial inspection · last-mile logistics · multi-vehicle ops",
         "field.d2t": "Robotics & industrial edge",
         "field.d2d": "Industrial PCs / smart boxes host process flows, vision guidance, changeover, and HMI, working with motion control and safety equipment.",
         "field.d2b": "Common deployments: AMR · inspection · arm-side smart boxes",
+        "field.d3t": "Automotive cockpit",
+        "field.d3d": "Bring cockpit interaction, phone handoff, and in-vehicle agents into one collaboration experience with auditable permissions and replayable actions.",
+        "field.d3b": "Common deployments: smart cockpit · in-car assistant · phone-car unity",
+        "field.d4t": "Handheld field terminals",
+        "field.d4d": "Inspection, maintenance, and guided-work handhelds with offline continuity, field sync, and multi-terminal collaboration.",
+        "field.d4b": "Common deployments: facility inspection · maintenance jobs · on-site acceptance",
+        "field.d5t": "Warehouse & logistics edge",
+        "field.d5d": "Edge boxes with handheld / vehicle terminals unify mission flow and agent assistance for sorting, inventory, and yard dispatch.",
+        "field.d5b": "Common deployments: smart warehouse · last-mile · yard dispatch",
+        "field.d6t": "Energy & infrastructure inspection",
+        "field.d6d": "Edge compute and field terminals support substations, pipelines, and facilities — remote mission updates with auditable review.",
+        "field.d6b": "Common deployments: power inspection · pipeline patrol · site operations",
         "compare.kicker": "Compare",
         "compare.title": "A familiar map for decision makers",
         "compare.lede": "Android helps executives build intuition quickly for where RELang sits and how it differs.",
