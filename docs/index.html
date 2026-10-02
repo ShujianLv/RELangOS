@@ -381,9 +381,31 @@
       font-size: 0.88rem !important;
     }
 
+    /* Text + media compositions */
+    .split {
+      display: grid;
+      gap: 1.5rem;
+      align-items: start;
+      margin-top: 0.35rem;
+    }
+    @media (min-width: 900px) {
+      .split {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 2.25rem;
+        align-items: center;
+      }
+      .split.reverse {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      }
+      .split.reverse > .split-media { order: -1; }
+      .split.top { align-items: start; }
+    }
+    .split-copy .prose:last-child { margin-bottom: 0; }
+    .split-copy .kicker { margin-top: 0; }
+
     .visual {
-      margin: 1.35rem 0 0;
-      border-radius: 14px;
+      margin: 0;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--line-strong);
       background: var(--bg-elev);
@@ -392,24 +414,78 @@
       width: 100%;
       height: auto;
       display: block;
-      vertical-align: middle;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: center;
     }
     .visual figcaption {
-      padding: 0.7rem 1rem 0.85rem;
-      font-size: 0.82rem;
+      padding: 0.65rem 0.9rem 0.75rem;
+      font-size: 0.78rem;
       color: var(--faint);
-      line-height: 1.5;
+      line-height: 1.45;
       border-top: 1px solid var(--line);
     }
-    .visual-grid {
+
+    .field-cards {
       display: grid;
-      gap: 1rem;
-      margin-top: 1.35rem;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
     }
     @media (min-width: 800px) {
-      .visual-grid { grid-template-columns: 1fr 1fr; }
+      .field-cards { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     }
-    .visual-grid .visual { margin: 0; }
+    .field-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .field-card .visual {
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .field-card .visual img {
+      aspect-ratio: 16 / 11;
+    }
+    .field-card .visual figcaption { display: none; }
+    .field-card .body {
+      padding: 1.05rem 1.15rem 1.2rem;
+      flex: 1;
+    }
+    .field-card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.02rem;
+      font-weight: 650;
+    }
+    .field-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+    .field-card .bound {
+      margin-top: 0.65rem !important;
+    }
+
+    .caps-lead {
+      margin-bottom: 0.25rem;
+    }
+    .caps-lead .feature {
+      border-top: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .feature-list {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .feature-list .feature:first-of-type {
+      border-top: 0;
+      padding-top: 1.15rem;
+    }
 
     .table-wrap {
       overflow-x: auto;
@@ -503,14 +579,18 @@
 
     <section class="section" id="vision">
       <div class="wrap">
-        <p class="kicker" data-i18n="vision.kicker"></p>
-        <h2 data-i18n="vision.title"></h2>
-        <p class="prose" data-i18n="vision.p1"></p>
-        <p class="prose" data-i18n-html="vision.p2"></p>
-        <figure class="visual">
-          <img src="assets/relang-mesh-devices.jpg" width="1600" height="900" alt="" data-i18n-alt="img.mesh.alt" loading="lazy" />
-          <figcaption data-i18n="img.mesh.cap"></figcaption>
-        </figure>
+        <div class="split">
+          <div class="split-copy">
+            <p class="kicker" data-i18n="vision.kicker"></p>
+            <h2 data-i18n="vision.title"></h2>
+            <p class="prose" data-i18n="vision.p1"></p>
+            <p class="prose" data-i18n-html="vision.p2"></p>
+          </div>
+          <figure class="visual split-media">
+            <img src="assets/relang-mesh-devices.jpg" width="1600" height="900" alt="" data-i18n-alt="img.mesh.alt" loading="lazy" />
+            <figcaption data-i18n="img.mesh.cap"></figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -557,23 +637,23 @@
         <p class="kicker" data-i18n="arch.kicker"></p>
         <h2 data-i18n="arch.title"></h2>
         <p class="prose" data-i18n="arch.lede"></p>
-        <figure class="visual">
-          <img src="assets/relang-arch-layers.jpg" width="1600" height="900" alt="" data-i18n-alt="img.arch.alt" loading="lazy" />
-          <figcaption data-i18n="img.arch.cap"></figcaption>
-        </figure>
-        <div class="grid-2" style="margin-top:1.5rem;">
-          <ul class="layers" aria-label="Architecture">
-            <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
-            <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
-            <li><strong data-i18n="arch.l3t"></strong><span data-i18n="arch.l3d"></span></li>
-            <li><strong data-i18n="arch.l4t"></strong><span data-i18n="arch.l4d"></span></li>
-            <li><strong data-i18n="arch.l5t"></strong><span data-i18n="arch.l5d"></span></li>
-          </ul>
-          <div>
-            <p class="prose" data-i18n-html="arch.rvm"></p>
+        <div class="split reverse top" style="margin-top:1.35rem;">
+          <div class="split-copy">
+            <ul class="layers" aria-label="Architecture">
+              <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
+              <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
+              <li><strong data-i18n="arch.l3t"></strong><span data-i18n="arch.l3d"></span></li>
+              <li><strong data-i18n="arch.l4t"></strong><span data-i18n="arch.l4d"></span></li>
+              <li><strong data-i18n="arch.l5t"></strong><span data-i18n="arch.l5d"></span></li>
+            </ul>
+            <p class="prose" style="margin-top:1.15rem;" data-i18n-html="arch.rvm"></p>
             <p class="prose" data-i18n-html="arch.domain"></p>
             <p class="note" data-i18n="arch.note"></p>
           </div>
+          <figure class="visual split-media">
+            <img src="assets/relang-arch-layers.jpg" width="1600" height="900" alt="" data-i18n-alt="img.arch.alt" loading="lazy" />
+            <figcaption data-i18n="img.arch.cap"></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -607,35 +687,41 @@
       <div class="wrap">
         <p class="kicker" data-i18n="caps.kicker"></p>
         <h2 data-i18n="caps.title"></h2>
-        <figure class="visual">
-          <img src="assets/relang-agent-caps.jpg" width="1600" height="900" alt="" data-i18n-alt="img.agent.alt" loading="lazy" />
-          <figcaption data-i18n="img.agent.cap"></figcaption>
-        </figure>
-        <article class="feature">
-          <h3 data-i18n="caps.c1t"></h3>
-          <p data-i18n="caps.c1d"></p>
-          <span class="meta">Agent · Tool · Quota · Audit · MCP</span>
-        </article>
-        <article class="feature">
-          <h3 data-i18n="caps.c2t"></h3>
-          <p data-i18n="caps.c2d"></p>
-          <span class="meta">Mesh · Session · Capability · Migration</span>
-        </article>
-        <article class="feature">
-          <h3 data-i18n="caps.c3t"></h3>
-          <p data-i18n="caps.c3d"></p>
-          <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
-        </article>
-        <article class="feature">
-          <h3 data-i18n="caps.c4t"></h3>
-          <p data-i18n="caps.c4d"></p>
-          <span class="meta">Gleam UI · Compositor</span>
-        </article>
-        <article class="feature">
-          <h3 data-i18n="caps.c5t"></h3>
-          <p data-i18n="caps.c5d"></p>
-          <span class="meta">Deterministic · Replay · Audit</span>
-        </article>
+        <div class="split caps-lead" style="margin-top:1.1rem;">
+          <div class="split-copy">
+            <article class="feature">
+              <h3 data-i18n="caps.c1t"></h3>
+              <p data-i18n="caps.c1d"></p>
+              <span class="meta">Agent · Tool · Quota · Audit · MCP</span>
+            </article>
+          </div>
+          <figure class="visual split-media">
+            <img src="assets/relang-agent-caps.jpg" width="1600" height="900" alt="" data-i18n-alt="img.agent.alt" loading="lazy" />
+            <figcaption data-i18n="img.agent.cap"></figcaption>
+          </figure>
+        </div>
+        <div class="feature-list">
+          <article class="feature">
+            <h3 data-i18n="caps.c2t"></h3>
+            <p data-i18n="caps.c2d"></p>
+            <span class="meta">Mesh · Session · Capability · Migration</span>
+          </article>
+          <article class="feature">
+            <h3 data-i18n="caps.c3t"></h3>
+            <p data-i18n="caps.c3d"></p>
+            <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
+          </article>
+          <article class="feature">
+            <h3 data-i18n="caps.c4t"></h3>
+            <p data-i18n="caps.c4d"></p>
+            <span class="meta">Gleam UI · Compositor</span>
+          </article>
+          <article class="feature">
+            <h3 data-i18n="caps.c5t"></h3>
+            <p data-i18n="caps.c5d"></p>
+            <span class="meta">Deterministic · Replay · Audit</span>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -644,25 +730,29 @@
         <p class="kicker" data-i18n="field.kicker"></p>
         <h2 data-i18n="field.title"></h2>
         <p class="prose" data-i18n-html="field.lede"></p>
-        <div class="visual-grid">
-          <figure class="visual">
-            <img src="assets/relang-field-drone.jpg" width="1600" height="900" alt="" data-i18n-alt="img.drone.alt" loading="lazy" />
-            <figcaption data-i18n="img.drone.cap"></figcaption>
-          </figure>
-          <figure class="visual">
-            <img src="assets/relang-field-robot.jpg" width="1600" height="900" alt="" data-i18n-alt="img.robot.alt" loading="lazy" />
-            <figcaption data-i18n="img.robot.cap"></figcaption>
-          </figure>
-        </div>
-        <div class="vert">
-          <h3 data-i18n="field.d1t"></h3>
-          <p data-i18n="field.d1d"></p>
-          <p class="bound" data-i18n="field.d1b"></p>
-        </div>
-        <div class="vert">
-          <h3 data-i18n="field.d2t"></h3>
-          <p data-i18n="field.d2d"></p>
-          <p class="bound" data-i18n="field.d2b"></p>
+        <div class="field-cards">
+          <article class="field-card">
+            <figure class="visual">
+              <img src="assets/relang-field-drone.jpg" width="1600" height="900" alt="" data-i18n-alt="img.drone.alt" loading="lazy" />
+              <figcaption data-i18n="img.drone.cap"></figcaption>
+            </figure>
+            <div class="body">
+              <h3 data-i18n="field.d1t"></h3>
+              <p data-i18n="field.d1d"></p>
+              <p class="bound" data-i18n="field.d1b"></p>
+            </div>
+          </article>
+          <article class="field-card">
+            <figure class="visual">
+              <img src="assets/relang-field-robot.jpg" width="1600" height="900" alt="" data-i18n-alt="img.robot.alt" loading="lazy" />
+              <figcaption data-i18n="img.robot.cap"></figcaption>
+            </figure>
+            <div class="body">
+              <h3 data-i18n="field.d2t"></h3>
+              <p data-i18n="field.d2d"></p>
+              <p class="bound" data-i18n="field.d2b"></p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
