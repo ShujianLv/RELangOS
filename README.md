@@ -4,7 +4,7 @@
 
 应用运行在 **RVM** 上 — Rust 实现的 BEAM 虚拟机。RVM 之于 RELang OS，如同 ART 之于 Android。
 
-→ **官网**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)  
+→ **官网**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)（响应式 · 中/EN，`?lang=zh|en`）  
 → **源码**：**专有（非开源）**，独立私有仓库，不在本仓公开 · [申请评估访问](https://github.com/ShujianLv/RELangOS/issues)
 
 ---
