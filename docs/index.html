@@ -426,18 +426,89 @@
       background: var(--bg-elev);
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 1.1rem 1.15rem;
+      padding: 1.2rem 1.2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
     }
     .values h3 {
-      margin: 0 0 0.4rem;
-      font-size: 0.98rem;
+      margin: 0;
+      font-size: 1.02rem;
       font-weight: 650;
+    }
+    .values .audience {
+      margin: 0;
+      color: var(--sea);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
     .values p {
       margin: 0;
       color: var(--muted);
       font-size: 0.92rem;
       line-height: 1.65;
+    }
+    .value-points {
+      list-style: none;
+      margin: 0.15rem 0 0;
+      padding: 0.7rem 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 0.45rem;
+    }
+    .value-points li {
+      position: relative;
+      padding-left: 0.85rem;
+      color: var(--ink);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .value-points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-radius: 50%;
+      background: var(--moss);
+    }
+    .why-highlight {
+      margin-top: 1.5rem;
+      padding: 1.35rem 1.35rem 1.4rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(110, 182, 224, 0.08), transparent 55%),
+        var(--bg-elev);
+    }
+    .why-highlight h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.08rem;
+      font-weight: 650;
+    }
+    .why-highlight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 52rem;
+    }
+    .why-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.95rem;
+    }
+    .why-tags span {
+      display: inline-flex;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--sand);
+      font-size: 0.78rem;
+      font-weight: 600;
     }
 
     .feature {
@@ -849,24 +920,49 @@
       <div class="wrap">
         <p class="kicker" data-i18n="why.kicker"></p>
         <h2 data-i18n="why.title"></h2>
+        <p class="prose" data-i18n="why.lede"></p>
         <div class="values">
           <article>
+            <p class="audience" data-i18n="why.v1a"></p>
             <h3 data-i18n="why.v1t"></h3>
             <p data-i18n="why.v1d"></p>
+            <ul class="value-points">
+              <li data-i18n="why.v1p1"></li>
+              <li data-i18n="why.v1p2"></li>
+              <li data-i18n="why.v1p3"></li>
+            </ul>
           </article>
           <article>
+            <p class="audience" data-i18n="why.v2a"></p>
             <h3 data-i18n="why.v2t"></h3>
             <p data-i18n="why.v2d"></p>
+            <ul class="value-points">
+              <li data-i18n="why.v2p1"></li>
+              <li data-i18n="why.v2p2"></li>
+              <li data-i18n="why.v2p3"></li>
+            </ul>
           </article>
           <article>
+            <p class="audience" data-i18n="why.v3a"></p>
             <h3 data-i18n="why.v3t"></h3>
             <p data-i18n="why.v3d"></p>
+            <ul class="value-points">
+              <li data-i18n="why.v3p1"></li>
+              <li data-i18n="why.v3p2"></li>
+              <li data-i18n="why.v3p3"></li>
+            </ul>
           </article>
         </div>
-        <article class="feature" style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.35rem;">
+        <div class="why-highlight">
           <h3 data-i18n="why.windowT"></h3>
           <p data-i18n="why.windowD"></p>
-        </article>
+          <div class="why-tags">
+            <span data-i18n="why.tag1"></span>
+            <span data-i18n="why.tag2"></span>
+            <span data-i18n="why.tag3"></span>
+            <span data-i18n="why.tag4"></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1109,15 +1205,32 @@
         "arch.domain": "<strong>信任分区</strong>让系统策略、业务作业与代理行动边界清晰，厂商组件也可安全接入。",
         "arch.note": "近期基于成熟 Linux 与厂商板级支持，把投入集中在体验、权限与协同等产品价值层。",
         "why.kicker": "价值",
-        "why.title": "它帮谁做成什么生意",
+        "why.title": "把智能做成可卖、可交、可运营的产品",
+        "why.lede": "RELang OS 服务三类关键决策者：定义卖点的产品团队、负责落地的集成交付方、以及持续运行的机队运营。同一底座，分别带来更清晰的商业叙事、更短的交付路径与更低的现场成本。",
+        "why.v1a": "产品与商业",
         "why.v1t": "品牌与产品团队",
-        "why.v1d": "让垂直设备直接具备可卖点：可恢复的智能作业、可审计的代理行为、多终端一体体验，更快建立产品差异。",
+        "why.v1d": "让垂直设备在发布时就具备可感知的智能差异：代理能做事、权限说得清、多端体验一体，形成可持续传播的产品主张。",
+        "why.v1p1": "可卖点更具体：可恢复作业、可审计代理、多终端一体",
+        "why.v1p2": "更快建立品类差异，减少「功能清单式」同质化竞争",
+        "why.v1p3": "同一套能力覆盖座舱、穿戴、现场与机队等多形态",
+        "why.v2a": "交付与工程",
         "why.v2t": "系统集成与交付",
-        "why.v2d": "权限、故障与外设边界清晰可验收，联调状态可观测，缩短交付周期，降低验收成本。",
+        "why.v2d": "把权限边界、故障边界与外设边界写进系统，使联调状态可观测、验收标准可对齐，缩短从样机到量产交付的路径。",
+        "why.v2p1": "边界清晰，减少扯皮与反复确认",
+        "why.v2p2": "联调过程可观测，问题定位更快",
+        "why.v2p3": "硬件与软件接口更易形成可复用交付模板",
+        "why.v3a": "运营与现场",
         "why.v3t": "现场与机队运营",
-        "why.v3d": "任务软件可远程升级，关键模块可自愈；机队、地面站与手持终端统一协同，运维更省心。",
-        "why.windowT": "机会在产品结构",
-        "why.windowD": "端侧智能、专用加速与代理能力同时成熟，市场需要能把它们组织成可卖产品与可运营机队的系统底座。RELang 正处在这一窗口。",
+        "why.v3d": "让机队在升级、协同与复盘上形成统一节奏：任务可持续演进，局部异常可控，跨终端协作成为日常能力。",
+        "why.v3p1": "远程升级与模块自愈，降低回站维护频次",
+        "why.v3p2": "机队、地面站与终端统一协同，减少临时脚本",
+        "why.v3p3": "关键作业可回放，便于售后说明与事故复盘",
+        "why.windowT": "窗口在产品结构，而不在功能堆叠",
+        "why.windowD": "端侧模型、专用加速与代理能力已经成熟，真正稀缺的是把它们组织成可卖产品与可运营机队的系统底座。RELang OS 正是为此而生：用代理、权限与协同重新定义设备价值。",
+        "why.tag1": "可卖的智能差异",
+        "why.tag2": "可交的系统边界",
+        "why.tag3": "可运营的机队协同",
+        "why.tag4": "可复盘的关键作业",
         "caps.kicker": "能力",
         "caps.title": "写进系统的产品能力",
         "caps.c1t": "智能代理原生",
@@ -1250,15 +1363,32 @@
         "arch.domain": "<strong>Trust partitions</strong> keep system policy, business missions, and agent actions clearly separated, with a safe path for vendor components.",
         "arch.note": "Near term we build on mature Linux and vendor board support, focusing investment on experience, authority, and collaboration.",
         "why.kicker": "Value",
-        "why.title": "Who wins what with it",
+        "why.title": "Turn intelligence into products you can sell, ship, and run",
+        "why.lede": "RELang OS serves three decision makers: product teams shaping the offer, integrators owning delivery, and fleet operators keeping work running. One foundation — clearer commercial narrative, shorter delivery path, lower field cost.",
+        "why.v1a": "Product & business",
         "why.v1t": "Brands & product teams",
-        "why.v1d": "Ship vertical devices with clear sellable value: recoverable intelligent work, auditable agent behavior, and multi-terminal unity — faster differentiation.",
+        "why.v1d": "Ship vertical devices with tangible intelligent differentiation: agents that get work done, permissions that can be explained, and a unified multi-device experience — a story the market can remember.",
+        "why.v1p1": "Concrete sellable value: recoverable work, auditable agents, multi-terminal unity",
+        "why.v1p2": "Faster category differentiation beyond feature-checklist competition",
+        "why.v1p3": "One capability set across cockpit, wearables, field, and fleets",
+        "why.v2a": "Delivery & engineering",
         "why.v2t": "Integrators & delivery",
-        "why.v2d": "Clear permission, failure, and peripheral boundaries make acceptance smoother. Observable status shortens bring-up and reduces delivery friction.",
+        "why.v2d": "Permissions, failure domains, and peripherals are explicit in the system, so bring-up is observable and acceptance criteria align — shortening the path from prototype to production.",
+        "why.v2p1": "Clear boundaries reduce delivery friction",
+        "why.v2p2": "Observable bring-up speeds diagnosis",
+        "why.v2p3": "Reusable templates across hardware and software interfaces",
+        "why.v3a": "Operations & field",
         "why.v3t": "Fleets & field ops",
-        "why.v3d": "Mission software updates remotely and key modules self-heal. Fleets, ground stations, and handhelds share one collaboration model — simpler operations.",
-        "why.windowT": "The opportunity is structural",
-        "why.windowD": "On-device intelligence, accelerators, and agents matured together. The market needs a system foundation that turns them into sellable products and operable fleets. That is RELang’s window.",
+        "why.v3d": "Give fleets a shared rhythm for updates, collaboration, and review: missions keep evolving, partial failures stay contained, and cross-device work becomes day-to-day capability.",
+        "why.v3p1": "Remote updates and self-healing reduce depot visits",
+        "why.v3p2": "Fleets, ground stations, and terminals share one collaboration model",
+        "why.v3p3": "Replayable missions support after-sales and incident review",
+        "why.windowT": "The window is structural, not a feature pile-up",
+        "why.windowD": "On-device models, accelerators, and agents are ready. What’s scarce is a system foundation that turns them into sellable products and operable fleets. RELang OS exists for that: redefine device value through agents, permissions, and collaboration.",
+        "why.tag1": "Sellable intelligence",
+        "why.tag2": "Shippable system boundaries",
+        "why.tag3": "Operable fleet collaboration",
+        "why.tag4": "Reviewable critical work",
         "caps.kicker": "Capabilities",
         "caps.title": "Product capabilities written into the OS",
         "caps.c1t": "Agent-native",
