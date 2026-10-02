@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="RELang OS — AI-native, multi-device operating system built on RVM (Rust BEAM VM)." />
-  <title>RELang OS</title>
+  <meta name="description" content="RELang OS — AI-native multi-device OS on RVM (Rust BEAM). Agents, capabilities, FieldCompanion for drones and robots." />
+  <title>RELang OS — AI 代理原生操作系统</title>
   <style>
     :root {
-      --bg: #0f1419;
+      --bg: #0c1017;
+      --bg2: #121a24;
       --surface: #1a2332;
       --text: #e7ecf3;
       --muted: #9aa8bc;
       --accent: #5b9fd4;
-      --accent-dim: #3d6f9a;
+      --accent2: #7ec8a3;
       --border: #2a3548;
+      --warn: #c9a227;
     }
     * { box-sizing: border-box; }
     body {
@@ -21,107 +23,302 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
-    .wrap { max-width: 52rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    header { margin-bottom: 2.5rem; }
-    h1 { font-size: 1.85rem; font-weight: 650; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
-    .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
+    .hero {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% -10%, rgba(91, 159, 212, 0.22), transparent),
+        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(126, 200, 163, 0.12), transparent),
+        var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.25rem 2.5rem;
+    }
+    .wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.25rem 4rem; }
+    .hero .wrap { padding-bottom: 0; }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.65rem;
+    }
+    .tagline { color: var(--muted); font-size: 1.1rem; max-width: 38rem; margin: 0 0 1.25rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
     .pill {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.25rem 0.65rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      padding: 0.28rem 0.7rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
       color: var(--accent);
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: var(--surface);
+      background: rgba(26, 35, 50, 0.8);
     }
-    section {
+    .pill.alt { color: var(--accent2); }
+    .cta {
+      display: inline-block;
+      padding: 0.55rem 1.1rem;
+      background: var(--accent);
+      color: #0c1017;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-right: 0.75rem;
+    }
+    .cta:hover { filter: brightness(1.08); text-decoration: none; }
+    .cta.ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    nav.toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin: 1.75rem 0 0.5rem;
+      font-size: 0.85rem;
+    }
+    nav.toc a { color: var(--muted); }
+    nav.toc a:hover { color: var(--accent); }
+    section.card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.25rem 1.35rem;
+      padding: 1.35rem 1.45rem;
       margin-bottom: 1rem;
     }
-    h2 { font-size: 1rem; margin: 0 0 0.75rem; color: var(--accent); font-weight: 600; }
-    ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
-    li { margin-bottom: 0.35rem; }
+    h2 {
+      font-size: 1.05rem;
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+      font-weight: 650;
+    }
+    h3 {
+      font-size: 0.92rem;
+      margin: 1rem 0 0.4rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    p, li { color: var(--muted); font-size: 0.95rem; }
+    p.lead { color: var(--text); font-size: 1rem; margin-top: 0; }
+    ul { margin: 0.35rem 0 0; padding-left: 1.2rem; }
+    li { margin-bottom: 0.4rem; }
+    strong.t { color: var(--text); font-weight: 600; }
     .grid { display: grid; gap: 1rem; }
-    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { text-align: left; padding: 0.5rem 0.35rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { text-align: left; padding: 0.45rem 0.35rem; border-bottom: 1px solid var(--border); vertical-align: top; }
     th { color: var(--muted); font-weight: 500; }
+    td { color: var(--muted); }
+    td:first-child, th:first-child { color: var(--text); }
+    pre.arch {
+      margin: 0;
+      padding: 1rem 1.1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      overflow-x: auto;
+      color: var(--accent2);
+    }
+    .note {
+      font-size: 0.85rem;
+      padding: 0.75rem 0.9rem;
+      border-left: 3px solid var(--warn);
+      background: rgba(201, 162, 39, 0.08);
+      border-radius: 0 8px 8px 0;
+      color: var(--muted);
+      margin: 0.75rem 0 0;
+    }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
-    .en { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+    footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .en {
+      margin-top: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
+  <div class="hero">
+    <div class="wrap">
       <h1>RELang OS</h1>
-      <p class="tagline">面向 AI 代理与多设备协同的操作系统 · RVM 运行时 · 能力安全 · 监督树与热升级</p>
-      <span class="pill">Public site · Source in private repo</span>
-    </header>
-
-    <div class="grid grid-2">
-      <section>
-        <h2>定位</h2>
-        <p style="margin:0;color:var(--muted);font-size:0.95rem;">
-          应用运行在 <strong style="color:var(--text)">RVM</strong>（Rust 实现的 BEAM 虚拟机）上。
-          系统服务采用 Erlang/OTP 式监督树；UI 与 HAL 以 Rust 为主路径。
-        </p>
-      </section>
-      <section>
-        <h2>类比</h2>
-        <table>
-          <tr><th>Android</th><th>RELang OS</th></tr>
-          <tr><td>ART</td><td>RVM</td></tr>
-          <tr><td>Binder</td><td>消息 + 域间通道</td></tr>
-          <tr><td>Manifest 权限</td><td>能力（Capability）</td></tr>
-        </table>
-      </section>
+      <p class="tagline">
+        面向 AI 代理与多设备协同的操作系统。应用跑在 <strong style="color:var(--text)">RVM</strong>（Rust BEAM 虚拟机）上 —
+        如同 ART 之于 Android。
+      </p>
+      <div class="pills">
+        <span class="pill">AI Agent Native</span>
+        <span class="pill">Capability Security</span>
+        <span class="pill alt">FieldCompanion</span>
+        <span class="pill">Public site · Private source</span>
+      </div>
+      <a class="cta" href="https://github.com/ShujianLv/RELangOS">GitHub 宣传仓</a>
+      <a class="cta ghost" href="https://github.com/ShujianLv/RELangOS/issues">合作 / 源码访问</a>
     </div>
+  </div>
 
-    <section>
-      <h2>差异化</h2>
+  <div class="wrap">
+    <nav class="toc" aria-label="章节">
+      <a href="#why">为何现在</a>
+      <a href="#diff">差异化</a>
+      <a href="#arch">架构</a>
+      <a href="#compare">对照 Android</a>
+      <a href="#vertical">垂直场景</a>
+      <a href="#field">伴飞 / 伴控</a>
+      <a href="#ai">端侧 AI</a>
+      <a href="#access">源码访问</a>
+    </nav>
+
+    <section class="card" id="why">
+      <h2>为何现在做新 OS</h2>
+      <p class="lead">内存安全、端侧 AI、能力模型与多设备协同同时成熟；旧栈仍按「人点 App、单机权限」设计。</p>
+      <div class="grid grid-2">
+        <div>
+          <h3>新常态</h3>
+          <ul>
+            <li>代理代替人手调用相机、任务、工具</li>
+            <li>手机 · 车机 · 地面站 · 机载盒一体作业</li>
+            <li>野外 / 产线要热升级，少整机重刷</li>
+            <li>推理在 NPU，策略在可审计的 Actor 里</li>
+          </ul>
+        </div>
+        <div>
+          <h3>RELang 的回答</h3>
+          <ul>
+            <li>Erlang 式监督树升为 OS 原则</li>
+            <li>Rust 实现 RVM，保证运行时内存安全</li>
+            <li>能力句柄替代粗粒度环境权限</li>
+            <li>垂直设备优先，不做无边界的手机大战</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="diff">
+      <h2>五大差异化</h2>
       <ul>
-        <li><strong style="color:var(--text)">AI 代理原生</strong> — 工具调用、配额、审计与 MCP 适配</li>
-        <li><strong style="color:var(--text)">多设备即一台机器</strong> — 集群会话与能力边界</li>
-        <li><strong style="color:var(--text)">永不重启</strong> — 子树恢复与组件热升级</li>
-        <li><strong style="color:var(--text)">垂直设备</strong> — 工业、AI 硬件、无人机伴飞、机器人边缘任务</li>
+        <li><strong class="t">AI 代理原生</strong> — 代理是被监督进程；工具 = 消息；权限 = 能力；配额与审计内建；可对接 MCP。</li>
+        <li><strong class="t">多设备即一台机器</strong> — 安全会话集群；本地与远端同一套消息语义。</li>
+        <li><strong class="t">永不重启（目标叙事）</strong> — 子树恢复 + 组件热升级，降低整机重启依赖。</li>
+        <li><strong class="t">结构性安全</strong> — Rust 运行时、无环境权限、不可信原生进隔离域。</li>
+        <li><strong class="t">无全局 GC 卡顿</strong> — 每进程独立堆；UI 路径不受全局停顿绑架。</li>
       </ul>
     </section>
 
-    <section>
-      <h2>现场伴飞 / 伴控（FieldCompanion）</h2>
-      <p style="margin:0;color:var(--muted);font-size:0.95rem;">
-        机载与边缘侧重 <em>任务与协同</em>：作业编排、感知推理、多机 mesh、OTA。
-        飞控与伺服硬实时留在外部栈，经 MAVLink / ROS 2 等桥接，不内嵌进 RVM 内环。
-      </p>
+    <section class="card" id="arch">
+      <h2>架构鸟瞰</h2>
+      <pre class="arch">应用 / 代理（Gleam · Elixir · Erlang）
+        │  消息 · 能力 · Intent
+系统监督树（framework 服务）
+        │
+   RVM（BEAM 语义 · Seed · Dist · Dirty）
+        │
+原生层：合成器 · UI 引擎 · Agent · HAL · 加速器
+        │
+Linux（前期）· cgroup / 异步 I/O / 可选隔离</pre>
+      <p class="note">不自研芯片驱动；前期复用主线 Linux / 厂商 BSP。无设备或无宿主时返回诚实失败，不编造成功。</p>
     </section>
 
-    <section>
-      <h2>源码与仓库</h2>
-      <p style="margin:0;color:var(--muted);font-size:0.95rem;">
-        本站点对应 GitHub 公开宣传仓，<strong style="color:var(--text)">不含实现源码</strong>。
-        完整工程在私有仓库维护。合作与只读访问请通过
-        <a href="https://github.com/ShujianLv/RELangOS/issues">Issues</a> 联系。
+    <section class="card" id="compare">
+      <h2>与 Android 对照</h2>
+      <table>
+        <thead>
+          <tr><th>层次</th><th>Android</th><th>RELang OS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>运行时</td><td>ART</td><td>RVM</td></tr>
+          <tr><td>孵化</td><td>Zygote</td><td>Seed</td></tr>
+          <tr><td>IPC</td><td>Binder</td><td>消息 + 域间通道</td></tr>
+          <tr><td>服务</td><td>system_server</td><td>监督树服务</td></tr>
+          <tr><td>语言</td><td>Java / Kotlin</td><td>Gleam（主）/ Elixir / Erlang</td></tr>
+          <tr><td>扩展</td><td>NDK</td><td>Wasm（默认）</td></tr>
+          <tr><td>权限</td><td>Manifest + uid</td><td>能力句柄</td></tr>
+          <tr><td>UI</td><td>View / Compose</td><td>声明式 · Rust 渲染</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="vertical">
+      <h2>垂直场景</h2>
+      <div class="grid grid-3">
+        <div>
+          <h3>多设备个人集群</h3>
+          <p>启动器、设置、声明式 UI、应用包与跨设备会话 — 长期故事线。</p>
+        </div>
+        <div>
+          <h3>工业与物流终端</h3>
+          <p>监督树 + 热升级 + 能力审计，适合野外与产线运维。</p>
+        </div>
+        <div>
+          <h3>AI 硬件</h3>
+          <p>代理与加速器统一 ABI；任务 OS 与算力板解耦。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="field">
+      <h2>现场伴飞 / 伴控（FieldCompanion）</h2>
+      <p class="lead">无人机与机器人共用同一垂直面：RELang 做任务与协同，硬实时留在外部。</p>
+      <table>
+        <thead>
+          <tr><th>RELang</th><th>外部栈</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>作业编排、围栏意图、mesh、OTA、感知推理</td><td>飞控内环、伺服、安全 PLC</td></tr>
+          <tr><td>MAVLink / ROS 2 宿主桥（意图）</td><td>PX4 / ArduPilot、运动控制器</td></tr>
+        </tbody>
+      </table>
+      <h3>合适位置</h3>
+      <ul>
+        <li>机载伴飞电脑、地面站、编队协同</li>
+        <li>工业臂旁智能盒、仓内 AMR / 巡检移动机器人</li>
+        <li><strong class="t">不</strong>替代飞控固件或 EtherCAT 主站</li>
+      </ul>
+    </section>
+
+    <section class="card" id="ai">
+      <h2>端侧 AI</h2>
+      <ul>
+        <li>系统代理：工具注册、确认、配额、审计</li>
+        <li>CPU / GPU / NPU / TPU 统一为加速器类 — 应用不绑厂商 API 字符串</li>
+        <li>大张量走句柄；推理在隔离域，避免拖死 UI 帧钟</li>
+        <li>外部编程助手可走 MCP / LSP 适配；产品不自研 Codex</li>
+      </ul>
+    </section>
+
+    <section class="card" id="access">
+      <h2>源码与合作</h2>
+      <p>
+        本站与 <a href="https://github.com/ShujianLv/RELangOS">github.com/ShujianLv/RELangOS</a>
+        仅为宣传入口，<strong class="t">不含实现源码</strong>。
+        评估、OEM / ODM、垂直交付请通过
+        <a href="https://github.com/ShujianLv/RELangOS/issues">Issues</a>
+        申请私有仓只读访问。
       </p>
+      <p class="note">宣传文案 MIT；产品源码许可以私有仓库声明为准。</p>
     </section>
 
     <footer>
-      <a href="https://github.com/ShujianLv/RELangOS">GitHub 仓库</a>
-      · 维护说明见 <a href="setup.md">docs/setup.md</a>
+      <a href="https://github.com/ShujianLv/RELangOS">宣传仓 README</a>
+      · <a href="setup.md">双仓维护说明</a>
+      · Pages: /docs on main
     </footer>
 
     <p class="en">
-      <strong>RELang OS</strong> — AI-native OS on RVM (Rust BEAM VM). This page is the public face;
-      implementation source is not published here.
+      <strong style="color:var(--text)">RELang OS</strong> — AI-native OS on RVM (Rust BEAM VM).
+      Agents, capabilities, multi-device mesh, and FieldCompanion (mission OS for drones/robots)
+      are first-class. This site is public marketing only; source remains private.
     </p>
   </div>
 </body>
