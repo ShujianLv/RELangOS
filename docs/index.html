@@ -370,8 +370,13 @@
     }
     @media (min-width: 720px) {
       .layers {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0.55rem;
+      }
+    }
+    @media (min-width: 1100px) {
+      .layers {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
     .layers li {
@@ -419,7 +424,7 @@
       display: grid;
       gap: 1.25rem;
     }
-    @media (min-width: 720px) {
+    @media (min-width: 900px) {
       .values { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     }
     .values article {
@@ -866,7 +871,7 @@
     <div class="wrap bar-inner">
       <a class="brand" href="#">RELang OS</a>
       <div class="bar-right">
-        <nav class="nav" id="site-nav" data-i18n-nav aria-label="Primary">
+        <nav class="nav" id="site-nav" data-i18n-aria="aria.nav">
           <a href="#vision" data-i18n="nav.vision"></a>
           <a href="#principles" data-i18n="nav.principles"></a>
           <a href="#arch" data-i18n="nav.arch"></a>
@@ -876,11 +881,11 @@
           <a href="#compare" data-i18n="nav.compare"></a>
           <a href="#access" data-i18n="nav.access"></a>
         </nav>
-        <div class="lang" role="group" aria-label="Language">
+        <div class="lang" role="group" data-i18n-aria="aria.lang">
           <button type="button" id="lang-zh" aria-pressed="true">中文</button>
           <button type="button" id="lang-en" aria-pressed="false">EN</button>
         </div>
-        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">☰</button>
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" data-i18n-aria="aria.menu">☰</button>
       </div>
     </div>
   </header>
@@ -968,7 +973,7 @@
             <img src="assets/relang-arch-layers.jpg" width="1600" height="900" alt="" data-i18n-alt="img.arch.alt" loading="lazy" />
             <figcaption data-i18n="img.arch.cap"></figcaption>
           </figure>
-          <ul class="layers" aria-label="Architecture">
+          <ul class="layers" data-i18n-aria="aria.arch">
             <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
             <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
             <li><strong data-i18n="arch.l3t"></strong><span data-i18n="arch.l3d"></span></li>
@@ -1035,7 +1040,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c1t"></h3>
               <p data-i18n="caps.c1d"></p>
-              <span class="meta">授权 · 确认 · 配额 · 审计</span>
+              <span class="meta" data-i18n="caps.c1m"></span>
             </div>
           </article>
           <article class="cap-row">
@@ -1046,7 +1051,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c2t"></h3>
               <p data-i18n="caps.c2d"></p>
-              <span class="meta">发现 · 配对 · 会话 · 迁移</span>
+              <span class="meta" data-i18n="caps.c2m"></span>
             </div>
           </article>
           <article class="cap-row">
@@ -1057,7 +1062,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c3t"></h3>
               <p data-i18n="caps.c3d"></p>
-              <span class="meta">CPU · GPU · NPU · TPU</span>
+              <span class="meta" data-i18n="caps.c3m"></span>
             </div>
           </article>
           <article class="cap-row">
@@ -1068,7 +1073,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c4t"></h3>
               <p data-i18n="caps.c4d"></p>
-              <span class="meta">手机 · 平板 · 车机 · 手持</span>
+              <span class="meta" data-i18n="caps.c4m"></span>
             </div>
           </article>
           <article class="cap-row">
@@ -1079,7 +1084,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c5t"></h3>
               <p data-i18n="caps.c5d"></p>
-              <span class="meta">录制 · 回放 · 合规 · 复盘</span>
+              <span class="meta" data-i18n="caps.c5m"></span>
             </div>
           </article>
         </div>
@@ -1243,7 +1248,7 @@
   <footer class="site">
     <div class="wrap site-inner">
       <span>RELang OS</span>
-      <span>智能代理 · 多端协同 · 现场任务</span>
+      <span data-i18n="footer.tag"></span>
       <a href="https://github.com/ShujianLv/RELangOS">github.com/ShujianLv/RELangOS</a>
     </div>
   </footer>
@@ -1300,21 +1305,15 @@
         "why.v1a": "产品与商业",
         "why.v1t": "品牌与产品团队",
         "why.v1d": "让垂直设备在发布时就具备可感知的智能差异：代理能做事、权限说得清、多端体验一体，形成可持续传播的产品主张。",
-        "why.v1p1": "可卖点更具体：可恢复作业、可审计代理、多终端一体",
-        "why.v1p2": "更快建立品类差异，减少「功能清单式」同质化竞争",
-        "why.v1p3": "同一套能力覆盖座舱、穿戴、仓储、巡检与工业边缘等多形态",
+        "why.v1line": "可卖点更具体 · 品类差异更快 · 多形态复用同一能力",
         "why.v2a": "交付与工程",
         "why.v2t": "系统集成与交付",
         "why.v2d": "把权限边界、故障边界与外设边界写进系统，使联调状态可观测、验收标准可对齐，缩短从样机到量产交付的路径。",
-        "why.v2p1": "边界清晰，减少扯皮与反复确认",
-        "why.v2p2": "联调过程可观测，问题定位更快",
-        "why.v2p3": "硬件与软件接口更易形成可复用交付模板",
+        "why.v2line": "边界清晰可验收 · 联调可观测 · 交付模板可复用",
         "why.v3a": "运营与现场",
         "why.v3t": "运营与现场团队",
         "why.v3d": "面向设备上线后的日常运行：升级、协同、异常处理与复盘形成统一节奏，适用于穿戴、座舱、仓储、巡检到工业与伴控等场景。",
-        "why.v3p1": "远程升级与模块自愈，降低停机与回厂维护成本",
-        "why.v3p2": "多端与多岗位统一协同，减少临时脚本和口头对接",
-        "why.v3p3": "关键作业可回放，便于售后说明、合规与事故复盘",
+        "why.v3line": "远程升级自愈 · 多端统一协同 · 关键作业可复盘",
         "why.windowT": "窗口在产品结构，而不在功能堆叠",
         "why.windowD": "端侧模型、专用加速与代理能力已经成熟，真正稀缺的是把它们组织成可卖产品与可日常运营系统的底座。RELang OS 正是为此而生：用代理、权限与协同重新定义设备价值。",
         "why.tag1": "可卖的智能差异",
@@ -1333,6 +1332,20 @@
         "caps.c4d": "业务与界面分层设计，在手机、平板、车机与手持终端上保持可控、一致的产品体验。",
         "caps.c5t": "可审计、可回放",
         "caps.c5d": "关键会话可录制回放，支撑合规审查、售后说明与现场事故复盘，让智能作业留得下证据。",
+        "caps.c1m": "授权 · 确认 · 配额 · 审计",
+        "caps.c2m": "发现 · 配对 · 会话 · 迁移",
+        "caps.c3m": "CPU · GPU · NPU · TPU",
+        "caps.c4m": "手机 · 平板 · 车机 · 穿戴",
+        "caps.c5m": "录制 · 回放 · 合规 · 复盘",
+        "footer.tag": "智能代理 · 多端协同 · 垂直场景",
+        "aria.nav": "主导航",
+        "aria.lang": "语言",
+        "aria.menu": "菜单",
+        "aria.arch": "产品分层",
+        "access.evalKind": "产品评估",
+        "access.sponsorKind": "品牌赞助",
+        "access.investKind": "投资合作",
+
         "field.kicker": "垂直场景",
         "field.title": "从现场机队到座舱与穿戴的可落地场景",
         "field.lede": "RELang OS 以同一套代理、权限与多端协同底座，服务多类垂直产品：伴飞伴控、车机座舱、手机手表与穿戴、仓储物流与能源巡检。",
@@ -1386,15 +1399,15 @@
         "access.s3d": "按需要签署 NDA，提供评估包、赞助方案或投资材料。",
         "access.s4t": "推进合作",
         "access.s4d": "进入联合方案、试点评估、赞助落地或投资尽调沟通。",
-        "access.evalKind": "Product",
+        "access.evalKind": "产品评估",
         "access.evalTitle": "申请评估合作",
         "access.evalBody": "面向产品、集成与运营团队：评估授权、联合方案与技术试点。",
         "access.evalCta": "提交评估申请",
-        "access.sponsorKind": "Sponsorship",
+        "access.sponsorKind": "品牌赞助",
         "access.sponsorTitle": "品牌赞助",
         "access.sponsorBody": "支持官网叙事、演示日、生态计划与联合传播，换取品牌露出与共创机会。",
         "access.sponsorCta": "提交赞助意向",
-        "access.investKind": "Investment",
+        "access.investKind": "投资合作",
         "access.investTitle": "投资与战略资本",
         "access.investBody": "面向基金与战略投资方：介绍沟通、材料交换与尽调安排（通常先 NDA）。",
         "access.investCta": "提交投资意向",
@@ -1476,21 +1489,15 @@
         "why.v1a": "Product & business",
         "why.v1t": "Brands & product teams",
         "why.v1d": "Ship vertical devices with tangible intelligent differentiation: agents that get work done, permissions that can be explained, and a unified multi-device experience — a story the market can remember.",
-        "why.v1p1": "Concrete sellable value: recoverable work, auditable agents, multi-terminal unity",
-        "why.v1p2": "Faster category differentiation beyond feature-checklist competition",
-        "why.v1p3": "One capability set across cockpit, wearables, logistics, inspection, and industrial edge",
+        "why.v1line": "Clearer sellable value · Faster category edge · One capability across form factors",
         "why.v2a": "Delivery & engineering",
         "why.v2t": "Integrators & delivery",
         "why.v2d": "Permissions, failure domains, and peripherals are explicit in the system, so bring-up is observable and acceptance criteria align — shortening the path from prototype to production.",
-        "why.v2p1": "Clear boundaries reduce delivery friction",
-        "why.v2p2": "Observable bring-up speeds diagnosis",
-        "why.v2p3": "Reusable templates across hardware and software interfaces",
+        "why.v2line": "Clear boundaries · Observable bring-up · Reusable delivery templates",
         "why.v3a": "Operations & field",
         "why.v3t": "Operations & field teams",
         "why.v3d": "For day-to-day running after devices ship: a shared rhythm for updates, collaboration, exception handling, and review — across wearables, cockpits, logistics, inspection, industrial edge, and companion control.",
-        "why.v3p1": "Remote updates and self-healing reduce downtime and return maintenance",
-        "why.v3p2": "Roles and devices share one collaboration model — fewer ad-hoc scripts and verbal handoffs",
-        "why.v3p3": "Replayable work supports after-sales, compliance, and incident review",
+        "why.v3line": "Remote update & self-heal · Unified multi-device ops · Replayable critical work",
         "why.windowT": "The window is structural, not a feature pile-up",
         "why.windowD": "On-device models, accelerators, and agents are ready. What’s scarce is a system foundation that turns them into sellable products and day-to-day operable systems. RELang OS exists for that: redefine device value through agents, permissions, and collaboration.",
         "why.tag1": "Sellable intelligence",
@@ -1509,6 +1516,17 @@
         "caps.c4d": "Business and presentation stay layered, so phone, tablet, auto, and handheld keep a controllable, consistent product feel.",
         "caps.c5t": "Auditable and replayable",
         "caps.c5d": "Critical sessions can be recorded and replayed for compliance, after-sales explanation, and field review — intelligent work leaves evidence.",
+        "caps.c1m": "Grant · Confirm · Quota · Audit",
+        "caps.c2m": "Discover · Pair · Session · Migrate",
+        "caps.c3m": "CPU · GPU · NPU · TPU",
+        "caps.c4m": "Phone · Tablet · Auto · Wearable",
+        "caps.c5m": "Record · Replay · Compliance · Review",
+        "footer.tag": "Agents · Multi-device · Verticals",
+        "aria.nav": "Primary",
+        "aria.lang": "Language",
+        "aria.menu": "Menu",
+        "aria.arch": "Architecture",
+
         "field.kicker": "Verticals",
         "field.title": "From fleets to cockpit, wearables, and logistics",
         "field.lede": "RELang OS uses one foundation of agents, trusted permissions, and multi-device collaboration across verticals: companion flight and control, automotive cockpits, phones/watches/wearables, logistics edge, and infrastructure inspection.",
@@ -1632,6 +1650,10 @@
       document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
         const key = el.getAttribute("data-i18n-alt");
         if (dict[key] != null) el.setAttribute("alt", dict[key]);
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-aria");
+        if (dict[key] != null) el.setAttribute("aria-label", dict[key]);
       });
       document.title = lang === "en"
         ? "RELang OS — OS for agents and multi-device work"
