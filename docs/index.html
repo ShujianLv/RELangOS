@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="RELang OS — AI-native multi-device operating system on RVM (Rust BEAM VM). Proprietary software." />
+  <meta name="description" content="RELang OS — 面向智能代理与多端协同的操作系统。专有软件，支持评估与合作授权。" />
   <title>RELang OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -718,7 +718,9 @@
         <img src="assets/relang-hero-bg.jpg" width="1600" height="900" alt="" decoding="async" fetchpriority="high" />
       </div>
       <div class="wrap hero-inner">
-        <p class="hero-brand">RELang OS</p>
+        <div class="hero-brand">
+          <img src="assets/relang-logo.jpg" width="1600" height="900" alt="RELang OS" decoding="async" fetchpriority="high" />
+        </div>
         <h1 data-i18n="hero.title"></h1>
         <p class="lede" data-i18n-html="hero.lede"></p>
         <div class="actions">
@@ -847,7 +849,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c1t"></h3>
               <p data-i18n="caps.c1d"></p>
-              <span class="meta">Agent · Tool · Quota · Audit · MCP</span>
+              <span class="meta">授权 · 确认 · 配额 · 审计</span>
             </div>
           </article>
           <article class="cap-row">
@@ -858,7 +860,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c2t"></h3>
               <p data-i18n="caps.c2d"></p>
-              <span class="meta">Mesh · Session · Capability · Migration</span>
+              <span class="meta">发现 · 配对 · 会话 · 迁移</span>
             </div>
           </article>
           <article class="cap-row">
@@ -869,7 +871,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c3t"></h3>
               <p data-i18n="caps.c3d"></p>
-              <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
+              <span class="meta">CPU · GPU · NPU · TPU</span>
             </div>
           </article>
           <article class="cap-row">
@@ -880,7 +882,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c4t"></h3>
               <p data-i18n="caps.c4d"></p>
-              <span class="meta">Gleam UI · Compositor</span>
+              <span class="meta">手机 · 平板 · 车机 · 手持</span>
             </div>
           </article>
           <article class="cap-row">
@@ -891,7 +893,7 @@
             <div class="cap-body">
               <h3 data-i18n="caps.c5t"></h3>
               <p data-i18n="caps.c5d"></p>
-              <span class="meta">Deterministic · Replay · Audit</span>
+              <span class="meta">录制 · 回放 · 合规 · 复盘</span>
             </div>
           </article>
         </div>
@@ -946,13 +948,13 @@
             </thead>
             <tbody>
               <tr><td data-i18n="compare.r1a"></td><td>ART</td><td class="hl" data-i18n="compare.r1c"></td></tr>
-              <tr><td data-i18n="compare.r2a"></td><td>Zygote</td><td class="hl">Seed</td></tr>
-              <tr><td>IPC</td><td>Binder</td><td class="hl" data-i18n="compare.r3c"></td></tr>
+              <tr><td data-i18n="compare.r2a"></td><td>Zygote</td><td class="hl" data-i18n="compare.r2c"></td></tr>
+              <tr><td data-i18n="compare.r3a"></td><td>Binder</td><td class="hl" data-i18n="compare.r3c"></td></tr>
               <tr><td data-i18n="compare.r4a"></td><td>system_server</td><td class="hl" data-i18n="compare.r4c"></td></tr>
-              <tr><td data-i18n="compare.r5a"></td><td>Java / Kotlin</td><td class="hl">Gleam · Elixir · Erlang</td></tr>
-              <tr><td data-i18n="compare.r6a"></td><td>NDK</td><td class="hl">Wasm</td></tr>
+              <tr><td data-i18n="compare.r5a"></td><td>Java / Kotlin</td><td class="hl" data-i18n="compare.r5c"></td></tr>
+              <tr><td data-i18n="compare.r6a"></td><td>NDK</td><td class="hl" data-i18n="compare.r6c"></td></tr>
               <tr><td data-i18n="compare.r7a"></td><td>Manifest + uid</td><td class="hl" data-i18n="compare.r7c"></td></tr>
-              <tr><td>UI</td><td>View / Compose</td><td class="hl" data-i18n="compare.r8c"></td></tr>
+              <tr><td data-i18n="compare.r8a"></td><td>View / Compose</td><td class="hl" data-i18n="compare.r8c"></td></tr>
             </tbody>
           </table>
         </div>
@@ -977,7 +979,7 @@
   <footer class="site">
     <div class="wrap site-inner">
       <span>RELang OS</span>
-      <span>RVM · Capability · FieldCompanion</span>
+      <span>智能代理 · 多端协同 · 现场任务</span>
       <a href="https://github.com/ShujianLv/RELangOS">github.com/ShujianLv/RELangOS</a>
     </div>
   </footer>
@@ -986,235 +988,245 @@
     const I18N = {
       zh: {
         "nav.vision": "理念",
-        "nav.principles": "原理",
-        "nav.arch": "架构",
+        "nav.principles": "原则",
+        "nav.arch": "构成",
         "nav.why": "价值",
         "nav.caps": "能力",
         "nav.field": "现场",
         "nav.compare": "对照",
         "nav.access": "合作",
-        "hero.title": "为代理与协同而生的操作系统",
-        "hero.lede": "RELang OS 把 Erlang 验证过的进程模型，做成系统的第一性原则。应用跑在 <em>RVM</em> 上 — Rust 实现的 BEAM 虚拟机，之于 RELang，如同 ART 之于 Android。",
-        "hero.ctaPrimary": "了解理念",
-        "hero.ctaSecondary": "申请评估授权",
+        "hero.title": "为智能代理与多端协同而生的操作系统",
+        "hero.lede": "当设备开始替人做事、跨端完成一件任务、在现场自己恢复时，传统「为人点 App」的操作系统会先露怯。RELang OS 从第一天就把<strong>代理、权限与协同</strong>做成系统能力，而不是后装的助手。",
+        "hero.ctaPrimary": "了解产品理念",
+        "hero.ctaSecondary": "申请评估合作",
         "vision.kicker": "理念",
-        "vision.title": "操作系统该如何对待失败、权限与智能",
-        "vision.p1": "多数移动栈按「人点 App」设计：粗粒度权限、单机 IPC、全局式服务进程。当设备开始替你调用工具、跨端完成一件事、在野外自我恢复时，这些假设会先碎裂。",
-        "vision.p2": "RELang 的起点不是再做一个兼容层，而是换一套世界观：把 Erlang 验证过的进程模型，提升为操作系统的第一性原则。智能代理与多设备协同不是外挂功能，而是系统原生该如何工作。",
-        "principles.kicker": "原理",
-        "principles.title": "四条运行时原语",
-        "principles.lede": "理念回答「为何如此」；原理约束实现必须遵守的规则。下列四条贯穿调度、权限、分布式与失败路径。",
-        "principles.p1t": "任其崩溃，结构化恢复",
-        "principles.p1d": "服务挂了，先重启子树，而不是拖垮整机用户态。热升级面向组件，而不是「下次进站再刷」。",
-        "principles.p2t": "没有环境权限",
-        "principles.p2d": "不能因为「知道名字」就拿到相机或电台。能力可衰减、可过期、可审计 — 代理与应用同一套闸。",
-        "principles.p3t": "位置透明",
-        "principles.p3d": "本机 Actor 与另一台设备上的 Actor，使用同一套消息语义。多设备是运行时能力，不是账号同步的附属品。",
+        "vision.title": "下一类设备，需要下一类操作系统",
+        "vision.p1": "手机与边缘设备正从「人点一点」走向「系统替你完成一件事」：调用工具、跨终端接力、在野外局部故障后继续作业。旧栈按粗粒度 App、单机权限和全局服务建造 — 这些假设正在过期。",
+        "vision.p2": "RELang OS 不是再叠一层聊天助手，而是换一套产品底座：失败可恢复、权限可审计、多设备像一台机器、智能代理是系统原生能力。面向垂直产品与现场机队，而不是先去拼消费应用商店。",
+        "principles.kicker": "原则",
+        "principles.title": "四条产品底线",
+        "principles.lede": "理念说明我们为何如此；原则决定交付时必须守住什么 — 也方便客户评估「这套系统靠不靠谱」。",
+        "principles.p1t": "局部故障，整体不停",
+        "principles.p1d": "某个模块挂了，优先自动恢复这一块，而不是整机推倒重来。关键业务还能热更新，少依赖「回站重刷」。",
+        "principles.p2t": "没有默许权限",
+        "principles.p2d": "知道名字不等于能开相机或电台。权限可收回、可过期、可审计 — 人和智能代理走同一套规则。",
+        "principles.p3t": "多端一体",
+        "principles.p3d": "手机、平板、车机、现场终端用同一套协同语言。多设备是产品能力，不是账号云同步的附属品。",
         "principles.p4t": "诚实失败",
-        "principles.p4d": "设备不在、宿主未挂，返回 unavailable — 不编造邻居、不假装起飞、不假冒推理成功。",
-        "arch.kicker": "架构",
-        "arch.title": "一层运行时，贯通应用、服务与代理",
-        "arch.lede": "开发者面对统一的 RVM 与能力模型。换设备时换的是 HAL 与产品 Profile，不是另一套应用运行时。UI 状态留在进程里，像素路径在 Rust 原生层。",
-        "arch.l1t": "应用与代理",
-        "arch.l1d": "Gleam / Elixir / Erlang · 消息 · Intent · 工具 schema · 能力租约",
-        "arch.l2t": "系统监督树",
-        "arch.l2d": "framework · 连接 · 媒体 · UI 壳 · AI · 现场任务",
-        "arch.l3t": "RVM",
-        "arch.l3d": "Rust BEAM 虚拟机 · 解释 / JIT / AOT · Seed · Dist · Dirty",
-        "arch.l4t": "原生层",
-        "arch.l4d": "合成器 · UI 引擎 · HAL · 加速器运行时",
-        "arch.l5t": "内核（前期）",
-        "arch.l5d": "Linux · 隔离 · 异步 I/O · 调度",
-        "arch.rvm": "<strong>RVM</strong> 承载 BEAM 语义：轻量进程、邮箱、链接与监视、每进程堆。长阻塞与推理进 Dirty 线程，不堵调度器。",
-        "arch.domain": "<strong>Domain</strong> 划分信任：System 握策略与桥；App 握作业；Agent 只能经工具与能力行动；厂商 SDK 与不可信原生进 Isolated。",
-        "arch.note": "内核前期复用主线 Linux 与厂商 BSP — 创新集中在运行时与框架，而不是再造驱动宇宙。",
+        "principles.p4d": "设备不在、链路未通、能力未就绪 — 明确说「不可用」，不编造邻居、不假装起飞、不假冒推理成功。",
+        "arch.kicker": "构成",
+        "arch.title": "一层产品底座，贯通应用、服务与代理",
+        "arch.lede": "伙伴面对的是统一的运行时与权限模型。换形态设备时，换的是硬件适配与产品配置，不是另一套应用世界。界面跟得上业务，而不是绑死在沉重的全局卡顿里。",
+        "arch.l1t": "应用与智能代理",
+        "arch.l1d": "业务与代理作业 · 意图与工具 · 可审计的权限租约",
+        "arch.l2t": "系统服务",
+        "arch.l2d": "连接 · 媒体 · 界面壳 · AI · 现场任务 — 可监督、可恢复",
+        "arch.l3t": "RVM 运行时",
+        "arch.l3d": "为高并发协同与代理作业打造的核心引擎",
+        "arch.l4t": "原生体验层",
+        "arch.l4d": "界面合成 · 设备适配 · 端侧加速",
+        "arch.l5t": "系统内核（近期）",
+        "arch.l5d": "成熟 Linux 基线 · 隔离与调度",
+        "arch.rvm": "<strong>RVM</strong> 是 RELang 的应用与代理引擎：把大量轻量任务安全地跑在一起，长耗时推理不拖垮交互体验。",
+        "arch.domain": "<strong>信任分区</strong>划清边界：系统握策略，应用握作业，代理只能经授权行动；厂商组件与不可信原生代码隔离运行。",
+        "arch.note": "近期复用成熟 Linux 与厂商板级支持 — 把创新放在体验、权限与协同，而不是重造驱动宇宙。",
         "why.kicker": "价值",
-        "why.title": "它解决谁的什么问题",
-        "why.v1t": "给产品与交付",
-        "why.v1d": "垂直设备可以卖「可恢复、可审计的代理作业、多终端一体」— 不必先赢下消费应用商店。",
-        "why.v2t": "给系统集成",
-        "why.v2d": "能力与 Domain 把权限、崩溃域、原生桥的边界写死。缺硬件时诚实失败，联调不靠假成功。",
-        "why.v3t": "给现场与机队",
-        "why.v3d": "任务软件可热升级；子模块故障可恢复；编队与地面站走同一 mesh 叙事，而不是临时拼脚本。",
-        "why.windowT": "窗口期在架构，不在功能清单",
-        "why.windowD": "端侧模型、NPU、代理协议与内存安全语言同时就绪。现有 OS 仍以 App 为粗粒度单位；RELang 以进程、能力与代理为粒度 — 这是结构性窗口。",
-        "caps.kicker": "特性",
-        "caps.title": "系统一等公民，而不是外挂",
-        "caps.c1t": "AI 代理原生",
-        "caps.c1d": "代理是被监督的进程，不是悬浮聊天窗。工具调用走能力、确认与配额；审计落在消息路径上。外部编程助手可通过 MCP / LSP 适配接入 Host — 产品不自研 Codex。",
+        "why.title": "它帮谁做成什么生意",
+        "why.v1t": "给品牌与产品团队",
+        "why.v1d": "垂直设备可以卖「可恢复、可审计的智能作业、多终端一体」— 不必先赢下消费应用商店再谈差异化。",
+        "why.v2t": "给系统集成与交付",
+        "why.v2d": "权限、故障域与外设边界写清楚。缺硬件就如实失败，联调不靠「假成功」交差。",
+        "why.v3t": "给现场与机队运营",
+        "why.v3d": "任务软件可远程升级；子模块可自愈；编队、地面站与手持终端讲同一套协同故事，少靠临时脚本硬拼。",
+        "why.windowT": "窗口在产品结构，不在功能清单",
+        "why.windowD": "端侧模型、专用加速芯片、代理协议同时成熟，而主流系统仍以「一个 App」为粗粒度单位。RELang 以任务、权限与代理为粒度 — 这是结构性机会。",
+        "caps.kicker": "能力",
+        "caps.title": "系统一等公民，而不是后装插件",
+        "caps.c1t": "智能代理原生",
+        "caps.c1d": "代理是受管理的系统能力，不是悬浮聊天窗。调用工具要授权、要确认、有配额；关键动作可审计。也可对接主流外部编程助手进入研发环境 — 我们不另造一套「伪 IDE」。",
         "caps.c2t": "多设备即一台机器",
-        "caps.c2d": "发现、配对、会话与分区有明确状态；传输未就绪就不假装连通。个人集群与现场编队共用同一套语义。",
-        "caps.c3t": "端侧加速器统一面",
-        "caps.c3d": "CPU、GPU、NPU、TPU 是同一加速器类的后端。应用看见任务与模型 ID；大张量走句柄。推理在隔离域运行，与 UI 绘制队列隔离。",
-        "caps.c4t": "声明式 UI，原生渲染",
-        "caps.c4d": "状态与业务在 BEAM 进程；布局、文本与合成在 Rust。跨手机、平板、车机、手持终端可控的像素路径。",
-        "caps.c5t": "可测与可回放",
-        "caps.c5d": "时间、随机与输入可注入。会话与操作可录制回放，便于代理行为审计与现场事故追溯。",
-        "field.kicker": "垂直 · FieldCompanion",
-        "field.title": "无人机与机器人：做任务 OS，不当飞控",
-        "field.lede": "现场伴飞 / 伴控是同一垂直 Profile。RELang 负责作业编排、感知闭环、围栏与安全<strong>意图</strong>、多机协同与 OTA；姿态环、伺服周期与安全 PLC 留在外部栈，经 MAVLink / ROS 2 等桥对接。",
+        "caps.c2d": "发现、配对、会话有清晰状态。链路没通就不假装已连通。个人设备群与现场机队共用同一协同体验。",
+        "caps.c3t": "端侧算力统一调度",
+        "caps.c3d": "CPU、GPU、NPU、TPU 按同一套任务入口使用。业务看见「要算什么」，不必绑死某一芯片品牌；推理与界面互不拖累。",
+        "caps.c4t": "跨终端一致体验",
+        "caps.c4d": "业务状态与界面表现分层：交互流畅可控，覆盖手机、平板、车机与手持终端等形态。",
+        "caps.c5t": "可审计、可回放",
+        "caps.c5d": "关键会话与操作可录制回放，便于合规审计、售后追责与现场事故复盘 — 智能系统也要「说得清做过什么」。",
+        "field.kicker": "垂直场景 · FieldCompanion",
+        "field.title": "无人机与机器人：做任务操作系统，不当飞控",
+        "field.lede": "伴飞 / 伴控是同一类垂直方案。RELang 负责作业编排、感知决策、围栏与安全<strong>意图</strong>、多机协同与远程升级；姿态环、伺服与安全回路仍留在专业控制栈，经行业标准接口对接。",
         "field.d1t": "无人机伴飞",
-        "field.d1d": "机载任务电脑跑巡检流程、视觉检测、禁飞协调与地面站联动；飞控仍掌握最终执行权。",
-        "field.d1b": "合适：工业巡检、物流末端、多机协同 · 不合适：取代飞控固件",
+        "field.d1d": "机载任务电脑跑巡检流程、视觉识别、禁飞协调与地面站联动；飞控仍掌握最终执行权。",
+        "field.d1b": "适合：工业巡检、物流末端、多机协同 · 不适合：取代飞控固件",
         "field.d2t": "机器人与工业边缘",
-        "field.d2d": "工控机 / 智能盒上的工艺 Actor、视觉引导、换型与人机协同；运动控制与 SIL 安全回路仍在专用栈。",
-        "field.d2b": "合适：AMR、巡检、臂旁智能盒 · 不合适：EtherCAT 内环、安全 PLC 替代",
+        "field.d2d": "工控机 / 智能盒上的工艺流程、视觉引导、换型与人机协同；运动控制与安全回路仍在专用设备上。",
+        "field.d2b": "适合：AMR、巡检、臂旁智能盒 · 不适合：取代实时运动内环或安全 PLC",
         "compare.kicker": "对照",
-        "compare.title": "熟悉的地图，不同的原语",
-        "compare.lede": "用 Android 作参照是为了降低沟通成本 — 不是宣称功能对等或生态对撞。",
-        "compare.h0": "层次",
-        "compare.r1a": "应用运行时",
-        "compare.r1c": "RVM（解释 / JIT / AOT）",
-        "compare.r2a": "进程孵化",
-        "compare.r3c": "消息 + 域间通道",
+        "compare.title": "一张熟悉的对照表",
+        "compare.lede": "借用 Android 作沟通地图，方便决策者快速对齐 — 不是宣称要对撞消费手机生态。",
+        "compare.h0": "关注点",
+        "compare.r1a": "应用如何运行",
+        "compare.r1c": "面向代理与协同的 RVM",
+        "compare.r2a": "服务如何拉起",
+        "compare.r2c": "轻量、可恢复的启动",
+        "compare.r3a": "协同方式",
+        "compare.r3c": "消息协同 · 安全分区",
         "compare.r4a": "系统服务",
-        "compare.r4c": "监督树中的服务",
-        "compare.r5a": "应用语言",
-        "compare.r6a": "原生扩展",
-        "compare.r7a": "权限",
-        "compare.r7c": "能力句柄",
-        "compare.r8c": "声明式 · Rust 渲染",
-        "compare.note": "明确非目标：首发不做通用消费手机全面竞争；不追求 100% OTP 兼容；不自研芯片级驱动。",
-        "access.kicker": "下一步",
-        "access.title": "公开的是故事与入口；产品是专有软件",
-        "access.body": "<strong>RELang OS 不是开源项目。</strong>本站与 GitHub 宣传仓只承载叙事与联系方式，不含产品源码。完整工程为专有软件，须另行授权（评估 / 合作 / NDA），不是「开源下载」。",
-        "access.cta1": "通过 Issues 申请评估",
-        "access.cta2": "宣传仓 README",
+        "compare.r4c": "可监督、可恢复的服务树",
+        "compare.r5a": "业务表达",
+        "compare.r5c": "面向任务与代理的业务层",
+        "compare.r6a": "扩展能力",
+        "compare.r6c": "安全扩展与隔离组件",
+        "compare.r7a": "权限模型",
+        "compare.r7c": "可审计的能力授权",
+        "compare.r8a": "界面体验",
+        "compare.r8c": "跨端一致 · 原生流畅",
+        "compare.note": "首发不做全面消费手机竞争；不追求兼容一切历史生态；不自研芯片级驱动。",
+        "access.kicker": "合作",
+        "access.title": "公开的是故事；产品需授权评估",
+        "access.body": "<strong>RELang OS 不是开源项目。</strong>本站与公开仓库只承载品牌叙事与联系入口，不含产品源码。完整软件为专有产品，可通过评估授权、联合方案或 NDA 合作获取 — 不是「开源下载」。",
+        "access.cta1": "申请评估合作",
+        "access.cta2": "查看公开介绍",
         "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>。",
-        "img.mesh.alt": "多设备 mesh 示意图：手机、平板与边缘终端经能力会话互联",
-        "img.mesh.cap": "个人设备集群：发现与会话就绪后才互通 — 不编造邻居。",
-        "img.arch.alt": "RELang OS 分层架构：应用与代理、系统监督树、RVM、原生层、内核",
-        "img.arch.cap": "一层 RVM 贯通应用、服务与代理；换设备换 HAL，不换运行时。",
-        "img.agent.alt": "代理能力闸示意图：工具调用经能力、确认与审计",
-        "img.agent.cap": "代理是被监督的进程：工具调用走能力租约与审计，不是悬浮聊天窗。",
-        "img.capMesh.alt": "多设备 mesh 概念图：手机、平板与边缘节点互联",
-        "img.capMesh.cap": "发现与会话就绪后才互通。",
-        "img.capAccel.alt": "端侧加速器统一面：CPU GPU NPU TPU 同属一类后端",
-        "img.capAccel.cap": "应用看见任务与模型，不绑死某一加速器品牌。",
-        "img.capUi.alt": "声明式 UI 跨端渲染：手机、平板与车机共享像素路径",
-        "img.capUi.cap": "状态在进程，合成在 Rust。",
-        "img.capReplay.alt": "会话录制与确定性回放时间轴",
-        "img.capReplay.cap": "输入可注入，事故可追溯。",
-        "img.drone.alt": "无人机现场伴飞概念图：任务电脑与飞控分工",
-        "img.drone.cap": "FieldCompanion · 无人机：作业编排与围栏意图在 RELang；姿态环留在飞控。",
-        "img.robot.alt": "工业机器人伴控概念图：智能盒与运动控制栈分工",
-        "img.robot.cap": "FieldCompanion · 机器人：工艺 Actor 与视觉引导在边缘盒；伺服与安全 PLC 外置。"
+        "img.mesh.alt": "多设备协同示意：手机、平板与边缘终端连成一体",
+        "img.mesh.cap": "个人设备群：真正发现并建立会话后才互通。",
+        "img.arch.alt": "RELang OS 产品分层：应用与代理、系统服务、运行时、体验层、内核",
+        "img.arch.cap": "一层底座贯通应用、服务与代理；换设备换适配，不换产品世界。",
+        "img.agent.alt": "智能代理权限闸：工具调用需授权与审计",
+        "img.agent.cap": "代理是系统能力：调用要授权、可审计，不是悬浮聊天窗。",
+        "img.capMesh.alt": "多设备协同：手机、平板与边缘节点互联",
+        "img.capMesh.cap": "会话就绪后才互通。",
+        "img.capAccel.alt": "端侧算力统一调度示意",
+        "img.capAccel.cap": "业务看见任务，不必绑死单一芯片品牌。",
+        "img.capUi.alt": "跨手机、平板与车机的一致界面体验",
+        "img.capUi.cap": "业务与表现分层，体验可控。",
+        "img.capReplay.alt": "会话录制与回放时间轴",
+        "img.capReplay.cap": "智能作业也可复盘、可追责。",
+        "img.drone.alt": "无人机伴飞：任务电脑与飞控分工",
+        "img.drone.cap": "FieldCompanion · 无人机：作业与围栏意图在 RELang；姿态环留在飞控。",
+        "img.robot.alt": "工业机器人伴控：智能盒与运动控制分工",
+        "img.robot.cap": "FieldCompanion · 机器人：工艺与视觉在边缘盒；伺服与安全回路外置。"
       },
       en: {
         "nav.vision": "Vision",
         "nav.principles": "Principles",
-        "nav.arch": "Architecture",
+        "nav.arch": "Structure",
         "nav.why": "Value",
         "nav.caps": "Capabilities",
         "nav.field": "Field",
         "nav.compare": "Compare",
-        "nav.access": "Access",
-        "hero.title": "An OS built for agents and collaboration",
-        "hero.lede": "RELang OS elevates Erlang’s proven process model to a first principle of the system. Apps run on <em>RVM</em> — a Rust BEAM VM. RVM is to RELang what ART is to Android.",
-        "hero.ctaPrimary": "Read the vision",
-        "hero.ctaSecondary": "Request evaluation access",
+        "nav.access": "Partner",
+        "hero.title": "An OS built for agents and multi-device work",
+        "hero.lede": "When devices start acting for people, finishing jobs across endpoints, and recovering in the field, OS designs built for “tap an app” start to fail. RELang OS makes <strong>agents, authority, and collaboration</strong> first-class — not a bolted-on assistant.",
+        "hero.ctaPrimary": "Explore the vision",
+        "hero.ctaSecondary": "Request evaluation",
         "vision.kicker": "Vision",
-        "vision.title": "How an OS should treat failure, authority, and intelligence",
-        "vision.p1": "Most mobile stacks assume a human taps apps: coarse permissions, single-device IPC, monolithic services. Those assumptions crack when devices call tools for you, finish work across endpoints, and recover in the field.",
-        "vision.p2": "RELang does not start with another compatibility layer. It changes the worldview: elevate Erlang’s proven process model to a first principle of the OS. Agents and multi-device collaboration are how the system is meant to work — not bolt-on features.",
+        "vision.title": "The next class of devices needs the next class of OS",
+        "vision.p1": "Phones and edge devices are moving from “tap to open” to “get the job done”: calling tools, handing work across screens, and continuing after partial failure outdoors. Stacks built for coarse apps, ambient permissions, and monolithic services are aging out.",
+        "vision.p2": "RELang OS is not another chat overlay. It is a product foundation where failure is recoverable, authority is auditable, many devices feel like one machine, and agents are native. Built for vertical products and fleets — not for winning a consumer app store first.",
         "principles.kicker": "Principles",
-        "principles.title": "Four runtime primitives",
-        "principles.lede": "Vision answers why. Principles constrain how the implementation must behave. These four rules cut across scheduling, authority, distribution, and failure paths.",
-        "principles.p1t": "Let it crash — recover structurally",
-        "principles.p1d": "Restart a subtree first, instead of taking down the whole userspace. Hot upgrade targets components, not “flash again at the depot.”",
+        "principles.title": "Four product non-negotiables",
+        "principles.lede": "Vision explains why. Principles define what a customer should expect when evaluating whether the system can be trusted in delivery.",
+        "principles.p1t": "Partial failure, continuous operation",
+        "principles.p1d": "If a module fails, recover that piece first — don’t take the whole device down. Critical software can hot-update without a depot flash.",
         "principles.p2t": "No ambient authority",
-        "principles.p2d": "Knowing a name does not grant the camera or radio. Capabilities can attenuate, expire, and be audited — agents and apps share the same gate.",
-        "principles.p3t": "Location transparency",
-        "principles.p3d": "Actors on this device and another share the same messaging semantics. Multi-device is a runtime capability, not an account sync add-on.",
+        "principles.p2d": "Knowing a name does not unlock the camera or radio. Permissions can be revoked, expire, and be audited — people and agents share one rulebook.",
+        "principles.p3t": "Many devices, one machine",
+        "principles.p3d": "Phone, tablet, auto, and field terminals speak one collaboration language. Multi-device is a product capability, not an account-sync add-on.",
         "principles.p4t": "Honest failure",
-        "principles.p4d": "Missing hardware or host returns unavailable — no invented neighbors, fake takeoffs, or fabricated inference success.",
-        "arch.kicker": "Architecture",
-        "arch.title": "One runtime across apps, services, and agents",
-        "arch.lede": "Developers see one RVM and capability model. Changing devices means changing HAL and product profile — not a different application runtime. UI state stays in processes; pixels stay on the Rust path.",
+        "principles.p4d": "If hardware or links aren’t ready, say unavailable — no invented neighbors, fake takeoffs, or fabricated AI success.",
+        "arch.kicker": "Structure",
+        "arch.title": "One product foundation across apps, services, and agents",
+        "arch.lede": "Partners see one runtime and permission model. Changing device form factors means changing hardware fit and product profile — not rebuilding the application world. UI stays responsive while business work scales.",
         "arch.l1t": "Apps & agents",
-        "arch.l1d": "Gleam / Elixir / Erlang · messages · intents · tool schemas · capability leases",
-        "arch.l2t": "System supervision tree",
-        "arch.l2d": "framework · connectivity · media · UI shell · AI · field missions",
-        "arch.l3t": "RVM",
-        "arch.l3d": "Rust BEAM VM · interpret / JIT / AOT · Seed · Dist · Dirty",
-        "arch.l4t": "Native layer",
-        "arch.l4d": "Compositor · UI engine · HAL · accelerator runtime",
+        "arch.l1d": "Missions and agent jobs · intents & tools · auditable permission leases",
+        "arch.l2t": "System services",
+        "arch.l2d": "Connectivity · media · UI shell · AI · field missions — supervised and recoverable",
+        "arch.l3t": "RVM runtime",
+        "arch.l3d": "The engine built for concurrent collaboration and agent workloads",
+        "arch.l4t": "Native experience layer",
+        "arch.l4d": "Composition · device adaptation · on-device acceleration",
         "arch.l5t": "Kernel (near term)",
-        "arch.l5d": "Linux · isolation · async I/O · scheduling",
-        "arch.rvm": "<strong>RVM</strong> carries BEAM semantics: lightweight processes, mailboxes, links/monitors, per-process heaps. Long work and inference run on Dirty threads so schedulers stay responsive.",
-        "arch.domain": "<strong>Domain</strong> draws trust boundaries: System owns policy and bridges; App owns missions; Agent acts only through tools and capabilities; vendor SDKs and untrusted native code land in Isolated.",
-        "arch.note": "Near-term kernels reuse mainline Linux and vendor BSPs — innovation stays in the runtime and framework, not a private driver universe.",
+        "arch.l5d": "Proven Linux baseline · isolation & scheduling",
+        "arch.rvm": "<strong>RVM</strong> is RELang’s app and agent engine: many lightweight tasks run safely together, and long inference does not stall interaction.",
+        "arch.domain": "<strong>Trust partitions</strong> draw the lines: System owns policy, App owns missions, Agent acts only with grants; vendor and untrusted native code stay isolated.",
+        "arch.note": "Near term we reuse mature Linux and vendor board support — innovation stays in experience, authority, and collaboration, not a private driver universe.",
         "why.kicker": "Value",
-        "why.title": "Whose problems it solves",
-        "why.v1t": "For product & delivery",
+        "why.title": "Who wins what with it",
+        "why.v1t": "For brands & product teams",
         "why.v1d": "Vertical devices can sell recoverability, auditable agent work, and multi-terminal unity — without first winning a consumer app store.",
-        "why.v2t": "For system integrators",
-        "why.v2d": "Capabilities and Domains hard-code permission, crash, and bridge boundaries. Missing hardware fails honestly; bring-up does not rely on fake success.",
+        "why.v2t": "For integrators & delivery",
+        "why.v2d": "Permissions, failure domains, and peripheral boundaries are explicit. Missing hardware fails honestly; bring-up does not depend on fake success.",
         "why.v3t": "For fleets & field ops",
-        "why.v3d": "Mission software can hot-upgrade; modules can recover; fleets and ground stations share one mesh story instead of ad-hoc scripts.",
-        "why.windowT": "The window is architectural",
-        "why.windowD": "On-device models, NPUs, agent protocols, and memory-safe languages matured together. Legacy OSes still treat the App as the coarse unit; RELang uses processes, capabilities, and agents.",
+        "why.v3d": "Mission software can update remotely; modules can self-heal; fleets, ground stations, and handhelds share one collaboration story instead of brittle scripts.",
+        "why.windowT": "The window is structural, not a feature checklist",
+        "why.windowD": "On-device models, accelerators, and agent protocols matured together, while mainstream OSes still treat “an app” as the coarse unit. RELang uses missions, permissions, and agents — a structural opening.",
         "caps.kicker": "Capabilities",
-        "caps.title": "First-class system features — not bolt-ons",
-        "caps.c1t": "AI-agent native",
-        "caps.c1d": "An agent is a supervised process, not a floating chat bubble. Tool calls go through capabilities, confirmation, and quotas; audits follow the message path. External coding assistants can attach via MCP/LSP — RELang is not a Codex clone.",
+        "caps.title": "First-class system value — not bolt-ons",
+        "caps.c1t": "Agent-native",
+        "caps.c1d": "An agent is a managed system capability, not a floating chat bubble. Tool use requires grants, confirmation, and quotas; critical actions are auditable. External coding assistants can attach in Host environments — we are not building a faux IDE.",
         "caps.c2t": "Many devices, one machine",
-        "caps.c2d": "Discovery, pairing, sessions, and partitions have explicit states. If transport is not ready, connectivity is not faked. Personal clusters and field fleets share the same semantics.",
-        "caps.c3t": "Unified accelerator surface",
-        "caps.c3d": "CPU, GPU, NPU, and TPU are backends of one accelerator class. Apps see tasks and model IDs; large tensors use handles. Inference runs isolated, away from the UI paint queue.",
-        "caps.c4t": "Declarative UI, native render",
-        "caps.c4d": "State and business logic live in BEAM processes; layout, text, and composition live in Rust — a controllable pixel path across phone, tablet, auto, and handheld.",
-        "caps.c5t": "Testable and replayable",
-        "caps.c5d": "Time, entropy, and input can be injected. Sessions can be recorded and replayed for agent audit and field incident reconstruction.",
+        "caps.c2d": "Discovery, pairing, and sessions have clear states. If the link isn’t up, connectivity isn’t faked. Personal clusters and field fleets share one collaboration experience.",
+        "caps.c3t": "Unified on-device compute",
+        "caps.c3d": "CPU, GPU, NPU, and TPU share one task surface. Business sees what to compute — not a single chip brand lock-in. Inference and UI don’t starve each other.",
+        "caps.c4t": "Consistent cross-device experience",
+        "caps.c4d": "Business state and presentation stay layered so interaction stays controllable across phone, tablet, auto, and handheld form factors.",
+        "caps.c5t": "Auditable and replayable",
+        "caps.c5d": "Critical sessions can be recorded and replayed for compliance, after-sales accountability, and field incident review — intelligent systems must still explain what they did.",
         "field.kicker": "Vertical · FieldCompanion",
         "field.title": "Drones & robots: mission OS, not flight control",
-        "field.lede": "Companion flight and companion control share one vertical profile. RELang owns mission orchestration, perception loops, geofence/safety <strong>intent</strong>, multi-vehicle mesh, and OTA. Attitude loops, servo cycles, and safety PLCs stay external — bridged via MAVLink / ROS 2 and similar.",
-        "field.d1t": "UAV companion compute",
-        "field.d1d": "Onboard mission computers run inspection flows, vision, geofence coordination, and GCS linkage. The flight controller keeps final authority.",
-        "field.d1b": "Fit: industrial inspection, last-mile logistics, multi-vehicle ops · Not: replacing FC firmware",
+        "field.lede": "Companion flight and companion control share one vertical offer. RELang owns mission orchestration, perception decisions, geofence/safety <strong>intent</strong>, multi-vehicle collaboration, and remote updates. Attitude loops, servos, and safety circuits stay on specialist stacks — bridged through industry interfaces.",
+        "field.d1t": "UAV companion",
+        "field.d1d": "Onboard mission computers run inspection flows, vision, geofence coordination, and ground-station linkage. The flight controller keeps final authority.",
+        "field.d1b": "Fit: industrial inspection, last-mile logistics, multi-vehicle ops · Not: replacing flight-control firmware",
         "field.d2t": "Robotics & industrial edge",
-        "field.d2d": "Process actors, vision guidance, changeover, and HMI on industrial PCs / smart boxes. Motion control and SIL safety loops stay on dedicated stacks.",
-        "field.d2b": "Fit: AMR, inspection, arm-side boxes · Not: EtherCAT inner loops or safety PLC replacement",
+        "field.d2d": "Process flows, vision guidance, changeover, and HMI on industrial PCs / smart boxes. Motion control and safety loops stay on dedicated equipment.",
+        "field.d2b": "Fit: AMR, inspection, arm-side boxes · Not: replacing real-time motion inner loops or safety PLCs",
         "compare.kicker": "Compare",
-        "compare.title": "A familiar map, different primitives",
-        "compare.lede": "Android is a communication map — not a claim of feature parity or ecosystem collision.",
-        "compare.h0": "Layer",
-        "compare.r1a": "App runtime",
-        "compare.r1c": "RVM (interp / JIT / AOT)",
-        "compare.r2a": "Process spawn",
-        "compare.r3c": "Messages + domain channels",
+        "compare.title": "A familiar map for decision makers",
+        "compare.lede": "Android is a communication map — not a claim of consumer-phone parity or ecosystem collision.",
+        "compare.h0": "Focus",
+        "compare.r1a": "How apps run",
+        "compare.r1c": "RVM for agents & collaboration",
+        "compare.r2a": "How services start",
+        "compare.r2c": "Lightweight, recoverable launch",
+        "compare.r3a": "How work coordinates",
+        "compare.r3c": "Message collaboration · trust partitions",
         "compare.r4a": "System services",
-        "compare.r4c": "Supervised services",
-        "compare.r5a": "App languages",
-        "compare.r6a": "Native extensions",
-        "compare.r7a": "Permissions",
-        "compare.r7c": "Capability handles",
-        "compare.r8c": "Declarative · Rust render",
-        "compare.note": "Non-goals: no full consumer-phone competition at launch; no 100% OTP compatibility; no chip-level driver stack reinvented.",
-        "access.kicker": "Next",
-        "access.title": "Public story and entry; proprietary product",
-        "access.body": "<strong>RELang OS is not open source.</strong> This site and the public GitHub repo carry narrative and contact only — no product source. The full stack is proprietary software and requires separate authorization (evaluation / partnership / NDA), not an “open download.”",
-        "access.cta1": "Request evaluation via Issues",
-        "access.cta2": "Marketing repo README",
+        "compare.r4c": "Supervised, recoverable service tree",
+        "compare.r5a": "Business expression",
+        "compare.r5c": "Mission- and agent-oriented layer",
+        "compare.r6a": "Extensions",
+        "compare.r6c": "Safe extensions & isolated components",
+        "compare.r7a": "Permission model",
+        "compare.r7c": "Auditable capability grants",
+        "compare.r8a": "UI experience",
+        "compare.r8c": "Cross-device · native fluency",
+        "compare.note": "Non-goals at launch: no full consumer-phone competition; no “compat with everything”; no chip-level driver stack reinvented.",
+        "access.kicker": "Partner",
+        "access.title": "Public story; product by authorization",
+        "access.body": "<strong>RELang OS is not open source.</strong> This site and the public repo carry brand narrative and contact only — no product source. The full stack is proprietary and available through evaluation, joint solutions, or NDA — not an “open download.”",
+        "access.cta1": "Request evaluation",
+        "access.cta2": "Public overview",
         "access.foot": "Copyright © 2026 RELang OS. All rights reserved. See <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>.",
-        "img.mesh.alt": "Multi-device mesh: phone, tablet, and edge nodes linked by capability sessions",
-        "img.mesh.cap": "Personal device cluster: communicate only after discovery and session are ready — no invented neighbors.",
-        "img.arch.alt": "RELang OS layer diagram: apps & agents, supervision tree, RVM, native layer, kernel",
-        "img.arch.cap": "One RVM across apps, services, and agents; change devices by changing HAL, not the runtime.",
-        "img.agent.alt": "Agent capability gate: tool calls through leases, confirmation, and audit",
-        "img.agent.cap": "An agent is a supervised process: tools go through capability leases and audit — not a floating chat bubble.",
-        "img.capMesh.alt": "Multi-device mesh: phone, tablet, and edge nodes linked together",
-        "img.capMesh.cap": "Communicate only after discovery and session are ready.",
-        "img.capAccel.alt": "Unified accelerator surface: CPU GPU NPU TPU as one class of backends",
-        "img.capAccel.cap": "Apps see tasks and models, not a single vendor lock-in.",
-        "img.capUi.alt": "Declarative UI across phone, tablet, and auto displays",
-        "img.capUi.cap": "State in processes, composition in Rust.",
-        "img.capReplay.alt": "Deterministic session record and replay timeline",
-        "img.capReplay.cap": "Inject input; reconstruct incidents.",
-        "img.drone.alt": "UAV companion concept: mission computer vs flight controller roles",
-        "img.drone.cap": "FieldCompanion · UAV: mission orchestration and geofence intent on RELang; attitude loops stay on the FC.",
-        "img.robot.alt": "Industrial robot companion: smart box vs motion-control stack",
-        "img.robot.cap": "FieldCompanion · robots: process actors and vision on the edge box; servos and safety PLC stay external."
+        "img.mesh.alt": "Multi-device collaboration: phone, tablet, and edge terminals as one",
+        "img.mesh.cap": "Personal clusters communicate only after real discovery and session setup.",
+        "img.arch.alt": "RELang OS layers: apps & agents, services, runtime, experience, kernel",
+        "img.arch.cap": "One foundation across apps, services, and agents; change devices by changing fit, not the product world.",
+        "img.agent.alt": "Agent authority gate: tool use requires grants and audit",
+        "img.agent.cap": "Agents are system capability: authorized and auditable — not a floating chat bubble.",
+        "img.capMesh.alt": "Multi-device mesh: phone, tablet, and edge nodes linked",
+        "img.capMesh.cap": "Communicate only after the session is ready.",
+        "img.capAccel.alt": "Unified on-device compute scheduling",
+        "img.capAccel.cap": "Business sees the task — not a single chip brand lock-in.",
+        "img.capUi.alt": "Consistent UI across phone, tablet, and auto",
+        "img.capUi.cap": "Business and presentation stay layered; experience stays controllable.",
+        "img.capReplay.alt": "Session record and replay timeline",
+        "img.capReplay.cap": "Intelligent work can still be reviewed and accounted for.",
+        "img.drone.alt": "UAV companion: mission computer vs flight controller",
+        "img.drone.cap": "FieldCompanion · UAV: mission and geofence intent on RELang; attitude loops stay on the FC.",
+        "img.robot.alt": "Industrial robot companion: smart box vs motion stack",
+        "img.robot.cap": "FieldCompanion · robots: process and vision on the edge box; servos and safety loops stay external."
       }
     };
 
@@ -1248,8 +1260,8 @@
         if (dict[key] != null) el.setAttribute("alt", dict[key]);
       });
       document.title = lang === "en"
-        ? "RELang OS — AI-native operating system"
-        : "RELang OS — AI 代理原生操作系统";
+        ? "RELang OS — OS for agents and multi-device work"
+        : "RELang OS — 面向智能代理与多端协同的操作系统";
       document.getElementById("lang-zh").setAttribute("aria-pressed", String(lang === "zh"));
       document.getElementById("lang-en").setAttribute("aria-pressed", String(lang === "en"));
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}

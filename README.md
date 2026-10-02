@@ -1,127 +1,62 @@
 # RELang OS
 
-**为代理与协同而生的操作系统。**
+**为智能代理与多端协同而生的操作系统。**
 
-应用运行在 **RVM** 上 — Rust 实现的 BEAM 虚拟机。RVM 之于 RELang OS，如同 ART 之于 Android。
+当设备开始替人做事、跨端完成任务、在现场自己恢复时，传统「为人点 App」的系统会先露怯。RELang OS 把代理、权限与协同做成系统能力，而不是后装助手。
 
-→ **官网**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)（响应式 · 中/EN，`?lang=zh|en`）  
-→ **源码**：**专有（非开源）**，独立私有仓库，不在本仓公开 · [申请评估访问](https://github.com/ShujianLv/RELangOS/issues)
+→ **官网**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)（中 / EN）  
+→ **产品源码**：专有软件（非开源）· [申请评估合作](https://github.com/ShujianLv/RELangOS/issues)
 
 ---
 
 ## 它在解决什么
 
-移动与边缘系统长期按「人点 App、单机、粗粒度权限」建造。当设备开始替人调用工具、跨端完成一件事、在野外局部故障后自我恢复时，这些假设会先碎裂。
+手机与边缘设备正从「人点一点」走向「系统替你完成一件事」。旧栈按粗粒度 App、单机权限和全局服务建造，难以支撑可审计的智能作业与机队协同。
 
-RELang OS 的回答不是再叠一层助手 App，而是换一套系统原语：
-
-**一切皆进程，一切皆消息。** 错误靠监督树结构化恢复。能做的事只能来自被授予的能力句柄 — 没有环境权限。本地与远端使用同一套消息语义。设备不在、宿主未挂时诚实失败，不编造成功。
-
-这把 Erlang 验证过的模型，从应用库提升为操作系统的第一性原则；用 Rust 保证运行时本身的内存安全与可嵌入性。
+RELang OS 面向垂直产品与现场交付：失败可恢复、权限可审计、多设备像一台机器、智能代理是系统原生能力 — 不必先赢下消费应用商店再谈差异化。
 
 ---
 
-## 原理（四条）
+## 四条产品底线
 
 | | |
 |--|--|
-| **任其崩溃，结构化恢复** | 优先重启子树；组件可热升级，减少整机重刷依赖。 |
-| **没有环境权限** | 不能凭名字拿到相机或电台。能力可衰减、过期、审计；代理与应用同一套闸。 |
-| **位置透明** | 另一台设备上的 Actor 与本机使用同一消息语义。多设备是运行时能力，不是账号附属。 |
-| **诚实失败** | `unavailable` 优于假邻居、假起飞、假推理。 |
+| **局部故障，整体不停** | 优先恢复出问题的模块；关键业务可热更新，少依赖回站重刷。 |
+| **没有默许权限** | 权限可收回、可过期、可审计；人与代理同一规则。 |
+| **多端一体** | 手机、平板、车机、现场终端共用协同体验。 |
+| **诚实失败** | 链路或硬件未就绪就明确「不可用」，不编造成功。 |
 
-更完整的叙事与排版见 [站点](https://shujianlv.github.io/RELangOS/#idea)。
-
----
-
-## 架构（一层运行时贯通）
-
-```text
-Gleam / Elixir / Erlang 应用与代理
-        │  消息 · Intent · 能力
-系统监督树（framework）
-        │
-RVM — 解释 / JIT / AOT · Seed · Dist · Dirty
-        │
-原生层：合成器 · UI 引擎 · HAL · 加速器运行时
-        │
-Linux（前期）· 隔离 · 异步 I/O
-```
-
-开发者面对统一的 RVM 与能力模型；换设备时换 HAL 与产品 Profile。UI 状态在进程里，像素路径在 Rust — 避免把帧钟绑在全局 GC 上。厂商 SDK 与不可信原生进 Isolated；长推理进 Dirty，不堵调度器。
-
-内核前期复用主线 Linux / 厂商 BSP：不自研芯片级驱动，创新集中在运行时与框架。
+完整叙事见 [官网](https://shujianlv.github.io/RELangOS/)。
 
 ---
 
-## 优势与价值
+## 价值主张
 
-**给产品与交付** — 垂直设备可以卖「可恢复、可审计的代理作业、多终端一体」，不必先赢消费应用商店。
-
-**给系统集成** — Domain 与能力把崩溃域、权限与原生桥边界写死；缺硬件时诚实失败，联调不靠假成功。
-
-**给现场与机队** — 任务软件可热升级；编队与地面站走同一 mesh 叙事，而不是临时拼脚本。
-
-窗口期在架构：端侧模型、NPU、代理协议与内存安全语言同时就绪，而旧栈仍以 App 为粗粒度单位。RELang 以进程、能力与代理为粒度。
+- **品牌与产品**：卖可恢复、可审计的智能作业与多终端一体。
+- **系统集成与交付**：权限与故障边界写清；缺硬件如实失败。
+- **现场与机队**：远程升级、模块自愈；编队与地面站同一协同故事。
 
 ---
 
-## 特性（系统一等公民）
+## 核心能力
 
-- **AI 代理原生** — 代理是被监督进程；工具 = 消息；权限 = 能力；配额与审计内建；Host 可对接 MCP / LSP（不自研 Codex）。
-- **多设备即一台机器** — 发现、配对、会话、迁移有明确状态；未连通不假装连通。
-- **加速器统一面** — CPU / GPU / NPU / TPU 同一 `AcceleratorClass`；大张量走句柄；与 UI 绘制队列隔离。
-- **声明式 UI · 原生渲染** — Gleam 等写状态与业务；合成与上屏在 Rust。
-- **可测可回放** — 时间 / 随机 / 输入可注入；利于代理审计与现场追溯。
+- **智能代理原生** — 授权、确认、配额与审计内建
+- **多设备即一台机器** — 发现 / 配对 / 会话状态清晰
+- **端侧算力统一调度** — CPU / GPU / NPU / TPU 同一入口
+- **跨终端一致体验** — 手机、平板、车机、手持
+- **可审计可回放** — 合规、售后与事故复盘
 
 ---
 
 ## 垂直：FieldCompanion
 
-无人机伴飞与机器人边缘任务共用同一 Profile — **做任务 OS，不当飞控 / 伺服内环**。
+无人机伴飞、机器人伴控 — **做任务操作系统，不当飞控 / 伺服**。
 
-| RELang | 外部栈 |
-|--------|--------|
-| 作业编排、感知闭环、围栏与安全意图、mesh、OTA | 姿态环、伺服周期、安全 PLC |
-| MAVLink / ROS 2 等宿主桥 | PX4、ArduPilot、运动控制器、厂商 SDK |
-
-合适：机载伴飞电脑、地面站与编队、AMR / 巡检、臂旁智能盒。  
-不合适：取代飞控固件、EtherCAT 主站、安全 PLC。
+RELang 负责作业编排、感知决策、围栏与安全意图、多机协同与远程升级；姿态环、伺服与安全回路留在专业控制栈。
 
 ---
 
-## 与 Android 的对照（沟通地图，非生态对撞）
+## 许可
 
-| 层次 | Android | RELang OS |
-|------|---------|-----------|
-| 运行时 | ART | RVM |
-| 孵化 | Zygote | Seed |
-| IPC | Binder | 消息 + 域间通道 |
-| 服务 | system_server | 监督树服务 |
-| 语言 | Java / Kotlin | Gleam（主）/ Elixir / Erlang |
-| 扩展 | NDK | Wasm（默认） |
-| 权限 | Manifest + uid | 能力句柄 |
-| UI | View / Compose | 声明式 · Rust 渲染 |
-
-**非目标**：首发不做通用消费手机全面竞争；不追求 100% OTP；不自研芯片驱动。
-
----
-
-## 本仓库与许可
-
-本仓是 **公开宣传入口**，不是开源项目主仓。站点源文件在 [`docs/index.html`](docs/index.html)；维护说明见 [`docs/setup.md`](docs/setup.md)。
-
-| | |
-|--|--|
-| 宣传仓（本仓） | Public · 仅供浏览的叙事与站点 · **版权所有** |
-| RELang OS 产品源码 | **专有软件 · 非开源** · Private 另仓 · 须另行授权 |
-
-**RELang OS 不是开源软件**，不适用 MIT / Apache-2.0 / GPL 等开源协议。完整说明见 [LICENSE](LICENSE)。
-
-合作、OEM / ODM、运行时评估：请开 [Issues](https://github.com/ShujianLv/RELangOS/issues) 申请在协议下的只读评估，而非「开源下载」。
-
----
-
-### English
-
-RELang OS is **proprietary** (not open source). This public repo is marketing only; product source is private and licensed separately. Built around supervision trees, capabilities, and **RVM** (Rust BEAM VM). FieldCompanion covers drone/robot *mission* workloads without replacing flight/servo loops.
+本仓库为**公开宣传仓**，不含产品源码。  
+**RELang OS 为专有软件**，详见 [LICENSE](./LICENSE)。评估、联合方案或 NDA 合作请开 [Issue](https://github.com/ShujianLv/RELangOS/issues)。
