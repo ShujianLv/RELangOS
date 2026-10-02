@@ -568,6 +568,69 @@
       padding-top: 1.15rem;
     }
 
+    .cap-rows {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.35rem;
+    }
+    .cap-row {
+      display: grid;
+      gap: 1rem;
+      align-items: center;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      padding: 0;
+    }
+    @media (min-width: 800px) {
+      .cap-row {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 0;
+        min-height: 11.5rem;
+      }
+      .cap-row:nth-child(even) {
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      }
+      .cap-row:nth-child(even) .cap-media { order: 2; }
+    }
+    .cap-media {
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      background: #0c1219;
+      height: 100%;
+    }
+    .cap-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 10.5rem;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .cap-media figcaption { display: none; }
+    .cap-body {
+      padding: 1.1rem 1.2rem 1.2rem;
+    }
+    .cap-body h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 650;
+      word-break: keep-all;
+    }
+    .cap-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.65;
+      max-width: none;
+    }
+    .cap-body .meta {
+      margin-top: 0.6rem;
+    }
+
     .table-wrap {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -722,23 +785,23 @@
         <p class="kicker" data-i18n="arch.kicker"></p>
         <h2 data-i18n="arch.title"></h2>
         <p class="prose" data-i18n="arch.lede"></p>
-        <div class="split reverse top" style="margin-top:1.35rem;">
-          <div class="split-copy">
-            <ul class="layers" aria-label="Architecture">
-              <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
-              <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
-              <li><strong data-i18n="arch.l3t"></strong><span data-i18n="arch.l3d"></span></li>
-              <li><strong data-i18n="arch.l4t"></strong><span data-i18n="arch.l4d"></span></li>
-              <li><strong data-i18n="arch.l5t"></strong><span data-i18n="arch.l5d"></span></li>
-            </ul>
-            <p class="prose" style="margin-top:1.15rem;" data-i18n-html="arch.rvm"></p>
-            <p class="prose" data-i18n-html="arch.domain"></p>
-            <p class="note" data-i18n="arch.note"></p>
-          </div>
-          <figure class="visual split-media">
+        <div class="arch-stage">
+          <figure class="visual">
             <img src="assets/relang-arch-layers.jpg" width="1600" height="900" alt="" data-i18n-alt="img.arch.alt" loading="lazy" />
             <figcaption data-i18n="img.arch.cap"></figcaption>
           </figure>
+          <ul class="layers" aria-label="Architecture">
+            <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
+            <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
+            <li><strong data-i18n="arch.l3t"></strong><span data-i18n="arch.l3d"></span></li>
+            <li><strong data-i18n="arch.l4t"></strong><span data-i18n="arch.l4d"></span></li>
+            <li><strong data-i18n="arch.l5t"></strong><span data-i18n="arch.l5d"></span></li>
+          </ul>
+          <div class="arch-notes">
+            <p class="prose" data-i18n-html="arch.rvm"></p>
+            <p class="prose" data-i18n-html="arch.domain"></p>
+            <p class="note" data-i18n="arch.note"></p>
+          </div>
         </div>
       </div>
     </section>
@@ -772,39 +835,61 @@
       <div class="wrap">
         <p class="kicker" data-i18n="caps.kicker"></p>
         <h2 data-i18n="caps.title"></h2>
-        <div class="split caps-lead" style="margin-top:1.1rem;">
-          <div class="split-copy">
-            <article class="feature">
+        <div class="cap-rows">
+          <article class="cap-row">
+            <figure class="visual cap-media">
+              <img src="assets/relang-agent-caps.jpg" width="1600" height="900" alt="" data-i18n-alt="img.agent.alt" loading="lazy" />
+              <figcaption data-i18n="img.agent.cap"></figcaption>
+            </figure>
+            <div class="cap-body">
               <h3 data-i18n="caps.c1t"></h3>
               <p data-i18n="caps.c1d"></p>
               <span class="meta">Agent · Tool · Quota · Audit · MCP</span>
-            </article>
-          </div>
-          <figure class="visual split-media">
-            <img src="assets/relang-agent-caps.jpg" width="1600" height="900" alt="" data-i18n-alt="img.agent.alt" loading="lazy" />
-            <figcaption data-i18n="img.agent.cap"></figcaption>
-          </figure>
-        </div>
-        <div class="feature-list">
-          <article class="feature">
-            <h3 data-i18n="caps.c2t"></h3>
-            <p data-i18n="caps.c2d"></p>
-            <span class="meta">Mesh · Session · Capability · Migration</span>
+            </div>
           </article>
-          <article class="feature">
-            <h3 data-i18n="caps.c3t"></h3>
-            <p data-i18n="caps.c3d"></p>
-            <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
+          <article class="cap-row">
+            <figure class="visual cap-media">
+              <img src="assets/relang-cap-mesh.jpg" width="1600" height="900" alt="" data-i18n-alt="img.capMesh.alt" loading="lazy" />
+              <figcaption data-i18n="img.capMesh.cap"></figcaption>
+            </figure>
+            <div class="cap-body">
+              <h3 data-i18n="caps.c2t"></h3>
+              <p data-i18n="caps.c2d"></p>
+              <span class="meta">Mesh · Session · Capability · Migration</span>
+            </div>
           </article>
-          <article class="feature">
-            <h3 data-i18n="caps.c4t"></h3>
-            <p data-i18n="caps.c4d"></p>
-            <span class="meta">Gleam UI · Compositor</span>
+          <article class="cap-row">
+            <figure class="visual cap-media">
+              <img src="assets/relang-cap-accel.jpg" width="1600" height="900" alt="" data-i18n-alt="img.capAccel.alt" loading="lazy" />
+              <figcaption data-i18n="img.capAccel.cap"></figcaption>
+            </figure>
+            <div class="cap-body">
+              <h3 data-i18n="caps.c3t"></h3>
+              <p data-i18n="caps.c3d"></p>
+              <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
+            </div>
           </article>
-          <article class="feature">
-            <h3 data-i18n="caps.c5t"></h3>
-            <p data-i18n="caps.c5d"></p>
-            <span class="meta">Deterministic · Replay · Audit</span>
+          <article class="cap-row">
+            <figure class="visual cap-media">
+              <img src="assets/relang-cap-ui.jpg" width="1600" height="900" alt="" data-i18n-alt="img.capUi.alt" loading="lazy" />
+              <figcaption data-i18n="img.capUi.cap"></figcaption>
+            </figure>
+            <div class="cap-body">
+              <h3 data-i18n="caps.c4t"></h3>
+              <p data-i18n="caps.c4d"></p>
+              <span class="meta">Gleam UI · Compositor</span>
+            </div>
+          </article>
+          <article class="cap-row">
+            <figure class="visual cap-media">
+              <img src="assets/relang-cap-replay.jpg" width="1600" height="900" alt="" data-i18n-alt="img.capReplay.alt" loading="lazy" />
+              <figcaption data-i18n="img.capReplay.cap"></figcaption>
+            </figure>
+            <div class="cap-body">
+              <h3 data-i18n="caps.c5t"></h3>
+              <p data-i18n="caps.c5d"></p>
+              <span class="meta">Deterministic · Replay · Audit</span>
+            </div>
           </article>
         </div>
       </div>
@@ -999,6 +1084,14 @@
         "img.arch.cap": "一层 RVM 贯通应用、服务与代理；换设备换 HAL，不换运行时。",
         "img.agent.alt": "代理能力闸示意图：工具调用经能力、确认与审计",
         "img.agent.cap": "代理是被监督的进程：工具调用走能力租约与审计，不是悬浮聊天窗。",
+        "img.capMesh.alt": "多设备 mesh 概念图：手机、平板与边缘节点互联",
+        "img.capMesh.cap": "发现与会话就绪后才互通。",
+        "img.capAccel.alt": "端侧加速器统一面：CPU GPU NPU TPU 同属一类后端",
+        "img.capAccel.cap": "应用看见任务与模型，不绑死某一加速器品牌。",
+        "img.capUi.alt": "声明式 UI 跨端渲染：手机、平板与车机共享像素路径",
+        "img.capUi.cap": "状态在进程，合成在 Rust。",
+        "img.capReplay.alt": "会话录制与确定性回放时间轴",
+        "img.capReplay.cap": "输入可注入，事故可追溯。",
         "img.drone.alt": "无人机现场伴飞概念图：任务电脑与飞控分工",
         "img.drone.cap": "FieldCompanion · 无人机：作业编排与围栏意图在 RELang；姿态环留在飞控。",
         "img.robot.alt": "工业机器人伴控概念图：智能盒与运动控制栈分工",
