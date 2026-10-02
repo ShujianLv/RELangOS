@@ -5,7 +5,7 @@
 应用运行在 **RVM** 上 — Rust 实现的 BEAM 虚拟机。RVM 之于 RELang OS，如同 ART 之于 Android。
 
 → **官网式介绍（推荐）**：[https://shujianlv.github.io/RELangOS/](https://shujianlv.github.io/RELangOS/)  
-→ **源码**：独立私有仓库，不在本仓公开 · [申请访问](https://github.com/ShujianLv/RELangOS/issues)
+→ **源码**：**专有（非开源）**，独立私有仓库，不在本仓公开 · [申请评估访问](https://github.com/ShujianLv/RELangOS/issues)
 
 ---
 
@@ -107,21 +107,21 @@ Linux（前期）· 隔离 · 异步 I/O
 
 ---
 
-## 本仓库
+## 本仓库与许可
 
-宣传入口 only。站点源文件在 [`docs/index.html`](docs/index.html)；维护说明见 [`docs/setup.md`](docs/setup.md)。
+本仓是 **公开宣传入口**，不是开源项目主仓。站点源文件在 [`docs/index.html`](docs/index.html)；维护说明见 [`docs/setup.md`](docs/setup.md)。
 
 | | |
 |--|--|
-| 宣传仓 | Public · 本仓 |
-| 产品源码 | Private · 另仓 |
+| 宣传仓（本仓） | Public · 仅供浏览的叙事与站点 · **版权所有** |
+| RELang OS 产品源码 | **专有软件 · 非开源** · Private 另仓 · 须另行授权 |
 
-合作、OEM / ODM、运行时评估：请开 [Issues](https://github.com/ShujianLv/RELangOS/issues)。
+**RELang OS 不是开源软件**，不适用 MIT / Apache-2.0 / GPL 等开源协议。完整说明见 [LICENSE](LICENSE)。
 
-宣传文案 [MIT](LICENSE)；产品源码许可以私有仓为准。
+合作、OEM / ODM、运行时评估：请开 [Issues](https://github.com/ShujianLv/RELangOS/issues) 申请在协议下的只读评估，而非「开源下载」。
 
 ---
 
 ### English
 
-RELang OS is built around supervision trees, capabilities, and a Rust BEAM VM (**RVM**). Agents and multi-device collaboration are first-class; FieldCompanion covers drone/robot *mission* workloads without replacing flight/servo loops. This repo is the public narrative; source access is granted privately.
+RELang OS is **proprietary** (not open source). This public repo is marketing only; product source is private and licensed separately. Built around supervision trees, capabilities, and **RVM** (Rust BEAM VM). FieldCompanion covers drone/robot *mission* workloads without replacing flight/servo loops.

@@ -1,21 +1,34 @@
-MIT License
+# Copyright and licensing notice
 
-Copyright (c) 2026 RELang OS contributors
+## RELang OS (the product)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+**RELang OS** — including RVM, the operating-system components, framework,
+SDK, tools, and all related product source code — is **proprietary software**.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+It is **not** open source.
+It is **not** licensed under MIT, Apache License 2.0, GPL, or any other
+open-source license.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+All rights reserved. Access to product source is by separate agreement only
+(for example evaluation or partnership under NDA).
+
+## This public repository
+
+This repository (`RELangOS`) contains **public marketing and explanatory
+materials only** (README, website pages under `docs/`, and similar). It does
+**not** contain the RELang OS product source code.
+
+Copyright © 2026 RELang OS. All rights reserved.
+
+You may view these materials on GitHub and via GitHub Pages. Copying,
+redistribution, modification, or commercial use of the materials in this
+repository requires prior written permission, unless a specific file states
+otherwise in writing.
+
+## Clarity
+
+| Item | Status |
+|------|--------|
+| RELang OS product / source | Proprietary · not open source |
+| This marketing repository | Public for viewing · All rights reserved |
+| Third-party names (Android, Erlang, ROS, …) | Belong to their respective owners |
