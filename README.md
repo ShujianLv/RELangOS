@@ -30,7 +30,7 @@
 
 启用 GitHub Pages 后，站点根路径为：
 
-**https://shujianlv.github.io/relang-os-public/**
+**https://shujianlv.github.io/RELangOS/**
 
 （仓库名或 Pages 配置变更时请同步修改 [`docs/index.html`](docs/index.html) 中的链接。）
 
