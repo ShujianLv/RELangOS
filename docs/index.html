@@ -142,7 +142,7 @@
       .bar-inner { position: relative; }
     }
 
-    /* Hero — full viewport with atmospheric media */
+    /* Hero — full viewport; copy locked left, media weighted right */
     .hero {
       position: relative;
       overflow: hidden;
@@ -162,7 +162,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 72% center;
+      object-position: 92% 42%;
+      transform: scale(1.06);
+      transform-origin: 85% center;
     }
     .hero::before {
       content: "";
@@ -170,42 +172,71 @@
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(90deg, rgba(10, 14, 20, 0.92) 0%, rgba(10, 14, 20, 0.78) 42%, rgba(10, 14, 20, 0.45) 72%, rgba(10, 14, 20, 0.55) 100%),
-        linear-gradient(180deg, rgba(10, 14, 20, 0.35) 0%, transparent 28%, rgba(10, 14, 20, 0.55) 100%);
+        linear-gradient(
+          90deg,
+          rgba(10, 14, 20, 0.97) 0%,
+          rgba(10, 14, 20, 0.94) 26%,
+          rgba(10, 14, 20, 0.72) 46%,
+          rgba(10, 14, 20, 0.28) 68%,
+          rgba(10, 14, 20, 0.42) 100%
+        ),
+        linear-gradient(180deg, rgba(10, 14, 20, 0.4) 0%, transparent 30%, rgba(10, 14, 20, 0.58) 100%);
       pointer-events: none;
+    }
+    .hero-shell {
+      position: relative;
+      z-index: 2;
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    @media (min-width: 900px) {
+      .hero-shell {
+        grid-template-columns: minmax(0, 0.56fr) minmax(0, 0.44fr);
+        align-items: center;
+      }
     }
     .hero-inner {
       position: relative;
       z-index: 2;
-      max-width: 40rem;
+      max-width: 36rem;
+      justify-self: start;
+      text-align: left;
     }
     .hero-brand {
-      margin: 0 0 1.35rem;
-      max-width: min(100%, 28rem);
+      margin: 0 0 1.1rem;
+      font-size: clamp(2.15rem, 5.2vw, 3.35rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: var(--ink);
+      text-shadow: 0 2px 28px rgba(10, 14, 20, 0.55);
     }
-    .hero-brand img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 8px 28px rgba(10, 14, 20, 0.55));
+    .hero-brand .os {
+      color: var(--sea);
+      font-weight: 650;
+      letter-spacing: -0.02em;
     }
     .hero h1 {
       margin: 0 0 1rem;
-      font-size: clamp(1.85rem, 4.4vw, 2.65rem);
+      font-size: clamp(1.55rem, 3.2vw, 2.05rem);
       font-weight: 700;
-      line-height: 1.3;
+      line-height: 1.35;
       letter-spacing: 0.01em;
       word-break: keep-all;
       text-shadow: 0 1px 24px rgba(10, 14, 20, 0.45);
+      max-width: 18em;
     }
     .hero .lede {
       margin: 0 0 1.75rem;
       color: #b7c4d4;
       font-size: clamp(0.98rem, 1.6vw, 1.08rem);
       line-height: 1.75;
-      max-width: 36rem;
+      max-width: 34rem;
     }
-    .hero .lede em { font-style: normal; color: var(--ink); font-weight: 500; }
+    .hero .lede em,
+    .hero .lede strong { font-style: normal; color: var(--ink); font-weight: 600; }
     .hero .btn-ghost {
       background: rgba(10, 14, 20, 0.35);
       backdrop-filter: blur(8px);
@@ -717,15 +748,15 @@
       <div class="hero-bg" aria-hidden="true">
         <img src="assets/relang-hero-bg.jpg" width="1600" height="900" alt="" decoding="async" fetchpriority="high" />
       </div>
-      <div class="wrap hero-inner">
-        <div class="hero-brand">
-          <img src="assets/relang-logo.jpg" width="1600" height="900" alt="RELang OS" decoding="async" fetchpriority="high" />
-        </div>
-        <h1 data-i18n="hero.title"></h1>
-        <p class="lede" data-i18n-html="hero.lede"></p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#vision" data-i18n="hero.ctaPrimary"></a>
-          <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="hero.ctaSecondary"></a>
+      <div class="hero-shell">
+        <div class="hero-inner">
+          <p class="hero-brand">RELang<span class="os"> OS</span></p>
+          <h1 data-i18n="hero.title"></h1>
+          <p class="lede" data-i18n-html="hero.lede"></p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#vision" data-i18n="hero.ctaPrimary"></a>
+            <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="hero.ctaSecondary"></a>
+          </div>
         </div>
       </div>
     </section>
