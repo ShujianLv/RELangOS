@@ -180,11 +180,14 @@
       max-width: 40rem;
     }
     .hero-brand {
-      margin: 0 0 0.85rem;
-      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--ink);
+      margin: 0 0 1.35rem;
+      max-width: min(100%, 28rem);
+    }
+    .hero-brand img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 8px 28px rgba(10, 14, 20, 0.55));
     }
     .hero h1 {
       margin: 0 0 1rem;
