@@ -441,7 +441,8 @@
       <a class="brand" href="#">RELang OS</a>
       <div class="bar-right">
         <nav class="nav" id="site-nav" data-i18n-nav aria-label="Primary">
-          <a href="#idea" data-i18n="nav.idea"></a>
+          <a href="#vision" data-i18n="nav.vision"></a>
+          <a href="#principles" data-i18n="nav.principles"></a>
           <a href="#arch" data-i18n="nav.arch"></a>
           <a href="#why" data-i18n="nav.why"></a>
           <a href="#caps" data-i18n="nav.caps"></a>
@@ -464,52 +465,56 @@
         <h1 data-i18n="hero.title"></h1>
         <p class="lede" data-i18n-html="hero.lede"></p>
         <div class="actions">
-          <a class="btn btn-primary" href="#idea" data-i18n="hero.ctaPrimary"></a>
+          <a class="btn btn-primary" href="#vision" data-i18n="hero.ctaPrimary"></a>
           <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="hero.ctaSecondary"></a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="idea">
+    <section class="section" id="vision">
       <div class="wrap">
-        <p class="kicker" data-i18n="idea.kicker"></p>
-        <div class="grid-2">
-          <div>
-            <h2 data-i18n="idea.title"></h2>
-            <p class="prose" data-i18n="idea.p1"></p>
-            <p class="prose" data-i18n-html="idea.p2"></p>
-          </div>
-          <ol class="principles">
-            <li>
-              <span class="num">01</span>
-              <div>
-                <h3 data-i18n="idea.p1t"></h3>
-                <p data-i18n="idea.p1d"></p>
-              </div>
-            </li>
-            <li>
-              <span class="num">02</span>
-              <div>
-                <h3 data-i18n="idea.p2t"></h3>
-                <p data-i18n="idea.p2d"></p>
-              </div>
-            </li>
-            <li>
-              <span class="num">03</span>
-              <div>
-                <h3 data-i18n="idea.p3t"></h3>
-                <p data-i18n="idea.p3d"></p>
-              </div>
-            </li>
-            <li>
-              <span class="num">04</span>
-              <div>
-                <h3 data-i18n="idea.p4t"></h3>
-                <p data-i18n="idea.p4d"></p>
-              </div>
-            </li>
-          </ol>
-        </div>
+        <p class="kicker" data-i18n="vision.kicker"></p>
+        <h2 data-i18n="vision.title"></h2>
+        <p class="prose" data-i18n="vision.p1"></p>
+        <p class="prose" data-i18n-html="vision.p2"></p>
+      </div>
+    </section>
+
+    <section class="section" id="principles">
+      <div class="wrap">
+        <p class="kicker" data-i18n="principles.kicker"></p>
+        <h2 data-i18n="principles.title"></h2>
+        <p class="prose" data-i18n="principles.lede"></p>
+        <ol class="principles">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h3 data-i18n="principles.p1t"></h3>
+              <p data-i18n="principles.p1d"></p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h3 data-i18n="principles.p2t"></h3>
+              <p data-i18n="principles.p2d"></p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h3 data-i18n="principles.p3t"></h3>
+              <p data-i18n="principles.p3d"></p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <h3 data-i18n="principles.p4t"></h3>
+              <p data-i18n="principles.p4d"></p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -665,7 +670,8 @@
   <script>
     const I18N = {
       zh: {
-        "nav.idea": "理念",
+        "nav.vision": "理念",
+        "nav.principles": "原理",
         "nav.arch": "架构",
         "nav.why": "价值",
         "nav.caps": "能力",
@@ -676,18 +682,21 @@
         "hero.lede": "RELang OS 把 Erlang 验证过的进程模型，做成系统的第一性原则。应用跑在 <em>RVM</em> 上 — Rust 实现的 BEAM 虚拟机，之于 RELang，如同 ART 之于 Android。",
         "hero.ctaPrimary": "了解理念",
         "hero.ctaSecondary": "申请评估授权",
-        "idea.kicker": "原理",
-        "idea.title": "操作系统该如何对待失败、权限与智能",
-        "idea.p1": "多数移动栈按「人点 App」设计：粗粒度权限、单机 IPC、全局式服务进程。当设备开始替你调用工具、跨端完成一件事、在野外自我恢复时，这些假设会先碎裂。",
-        "idea.p2": "RELang 的起点不是再做一个兼容层，而是换一套原语：<strong>一切皆进程，一切皆消息</strong>；错误靠监督树结构化恢复；能做的事只能来自被授予的能力句柄 — 没有环境权限。",
-        "idea.p1t": "任其崩溃，结构化恢复",
-        "idea.p1d": "服务挂了，先重启子树，而不是拖垮整机用户态。热升级面向组件，而不是「下次进站再刷」。",
-        "idea.p2t": "没有环境权限",
-        "idea.p2d": "不能因为「知道名字」就拿到相机或电台。能力可衰减、可过期、可审计 — 代理与应用同一套闸。",
-        "idea.p3t": "位置透明",
-        "idea.p3d": "本机 Actor 与另一台设备上的 Actor，使用同一套消息语义。多设备是运行时能力，不是账号同步的附属品。",
-        "idea.p4t": "诚实失败",
-        "idea.p4d": "设备不在、宿主未挂，返回 unavailable — 不编造邻居、不假装起飞、不假冒推理成功。",
+        "vision.kicker": "理念",
+        "vision.title": "操作系统该如何对待失败、权限与智能",
+        "vision.p1": "多数移动栈按「人点 App」设计：粗粒度权限、单机 IPC、全局式服务进程。当设备开始替你调用工具、跨端完成一件事、在野外自我恢复时，这些假设会先碎裂。",
+        "vision.p2": "RELang 的起点不是再做一个兼容层，而是换一套世界观：把 Erlang 验证过的进程模型，提升为操作系统的第一性原则。智能代理与多设备协同不是外挂功能，而是系统原生该如何工作。",
+        "principles.kicker": "原理",
+        "principles.title": "四条运行时原语",
+        "principles.lede": "理念回答「为何如此」；原理约束实现必须遵守的规则。下列四条贯穿调度、权限、分布式与失败路径。",
+        "principles.p1t": "任其崩溃，结构化恢复",
+        "principles.p1d": "服务挂了，先重启子树，而不是拖垮整机用户态。热升级面向组件，而不是「下次进站再刷」。",
+        "principles.p2t": "没有环境权限",
+        "principles.p2d": "不能因为「知道名字」就拿到相机或电台。能力可衰减、可过期、可审计 — 代理与应用同一套闸。",
+        "principles.p3t": "位置透明",
+        "principles.p3d": "本机 Actor 与另一台设备上的 Actor，使用同一套消息语义。多设备是运行时能力，不是账号同步的附属品。",
+        "principles.p4t": "诚实失败",
+        "principles.p4d": "设备不在、宿主未挂，返回 unavailable — 不编造邻居、不假装起飞、不假冒推理成功。",
         "arch.kicker": "架构",
         "arch.title": "一层运行时，贯通应用、服务与代理",
         "arch.lede": "开发者面对统一的 RVM 与能力模型。换设备时换的是 HAL 与产品 Profile，不是另一套应用运行时。UI 状态留在进程里，像素路径在 Rust 原生层。",
@@ -759,7 +768,8 @@
         "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>。"
       },
       en: {
-        "nav.idea": "Principles",
+        "nav.vision": "Vision",
+        "nav.principles": "Principles",
         "nav.arch": "Architecture",
         "nav.why": "Value",
         "nav.caps": "Capabilities",
@@ -768,20 +778,23 @@
         "nav.access": "Access",
         "hero.title": "An OS built for agents and collaboration",
         "hero.lede": "RELang OS elevates Erlang’s proven process model to a first principle of the system. Apps run on <em>RVM</em> — a Rust BEAM VM. RVM is to RELang what ART is to Android.",
-        "hero.ctaPrimary": "Read the principles",
+        "hero.ctaPrimary": "Read the vision",
         "hero.ctaSecondary": "Request evaluation access",
-        "idea.kicker": "Principles",
-        "idea.title": "How an OS should treat failure, authority, and intelligence",
-        "idea.p1": "Most mobile stacks assume a human taps apps: coarse permissions, single-device IPC, monolithic services. Those assumptions crack when devices call tools for you, finish work across endpoints, and recover in the field.",
-        "idea.p2": "RELang does not start with another compatibility layer. It changes the primitives: <strong>everything is a process; everything is a message</strong>. Failures recover through supervision trees. Authority comes only from granted capability handles — no ambient authority.",
-        "idea.p1t": "Let it crash — recover structurally",
-        "idea.p1d": "Restart a subtree first, instead of taking down the whole userspace. Hot upgrade targets components, not “flash again at the depot.”",
-        "idea.p2t": "No ambient authority",
-        "idea.p2d": "Knowing a name does not grant the camera or radio. Capabilities can attenuate, expire, and be audited — agents and apps share the same gate.",
-        "idea.p3t": "Location transparency",
-        "idea.p3d": "Actors on this device and another share the same messaging semantics. Multi-device is a runtime capability, not an account sync add-on.",
-        "idea.p4t": "Honest failure",
-        "idea.p4d": "Missing hardware or host returns unavailable — no invented neighbors, fake takeoffs, or fabricated inference success.",
+        "vision.kicker": "Vision",
+        "vision.title": "How an OS should treat failure, authority, and intelligence",
+        "vision.p1": "Most mobile stacks assume a human taps apps: coarse permissions, single-device IPC, monolithic services. Those assumptions crack when devices call tools for you, finish work across endpoints, and recover in the field.",
+        "vision.p2": "RELang does not start with another compatibility layer. It changes the worldview: elevate Erlang’s proven process model to a first principle of the OS. Agents and multi-device collaboration are how the system is meant to work — not bolt-on features.",
+        "principles.kicker": "Principles",
+        "principles.title": "Four runtime primitives",
+        "principles.lede": "Vision answers why. Principles constrain how the implementation must behave. These four rules cut across scheduling, authority, distribution, and failure paths.",
+        "principles.p1t": "Let it crash — recover structurally",
+        "principles.p1d": "Restart a subtree first, instead of taking down the whole userspace. Hot upgrade targets components, not “flash again at the depot.”",
+        "principles.p2t": "No ambient authority",
+        "principles.p2d": "Knowing a name does not grant the camera or radio. Capabilities can attenuate, expire, and be audited — agents and apps share the same gate.",
+        "principles.p3t": "Location transparency",
+        "principles.p3d": "Actors on this device and another share the same messaging semantics. Multi-device is a runtime capability, not an account sync add-on.",
+        "principles.p4t": "Honest failure",
+        "principles.p4d": "Missing hardware or host returns unavailable — no invented neighbors, fake takeoffs, or fabricated inference success.",
         "arch.kicker": "Architecture",
         "arch.title": "One runtime across apps, services, and agents",
         "arch.lede": "Developers see one RVM and capability model. Changing devices means changing HAL and product profile — not a different application runtime. UI state stays in processes; pixels stay on the Rust path.",
