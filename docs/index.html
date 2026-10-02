@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="RELang OS — 以 RVM 为运行时的 AI 代理原生操作系统。监督树、能力安全、多设备协同与现场任务 OS。" />
+  <meta name="description" content="RELang OS — AI-native multi-device operating system on RVM (Rust BEAM VM). Proprietary software." />
   <title>RELang OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,17 +13,16 @@
       --ink: #e8eef6;
       --muted: #8b9bb0;
       --faint: #5c6b7e;
-      --line: rgba(232, 238, 246, 0.08);
-      --line-strong: rgba(232, 238, 246, 0.14);
+      --line: rgba(232, 238, 246, 0.09);
+      --line-strong: rgba(232, 238, 246, 0.16);
       --sea: #6eb6e0;
-      --sea-dim: #3a7a9e;
       --moss: #8fbfa0;
       --sand: #d4b483;
       --bg: #0a0e14;
-      --bg-elev: #101822;
-      --max: 68rem;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --bg-elev: #121a24;
+      --max: 70rem;
       --font: "Noto Sans SC", "DM Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -32,115 +31,170 @@
       font-family: var(--font);
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.7;
       font-size: 1rem;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
     a { color: var(--sea); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+    a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+    img, svg { max-width: 100%; display: block; }
 
-    /* top bar */
+    .wrap {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    /* Header */
     .bar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(10, 14, 20, 0.72);
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 14, 20, 0.82);
       border-bottom: 1px solid var(--line);
     }
     .bar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0.85rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      min-height: 3.5rem;
+      padding-block: 0.65rem;
     }
     .brand {
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--ink);
       text-decoration: none;
+      flex-shrink: 0;
     }
-    .brand:hover { text-decoration: none; color: var(--sea); }
-    .bar nav { display: flex; flex-wrap: wrap; gap: 1rem 1.35rem; font-size: 0.88rem; }
-    .bar nav a { color: var(--muted); }
-    .bar nav a:hover { color: var(--ink); text-decoration: none; }
+    .brand:hover { color: var(--sea); text-decoration: none; }
 
-    /* hero — one composition */
+    .bar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .lang {
+      display: inline-flex;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .lang button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.65rem;
+      cursor: pointer;
+    }
+    .lang button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .menu-btn {
+      display: none;
+      appearance: none;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 8px;
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.1rem;
+      font-size: 0.88rem;
+    }
+    .nav a { color: var(--muted); }
+    .nav a:hover { color: var(--ink); text-decoration: none; }
+
+    @media (max-width: 860px) {
+      .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+      .nav {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1rem 1rem;
+        background: rgba(10, 14, 20, 0.96);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav.open { display: flex; }
+      .nav a {
+        padding: 0.7rem 0.25rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .bar { position: sticky; }
+      .bar-inner { position: relative; }
+    }
+
+    /* Hero */
     .hero {
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid var(--line);
+      padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2.75rem, 6vw, 4rem);
     }
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 90% 70% at 15% 20%, rgba(110, 182, 224, 0.16), transparent 55%),
-        radial-gradient(ellipse 70% 50% at 88% 75%, rgba(143, 191, 160, 0.08), transparent 50%),
-        linear-gradient(180deg, #0c121b 0%, var(--bg) 100%);
+        radial-gradient(ellipse 80% 60% at 12% 10%, rgba(110, 182, 224, 0.16), transparent 55%),
+        radial-gradient(ellipse 55% 45% at 90% 80%, rgba(143, 191, 160, 0.08), transparent 50%),
+        linear-gradient(180deg, #0d131c, var(--bg));
       pointer-events: none;
     }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse 65% 55% at 40% 35%, black, transparent);
-      opacity: 0.4;
-      pointer-events: none;
-    }
-    .hero-inner {
-      position: relative;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 4.5rem 1.5rem 3.25rem;
-      width: 100%;
-    }
+    .hero-inner { position: relative; max-width: 42rem; }
     .hero h1 {
-      font-family: var(--font);
-      font-weight: 650;
-      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      margin: 0 0 1rem;
+      font-size: clamp(1.7rem, 4vw, 2.45rem);
+      font-weight: 700;
       line-height: 1.35;
       letter-spacing: 0.01em;
-      margin: 0 0 1rem;
-      max-width: none;
-    }
-    .hero h1 .break {
-      display: block;
+      word-break: keep-all;
     }
     .hero .lede {
-      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
-      color: var(--muted);
-      max-width: 40rem;
-      line-height: 1.75;
       margin: 0 0 1.5rem;
-      font-weight: 400;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      line-height: 1.75;
     }
-    .hero .lede em {
-      font-style: normal;
-      color: var(--ink);
+    .hero .lede em { font-style: normal; color: var(--ink); font-weight: 500; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
     }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       padding: 0.65rem 1.15rem;
       border-radius: 999px;
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
-      transition: transform 0.35s var(--ease), background 0.2s, color 0.2s;
+      transition: transform 0.3s var(--ease), background 0.2s, color 0.2s, border-color 0.2s;
     }
     .btn:hover { text-decoration: none; transform: translateY(-1px); }
     .btn-primary { background: var(--ink); color: var(--bg); }
-    .btn-primary:hover { background: #fff; color: var(--bg); }
+    .btn-primary:hover { background: #fff; }
     .btn-ghost {
       background: transparent;
       color: var(--ink);
@@ -148,478 +202,711 @@
     }
     .btn-ghost:hover { border-color: var(--muted); color: var(--sea); }
 
-    /* sections */
+    /* Sections */
     .section {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 3.75rem 1.5rem;
+      padding: clamp(2.75rem, 6vw, 4rem) 0;
       border-bottom: 1px solid var(--line);
     }
-    .section:last-of-type { border-bottom: none; padding-bottom: 4.5rem; }
+    .section.close { border-bottom: 0; padding-bottom: clamp(3.5rem, 7vw, 5rem); }
     .kicker {
+      margin: 0 0 0.55rem;
       font-size: 0.72rem;
+      font-weight: 650;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--sea);
-      margin: 0 0 0.65rem;
-      font-weight: 600;
     }
     .section h2 {
-      font-family: var(--font);
-      font-weight: 650;
-      font-size: clamp(1.35rem, 2.2vw, 1.65rem);
-      line-height: 1.45;
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.4;
       letter-spacing: 0.01em;
-      margin: 0 0 0.9rem;
-      max-width: none;
       word-break: keep-all;
-      overflow-wrap: normal;
-    }
-    .section h2 .break {
-      display: inline;
-    }
-    @media (max-width: 640px) {
-      .section h2 .break,
-      .hero h1 .break {
-        display: block;
-      }
-    }
-    .section .prose {
-      color: var(--muted);
-      max-width: 40rem;
-      margin: 0 0 1.25rem;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    .section .prose strong { color: var(--ink); font-weight: 600; }
-    .split {
-      display: grid;
-      gap: 2rem;
-      align-items: start;
-    }
-    @media (min-width: 860px) {
-      .split-2 { grid-template-columns: 1fr 1.05fr; gap: 2.75rem; }
-      .split-reverse { direction: rtl; }
-      .split-reverse > * { direction: ltr; }
-    }
-
-    /* principle list — narrative, not pills */
-    .principles { list-style: none; margin: 0; padding: 0; }
-    .principles li {
-      padding: 1.1rem 0;
-      border-top: 1px solid var(--line);
-      display: grid;
-      gap: 0.25rem 1.25rem;
-    }
-    @media (min-width: 640px) {
-      .principles li { grid-template-columns: 3.5rem 1fr; }
-    }
-    .principles .num {
-      font-family: var(--font);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--faint);
-      line-height: 1.5;
-      letter-spacing: 0.04em;
-    }
-    .principles h3 {
-      margin: 0 0 0.3rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .principles p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
-
-    /* architecture figure */
-    .arch {
-      background: var(--bg-elev);
-      border: 1px solid var(--line-strong);
-      border-radius: 16px;
-      padding: 1.5rem 1.35rem;
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.78rem;
-      line-height: 1.55;
-      color: var(--moss);
-      overflow-x: auto;
-      white-space: pre;
-    }
-    .arch-note {
-      margin: 1rem 0 0;
-      font-size: 0.9rem;
-      color: var(--faint);
       max-width: 36rem;
     }
+    .prose {
+      margin: 0 0 1.1rem;
+      color: var(--muted);
+      max-width: 40rem;
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+    .prose strong { color: var(--ink); font-weight: 600; }
+    .note {
+      margin: 1rem 0 0;
+      color: var(--faint);
+      font-size: 0.88rem;
+      max-width: 40rem;
+    }
 
-    /* feature rows */
-    .feature {
-      padding: 1.5rem 0;
+    .grid-2 {
+      display: grid;
+      gap: 1.75rem;
+    }
+    @media (min-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr 1.05fr; gap: 2.5rem; align-items: start; }
+    }
+
+    .principles {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .principles li {
+      display: grid;
+      gap: 0.2rem 1rem;
+      padding: 1rem 0;
       border-top: 1px solid var(--line);
     }
-    .feature:first-of-type { border-top: none; padding-top: 0; }
-    .feature h3 {
-      font-family: var(--font);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 0 0 0.45rem;
-      letter-spacing: 0.01em;
-      line-height: 1.4;
-      word-break: keep-all;
+    @media (min-width: 560px) {
+      .principles li { grid-template-columns: 2.5rem 1fr; }
     }
-    .feature p { margin: 0; color: var(--muted); max-width: 40rem; font-size: 0.98rem; line-height: 1.7; }
-    .feature .meta {
-      display: inline-block;
-      margin-top: 0.65rem;
-      font-size: 0.78rem;
-      color: var(--sand);
-      letter-spacing: 0.02em;
+    .principles .num {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--faint);
+      letter-spacing: 0.04em;
+      padding-top: 0.15rem;
+    }
+    .principles h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      font-weight: 650;
+    }
+    .principles p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.65;
     }
 
-    /* compare table */
-    .table-wrap { overflow-x: auto; margin-top: 0.35rem; }
+    /* Architecture layers — responsive cards */
+    .layers {
+      display: grid;
+      gap: 0.55rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .layers li {
+      background: var(--bg-elev);
+      border: 1px solid var(--line-strong);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+    }
+    .layers strong {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 650;
+      margin-bottom: 0.2rem;
+      color: var(--moss);
+    }
+    .layers span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .values {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 720px) {
+      .values { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    }
+    .values article {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.1rem 1.15rem;
+    }
+    .values h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+      font-weight: 650;
+    }
+    .values p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .feature {
+      padding: 1.35rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .feature:first-of-type { border-top: 0; padding-top: 0.25rem; }
+    .feature h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 650;
+      word-break: keep-all;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 42rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .meta {
+      display: inline-block;
+      margin-top: 0.55rem;
+      font-size: 0.78rem;
+      color: var(--sand);
+    }
+
+    .vert {
+      margin-top: 1.5rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid var(--line);
+    }
+    .vert h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.02rem;
+      font-weight: 650;
+    }
+    .vert p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      max-width: 44rem;
+    }
+    .bound {
+      margin-top: 0.5rem !important;
+      color: var(--sand) !important;
+      font-size: 0.88rem !important;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 0.5rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
     table {
       width: 100%;
+      min-width: 32rem;
       border-collapse: collapse;
       font-size: 0.9rem;
     }
     th, td {
       text-align: left;
-      padding: 0.7rem 0.65rem 0.7rem 0;
+      padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--line);
       vertical-align: top;
     }
-    th { color: var(--faint); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    tr:last-child td { border-bottom: 0; }
+    th {
+      color: var(--faint);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--bg-elev);
+    }
     td { color: var(--muted); }
-    td:first-child { color: var(--ink); font-weight: 500; width: 22%; }
+    td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
     td.hl { color: var(--sea); }
 
-    /* verticals */
-    .vert {
-      margin: 1.75rem 0 0;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-    }
-    .vert h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-    .vert p { margin: 0; color: var(--muted); max-width: 42rem; font-size: 0.98rem; line-height: 1.65; }
-    .vert .bound {
-      margin-top: 0.55rem;
-      font-size: 0.88rem;
-      color: var(--sand);
-    }
-
-    /* value strip */
-    .values {
-      display: grid;
-      gap: 1.5rem;
-    }
-    @media (min-width: 720px) {
-      .values { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
-    }
-    .values article h3 {
-      margin: 0 0 0.4rem;
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .values article p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* closing */
-    .close {
-      text-align: left;
-    }
-    .close h2 { max-width: none; }
     .footnote {
-      margin-top: 1.75rem;
-      font-size: 0.85rem;
+      margin-top: 1.5rem;
       color: var(--faint);
-      max-width: 36rem;
+      font-size: 0.85rem;
+      max-width: 40rem;
       line-height: 1.6;
     }
     footer.site {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 1.5rem 1.5rem 2.5rem;
-      font-size: 0.85rem;
+      border-top: 1px solid var(--line);
+      padding: 1.35rem 0 2.25rem;
       color: var(--faint);
+      font-size: 0.85rem;
+    }
+    .site-inner {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
+      gap: 0.65rem 1.35rem;
       justify-content: space-between;
-      border-top: 1px solid var(--line);
+      align-items: center;
     }
   </style>
 </head>
 <body>
   <header class="bar">
-    <div class="bar-inner">
+    <div class="wrap bar-inner">
       <a class="brand" href="#">RELang OS</a>
-      <nav>
-        <a href="#idea">理念</a>
-        <a href="#arch">架构</a>
-        <a href="#why">价值</a>
-        <a href="#caps">能力</a>
-        <a href="#field">现场</a>
-        <a href="#compare">对照</a>
-        <a href="#access">合作</a>
-      </nav>
+      <div class="bar-right">
+        <nav class="nav" id="site-nav" data-i18n-nav aria-label="Primary">
+          <a href="#idea" data-i18n="nav.idea"></a>
+          <a href="#arch" data-i18n="nav.arch"></a>
+          <a href="#why" data-i18n="nav.why"></a>
+          <a href="#caps" data-i18n="nav.caps"></a>
+          <a href="#field" data-i18n="nav.field"></a>
+          <a href="#compare" data-i18n="nav.compare"></a>
+          <a href="#access" data-i18n="nav.access"></a>
+        </nav>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" id="lang-zh" aria-pressed="true">中文</button>
+          <button type="button" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">☰</button>
+      </div>
     </div>
   </header>
 
-  <section class="hero" aria-label="首屏">
-    <div class="hero-inner">
-      <h1>为代理与协同而生的<span class="break">操作系统</span></h1>
-      <p class="lede">
-        RELang OS 把 Erlang 验证过的进程模型，做成系统的第一性原则。
-        应用跑在 <em>RVM</em> 上 — Rust 实现的 BEAM 虚拟机，之于 RELang，如同 ART 之于 Android。
-      </p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#idea">了解理念</a>
-        <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues">申请评估授权</a>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1 data-i18n="hero.title"></h1>
+        <p class="lede" data-i18n-html="hero.lede"></p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#idea" data-i18n="hero.ctaPrimary"></a>
+          <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="hero.ctaSecondary"></a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="idea">
-    <p class="kicker">原理</p>
-    <div class="split split-2">
-      <div>
-        <h2>操作系统该如何对待失败、<span class="break">权限与智能</span></h2>
-        <p class="prose">
-          多数移动栈按「人点 App」设计：粗粒度权限、单机 IPC、全局式服务进程。
-          当设备开始替你调用工具、跨端完成一件事、在野外自我恢复时，这些假设会先碎裂。
-        </p>
-        <p class="prose">
-          RELang 的起点不是再做一个兼容层，而是换一套原语：
-          <strong>一切皆进程，一切皆消息</strong>；错误靠监督树结构化恢复；
-          能做的事只能来自被授予的能力句柄 — 没有环境权限。
-        </p>
+    <section class="section" id="idea">
+      <div class="wrap">
+        <p class="kicker" data-i18n="idea.kicker"></p>
+        <div class="grid-2">
+          <div>
+            <h2 data-i18n="idea.title"></h2>
+            <p class="prose" data-i18n="idea.p1"></p>
+            <p class="prose" data-i18n-html="idea.p2"></p>
+          </div>
+          <ol class="principles">
+            <li>
+              <span class="num">01</span>
+              <div>
+                <h3 data-i18n="idea.p1t"></h3>
+                <p data-i18n="idea.p1d"></p>
+              </div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div>
+                <h3 data-i18n="idea.p2t"></h3>
+                <p data-i18n="idea.p2d"></p>
+              </div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div>
+                <h3 data-i18n="idea.p3t"></h3>
+                <p data-i18n="idea.p3d"></p>
+              </div>
+            </li>
+            <li>
+              <span class="num">04</span>
+              <div>
+                <h3 data-i18n="idea.p4t"></h3>
+                <p data-i18n="idea.p4d"></p>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
-      <ol class="principles">
-        <li>
-          <span class="num">01</span>
-          <div>
-            <h3>任其崩溃，结构化恢复</h3>
-            <p>服务挂了，先重启子树，而不是拖垮整机用户态。热升级面向组件，而不是「下次进站再刷」。</p>
-          </div>
-        </li>
-        <li>
-          <span class="num">02</span>
-          <div>
-            <h3>没有环境权限</h3>
-            <p>不能因为「知道名字」就拿到相机或电台。能力可衰减、可过期、可审计 — 代理与应用同一套闸。</p>
-          </div>
-        </li>
-        <li>
-          <span class="num">03</span>
-          <div>
-            <h3>位置透明</h3>
-            <p>本机 Actor 与另一台设备上的 Actor，使用同一套消息语义。多设备不是账号同步的附属品，而是运行时能力。</p>
-          </div>
-        </li>
-        <li>
-          <span class="num">04</span>
-          <div>
-            <h3>诚实失败</h3>
-            <p>设备不在、宿主未挂，返回 unavailable — 不编造邻居、不假装起飞、不假冒推理成功。</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="arch">
-    <p class="kicker">架构</p>
-    <h2>一层运行时，<span class="break">贯通应用、服务与代理</span></h2>
-    <p class="prose">
-      开发者面对的是统一的 RVM 与能力模型。换设备时换的是 HAL 与产品 Profile，不是另一套应用运行时。
-      UI 状态留在进程里，像素路径在 Rust 原生层 — 避免把帧钟绑在全局 GC 上。
-    </p>
-    <div class="split split-2">
-      <pre class="arch" aria-label="架构层次">┌─────────────────────────────────────────┐
-│  Gleam / Elixir / Erlang 应用与代理      │
-│  消息 · Intent · 工具 schema · 能力租约  │
-├─────────────────────────────────────────┤
-│  系统监督树  framework                   │
-│  连接 · 媒体 · UI 壳 · AI · 现场任务     │
-├─────────────────────────────────────────┤
-│  RVM — Rust BEAM 虚拟机                  │
-│  解释 / JIT / AOT · Seed · Dist · Dirty  │
-├─────────────────────────────────────────┤
-│  原生层  合成器 · UI 引擎 · HAL · 加速器 │
-├─────────────────────────────────────────┤
-│  Linux（前期）  隔离 · 异步 I/O · 调度   │
-└─────────────────────────────────────────┘</pre>
-      <div>
-        <p class="prose">
-          <strong>RVM</strong> 承载 BEAM 语义：轻量进程、邮箱、链接与监视、每进程堆。
-          长阻塞与推理进 Dirty 线程，不堵调度器。
-        </p>
-        <p class="prose">
-          <strong>Domain</strong> 划分信任：System 握策略与桥；App 握作业；Agent 只能经工具与能力行动；
-          厂商 SDK 与不可信原生进 Isolated。
-        </p>
-        <p class="arch-note">
-          内核前期复用主线 Linux 与厂商 BSP — 创新集中在运行时与框架，而不是再造驱动宇宙。
-        </p>
+    <section class="section" id="arch">
+      <div class="wrap">
+        <p class="kicker" data-i18n="arch.kicker"></p>
+        <h2 data-i18n="arch.title"></h2>
+        <p class="prose" data-i18n="arch.lede"></p>
+        <div class="grid-2">
+          <ul class="layers" aria-label="Architecture">
+            <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
+            <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
+            <li><strong data-i18n="arch.l3t"></strong><span data-i18n="arch.l3d"></span></li>
+            <li><strong data-i18n="arch.l4t"></strong><span data-i18n="arch.l4d"></span></li>
+            <li><strong data-i18n="arch.l5t"></strong><span data-i18n="arch.l5d"></span></li>
+          </ul>
+          <div>
+            <p class="prose" data-i18n-html="arch.rvm"></p>
+            <p class="prose" data-i18n-html="arch.domain"></p>
+            <p class="note" data-i18n="arch.note"></p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="why">
-    <p class="kicker">价值</p>
-    <h2>它解决谁的什么问题</h2>
-    <div class="values">
-      <article>
-        <h3>给产品与交付</h3>
-        <p>垂直设备可以卖「永不整机重启、可审计的代理作业、多终端一体」— 不必先赢下消费应用商店。</p>
-      </article>
-      <article>
-        <h3>给系统集成</h3>
-        <p>能力与 Domain 把权限、崩溃域、原生桥的边界写死。缺硬件时诚实失败，联调不靠假成功。</p>
-      </article>
-      <article>
-        <h3>给现场与机队</h3>
-        <p>任务软件可热升级；子模块故障可恢复；编队与地面站走同一 mesh 叙事，而不是临时拼 MQTT 脚本。</p>
-      </article>
-    </div>
-    <div class="feature" style="margin-top:1.75rem;border-top:1px solid var(--line);padding-top:1.5rem;">
-      <h3>窗口期在架构，不在功能清单</h3>
-      <p>
-        端侧模型、NPU、MCP / A2A、开源 GPU 驱动与内存安全语言同时就绪。
-        现有 OS 仍以 App 为粗粒度单位；RELang 以进程、能力与代理为粒度 —
-        这是结构性窗口，而不是多几个设置页。
-      </p>
-    </div>
-  </section>
+    <section class="section" id="why">
+      <div class="wrap">
+        <p class="kicker" data-i18n="why.kicker"></p>
+        <h2 data-i18n="why.title"></h2>
+        <div class="values">
+          <article>
+            <h3 data-i18n="why.v1t"></h3>
+            <p data-i18n="why.v1d"></p>
+          </article>
+          <article>
+            <h3 data-i18n="why.v2t"></h3>
+            <p data-i18n="why.v2d"></p>
+          </article>
+          <article>
+            <h3 data-i18n="why.v3t"></h3>
+            <p data-i18n="why.v3d"></p>
+          </article>
+        </div>
+        <article class="feature" style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.35rem;">
+          <h3 data-i18n="why.windowT"></h3>
+          <p data-i18n="why.windowD"></p>
+        </article>
+      </div>
+    </section>
 
-  <section class="section" id="caps">
-    <p class="kicker">特性</p>
-    <h2>系统一等公民，<span class="break">而不是外挂</span></h2>
+    <section class="section" id="caps">
+      <div class="wrap">
+        <p class="kicker" data-i18n="caps.kicker"></p>
+        <h2 data-i18n="caps.title"></h2>
+        <article class="feature">
+          <h3 data-i18n="caps.c1t"></h3>
+          <p data-i18n="caps.c1d"></p>
+          <span class="meta">Agent · Tool · Quota · Audit · MCP</span>
+        </article>
+        <article class="feature">
+          <h3 data-i18n="caps.c2t"></h3>
+          <p data-i18n="caps.c2d"></p>
+          <span class="meta">Mesh · Session · Capability · Migration</span>
+        </article>
+        <article class="feature">
+          <h3 data-i18n="caps.c3t"></h3>
+          <p data-i18n="caps.c3d"></p>
+          <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
+        </article>
+        <article class="feature">
+          <h3 data-i18n="caps.c4t"></h3>
+          <p data-i18n="caps.c4d"></p>
+          <span class="meta">Gleam UI · Compositor</span>
+        </article>
+        <article class="feature">
+          <h3 data-i18n="caps.c5t"></h3>
+          <p data-i18n="caps.c5d"></p>
+          <span class="meta">Deterministic · Replay · Audit</span>
+        </article>
+      </div>
+    </section>
 
-    <article class="feature">
-      <h3>AI 代理原生</h3>
-      <p>
-        代理是被监督的进程，不是悬浮聊天窗。工具调用走能力、确认与配额；
-        审计落在消息路径上。外部编程助手可通过 MCP / LSP 适配接入 Host —
-        产品不自研 Codex，但把系统做成「好用的后端」。
-      </p>
-      <span class="meta">Agent · Tool · Quota · Audit · MCP</span>
-    </article>
+    <section class="section" id="field">
+      <div class="wrap">
+        <p class="kicker" data-i18n="field.kicker"></p>
+        <h2 data-i18n="field.title"></h2>
+        <p class="prose" data-i18n-html="field.lede"></p>
+        <div class="vert">
+          <h3 data-i18n="field.d1t"></h3>
+          <p data-i18n="field.d1d"></p>
+          <p class="bound" data-i18n="field.d1b"></p>
+        </div>
+        <div class="vert">
+          <h3 data-i18n="field.d2t"></h3>
+          <p data-i18n="field.d2d"></p>
+          <p class="bound" data-i18n="field.d2b"></p>
+        </div>
+      </div>
+    </section>
 
-    <article class="feature">
-      <h3>多设备即一台机器</h3>
-      <p>
-        发现、配对、会话与分区有明确状态；传输未就绪就不假装连通。
-        迁移与跨设备授权要求更高信任等级。个人集群与现场编队共用同一套语义。
-      </p>
-      <span class="meta">Mesh · Session · Capability · Migration</span>
-    </article>
+    <section class="section" id="compare">
+      <div class="wrap">
+        <p class="kicker" data-i18n="compare.kicker"></p>
+        <h2 data-i18n="compare.title"></h2>
+        <p class="prose" data-i18n="compare.lede"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="compare.h0"></th>
+                <th>Android</th>
+                <th>RELang OS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-i18n="compare.r1a"></td><td>ART</td><td class="hl" data-i18n="compare.r1c"></td></tr>
+              <tr><td data-i18n="compare.r2a"></td><td>Zygote</td><td class="hl">Seed</td></tr>
+              <tr><td>IPC</td><td>Binder</td><td class="hl" data-i18n="compare.r3c"></td></tr>
+              <tr><td data-i18n="compare.r4a"></td><td>system_server</td><td class="hl" data-i18n="compare.r4c"></td></tr>
+              <tr><td data-i18n="compare.r5a"></td><td>Java / Kotlin</td><td class="hl">Gleam · Elixir · Erlang</td></tr>
+              <tr><td data-i18n="compare.r6a"></td><td>NDK</td><td class="hl">Wasm</td></tr>
+              <tr><td data-i18n="compare.r7a"></td><td>Manifest + uid</td><td class="hl" data-i18n="compare.r7c"></td></tr>
+              <tr><td>UI</td><td>View / Compose</td><td class="hl" data-i18n="compare.r8c"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" data-i18n="compare.note"></p>
+      </div>
+    </section>
 
-    <article class="feature">
-      <h3>端侧加速器统一面</h3>
-      <p>
-        CPU、GPU、NPU、TPU 是同一加速器类的后端，不是四套产品 API。
-        应用看见任务与模型 ID；大张量走句柄。推理在隔离域运行，与 UI 绘制队列隔离，避免拖死帧钟。
-      </p>
-      <span class="meta">AcceleratorClass · Buffer · Isolated · Dirty</span>
-    </article>
-
-    <article class="feature">
-      <h3>声明式 UI，原生渲染</h3>
-      <p>
-        状态与业务在 BEAM 进程；布局、文本与合成在 Rust。
-        目标是跨手机、平板、车机、手持终端可控的像素路径 — 不依赖厂商 Widget 库冷启动生态。
-      </p>
-      <span class="meta">Gleam UI · Compositor · 120Hz 预算</span>
-    </article>
-
-    <article class="feature">
-      <h3>可测与可回放</h3>
-      <p>
-        时间、随机与输入可注入。会话与操作可录制回放，便于代理行为审计与现场事故追溯 —
-        这对工业与机队，比对消费者桌面更刚需。
-      </p>
-      <span class="meta">Deterministic · Replay · Audit trail</span>
-    </article>
-  </section>
-
-  <section class="section" id="field">
-    <p class="kicker">垂直 · FieldCompanion</p>
-    <h2>无人机与机器人：<span class="break">做任务 OS，不当飞控</span></h2>
-    <p class="prose">
-      现场伴飞 / 伴控是同一垂直 Profile。RELang 负责作业编排、感知闭环、围栏与安全<strong>意图</strong>、多机协同与 OTA；
-      姿态环、伺服周期与安全 PLC 留在 PX4、ArduPilot、运动控制器或厂商栈。经 MAVLink / ROS 2 等桥对接 — framework 不直接 ioctl。
-    </p>
-
-    <div class="vert">
-      <h3>无人机伴飞</h3>
-      <p>机载任务电脑跑巡检流程、视觉检测、禁飞协调与地面站联动；飞控仍掌握最终执行权。失联返航由飞控裁决，RELang 不冒充「已起飞」。</p>
-      <p class="bound">合适：工业巡检、物流末端、多机协同 · 不合适：取代飞控固件</p>
-    </div>
-    <div class="vert">
-      <h3>机器人与工业边缘</h3>
-      <p>工控机 / 智能盒上的工艺 Actor、视觉引导、换型与人机协同；AGV 与产线屏进同一集群。运动控制与 SIL 安全回路仍在专用栈。</p>
-      <p class="bound">合适：AMR、巡检、臂旁智能盒 · 不合适：EtherCAT 内环、安全 PLC 替代</p>
-    </div>
-  </section>
-
-  <section class="section" id="compare">
-    <p class="kicker">对照</p>
-    <h2>熟悉的地图，不同的原语</h2>
-    <p class="prose">用 Android 作参照，是为了降低沟通成本 — 不是宣称功能对等或生态对撞。</p>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>层次</th><th>Android</th><th>RELang OS</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>应用运行时</td><td>ART</td><td class="hl">RVM（解释 / JIT / AOT）</td></tr>
-          <tr><td>进程孵化</td><td>Zygote</td><td class="hl">Seed</td></tr>
-          <tr><td>IPC</td><td>Binder</td><td class="hl">消息 + 域间通道</td></tr>
-          <tr><td>系统服务</td><td>system_server</td><td class="hl">监督树中的服务</td></tr>
-          <tr><td>应用语言</td><td>Java / Kotlin</td><td class="hl">Gleam（主）· Elixir · Erlang</td></tr>
-          <tr><td>原生扩展</td><td>NDK</td><td class="hl">Wasm（默认）</td></tr>
-          <tr><td>权限</td><td>Manifest + uid</td><td class="hl">能力句柄</td></tr>
-          <tr><td>UI</td><td>View / Compose</td><td class="hl">声明式 · Rust 渲染路径</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="arch-note" style="margin-top:1.5rem;">
-      明确非目标：首发不做通用消费手机全面竞争；不追求 100% OTP 兼容；不自研芯片级驱动。
-    </p>
-  </section>
-
-  <section class="section close" id="access">
-    <p class="kicker">下一步</p>
-    <h2>公开的是故事与入口；<span class="break">产品是专有软件</span></h2>
-    <p class="prose">
-      <strong>RELang OS 不是开源项目。</strong>
-      本站与 GitHub 宣传仓只承载叙事与联系方式，不含产品源码。
-      完整工程 — RVM、framework、HAL、SDK — 为专有软件，在私有仓库维护，须另行授权（评估 / 合作 / NDA），不是「开源下载」。
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="https://github.com/ShujianLv/RELangOS/issues">通过 Issues 申请评估</a>
-      <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS">宣传仓 README</a>
-    </div>
-    <p class="footnote">
-      Copyright © 2026 RELang OS. All rights reserved.
-      详见宣传仓 <a href="https://github.com/ShujianLv/RELangOS/blob/main/LICENSE">LICENSE</a>。
-      本站由本仓 <code>docs/</code> 经 GitHub Pages 发布，仅供浏览。
-    </p>
-  </section>
+    <section class="section close" id="access">
+      <div class="wrap">
+        <p class="kicker" data-i18n="access.kicker"></p>
+        <h2 data-i18n="access.title"></h2>
+        <p class="prose" data-i18n-html="access.body"></p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/ShujianLv/RELangOS/issues" data-i18n="access.cta1"></a>
+          <a class="btn btn-ghost" href="https://github.com/ShujianLv/RELangOS" data-i18n="access.cta2"></a>
+        </div>
+        <p class="footnote" data-i18n-html="access.foot"></p>
+      </div>
+    </section>
+  </main>
 
   <footer class="site">
-    <span>RELang OS</span>
-    <span>RVM · Capability · FieldCompanion</span>
-    <a href="https://github.com/ShujianLv/RELangOS">github.com/ShujianLv/RELangOS</a>
+    <div class="wrap site-inner">
+      <span>RELang OS</span>
+      <span>RVM · Capability · FieldCompanion</span>
+      <a href="https://github.com/ShujianLv/RELangOS">github.com/ShujianLv/RELangOS</a>
+    </div>
   </footer>
+
+  <script>
+    const I18N = {
+      zh: {
+        "nav.idea": "理念",
+        "nav.arch": "架构",
+        "nav.why": "价值",
+        "nav.caps": "能力",
+        "nav.field": "现场",
+        "nav.compare": "对照",
+        "nav.access": "合作",
+        "hero.title": "为代理与协同而生的操作系统",
+        "hero.lede": "RELang OS 把 Erlang 验证过的进程模型，做成系统的第一性原则。应用跑在 <em>RVM</em> 上 — Rust 实现的 BEAM 虚拟机，之于 RELang，如同 ART 之于 Android。",
+        "hero.ctaPrimary": "了解理念",
+        "hero.ctaSecondary": "申请评估授权",
+        "idea.kicker": "原理",
+        "idea.title": "操作系统该如何对待失败、权限与智能",
+        "idea.p1": "多数移动栈按「人点 App」设计：粗粒度权限、单机 IPC、全局式服务进程。当设备开始替你调用工具、跨端完成一件事、在野外自我恢复时，这些假设会先碎裂。",
+        "idea.p2": "RELang 的起点不是再做一个兼容层，而是换一套原语：<strong>一切皆进程，一切皆消息</strong>；错误靠监督树结构化恢复；能做的事只能来自被授予的能力句柄 — 没有环境权限。",
+        "idea.p1t": "任其崩溃，结构化恢复",
+        "idea.p1d": "服务挂了，先重启子树，而不是拖垮整机用户态。热升级面向组件，而不是「下次进站再刷」。",
+        "idea.p2t": "没有环境权限",
+        "idea.p2d": "不能因为「知道名字」就拿到相机或电台。能力可衰减、可过期、可审计 — 代理与应用同一套闸。",
+        "idea.p3t": "位置透明",
+        "idea.p3d": "本机 Actor 与另一台设备上的 Actor，使用同一套消息语义。多设备是运行时能力，不是账号同步的附属品。",
+        "idea.p4t": "诚实失败",
+        "idea.p4d": "设备不在、宿主未挂，返回 unavailable — 不编造邻居、不假装起飞、不假冒推理成功。",
+        "arch.kicker": "架构",
+        "arch.title": "一层运行时，贯通应用、服务与代理",
+        "arch.lede": "开发者面对统一的 RVM 与能力模型。换设备时换的是 HAL 与产品 Profile，不是另一套应用运行时。UI 状态留在进程里，像素路径在 Rust 原生层。",
+        "arch.l1t": "应用与代理",
+        "arch.l1d": "Gleam / Elixir / Erlang · 消息 · Intent · 工具 schema · 能力租约",
+        "arch.l2t": "系统监督树",
+        "arch.l2d": "framework · 连接 · 媒体 · UI 壳 · AI · 现场任务",
+        "arch.l3t": "RVM",
+        "arch.l3d": "Rust BEAM 虚拟机 · 解释 / JIT / AOT · Seed · Dist · Dirty",
+        "arch.l4t": "原生层",
+        "arch.l4d": "合成器 · UI 引擎 · HAL · 加速器运行时",
+        "arch.l5t": "内核（前期）",
+        "arch.l5d": "Linux · 隔离 · 异步 I/O · 调度",
+        "arch.rvm": "<strong>RVM</strong> 承载 BEAM 语义：轻量进程、邮箱、链接与监视、每进程堆。长阻塞与推理进 Dirty 线程，不堵调度器。",
+        "arch.domain": "<strong>Domain</strong> 划分信任：System 握策略与桥；App 握作业；Agent 只能经工具与能力行动；厂商 SDK 与不可信原生进 Isolated。",
+        "arch.note": "内核前期复用主线 Linux 与厂商 BSP — 创新集中在运行时与框架，而不是再造驱动宇宙。",
+        "why.kicker": "价值",
+        "why.title": "它解决谁的什么问题",
+        "why.v1t": "给产品与交付",
+        "why.v1d": "垂直设备可以卖「可恢复、可审计的代理作业、多终端一体」— 不必先赢下消费应用商店。",
+        "why.v2t": "给系统集成",
+        "why.v2d": "能力与 Domain 把权限、崩溃域、原生桥的边界写死。缺硬件时诚实失败，联调不靠假成功。",
+        "why.v3t": "给现场与机队",
+        "why.v3d": "任务软件可热升级；子模块故障可恢复；编队与地面站走同一 mesh 叙事，而不是临时拼脚本。",
+        "why.windowT": "窗口期在架构，不在功能清单",
+        "why.windowD": "端侧模型、NPU、代理协议与内存安全语言同时就绪。现有 OS 仍以 App 为粗粒度单位；RELang 以进程、能力与代理为粒度 — 这是结构性窗口。",
+        "caps.kicker": "特性",
+        "caps.title": "系统一等公民，而不是外挂",
+        "caps.c1t": "AI 代理原生",
+        "caps.c1d": "代理是被监督的进程，不是悬浮聊天窗。工具调用走能力、确认与配额；审计落在消息路径上。外部编程助手可通过 MCP / LSP 适配接入 Host — 产品不自研 Codex。",
+        "caps.c2t": "多设备即一台机器",
+        "caps.c2d": "发现、配对、会话与分区有明确状态；传输未就绪就不假装连通。个人集群与现场编队共用同一套语义。",
+        "caps.c3t": "端侧加速器统一面",
+        "caps.c3d": "CPU、GPU、NPU、TPU 是同一加速器类的后端。应用看见任务与模型 ID；大张量走句柄。推理在隔离域运行，与 UI 绘制队列隔离。",
+        "caps.c4t": "声明式 UI，原生渲染",
+        "caps.c4d": "状态与业务在 BEAM 进程；布局、文本与合成在 Rust。跨手机、平板、车机、手持终端可控的像素路径。",
+        "caps.c5t": "可测与可回放",
+        "caps.c5d": "时间、随机与输入可注入。会话与操作可录制回放，便于代理行为审计与现场事故追溯。",
+        "field.kicker": "垂直 · FieldCompanion",
+        "field.title": "无人机与机器人：做任务 OS，不当飞控",
+        "field.lede": "现场伴飞 / 伴控是同一垂直 Profile。RELang 负责作业编排、感知闭环、围栏与安全<strong>意图</strong>、多机协同与 OTA；姿态环、伺服周期与安全 PLC 留在外部栈，经 MAVLink / ROS 2 等桥对接。",
+        "field.d1t": "无人机伴飞",
+        "field.d1d": "机载任务电脑跑巡检流程、视觉检测、禁飞协调与地面站联动；飞控仍掌握最终执行权。",
+        "field.d1b": "合适：工业巡检、物流末端、多机协同 · 不合适：取代飞控固件",
+        "field.d2t": "机器人与工业边缘",
+        "field.d2d": "工控机 / 智能盒上的工艺 Actor、视觉引导、换型与人机协同；运动控制与 SIL 安全回路仍在专用栈。",
+        "field.d2b": "合适：AMR、巡检、臂旁智能盒 · 不合适：EtherCAT 内环、安全 PLC 替代",
+        "compare.kicker": "对照",
+        "compare.title": "熟悉的地图，不同的原语",
+        "compare.lede": "用 Android 作参照是为了降低沟通成本 — 不是宣称功能对等或生态对撞。",
+        "compare.h0": "层次",
+        "compare.r1a": "应用运行时",
+        "compare.r1c": "RVM（解释 / JIT / AOT）",
+        "compare.r2a": "进程孵化",
+        "compare.r3c": "消息 + 域间通道",
+        "compare.r4a": "系统服务",
+        "compare.r4c": "监督树中的服务",
+        "compare.r5a": "应用语言",
+        "compare.r6a": "原生扩展",
+        "compare.r7a": "权限",
+        "compare.r7c": "能力句柄",
+        "compare.r8c": "声明式 · Rust 渲染",
+        "compare.note": "明确非目标：首发不做通用消费手机全面竞争；不追求 100% OTP 兼容；不自研芯片级驱动。",
+        "access.kicker": "下一步",
+        "access.title": "公开的是故事与入口；产品是专有软件",
+        "access.body": "<strong>RELang OS 不是开源项目。</strong>本站与 GitHub 宣传仓只承载叙事与联系方式，不含产品源码。完整工程为专有软件，须另行授权（评估 / 合作 / NDA），不是「开源下载」。",
+        "access.cta1": "通过 Issues 申请评估",
+        "access.cta2": "宣传仓 README",
+        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>。"
+      },
+      en: {
+        "nav.idea": "Principles",
+        "nav.arch": "Architecture",
+        "nav.why": "Value",
+        "nav.caps": "Capabilities",
+        "nav.field": "Field",
+        "nav.compare": "Compare",
+        "nav.access": "Access",
+        "hero.title": "An OS built for agents and collaboration",
+        "hero.lede": "RELang OS elevates Erlang’s proven process model to a first principle of the system. Apps run on <em>RVM</em> — a Rust BEAM VM. RVM is to RELang what ART is to Android.",
+        "hero.ctaPrimary": "Read the principles",
+        "hero.ctaSecondary": "Request evaluation access",
+        "idea.kicker": "Principles",
+        "idea.title": "How an OS should treat failure, authority, and intelligence",
+        "idea.p1": "Most mobile stacks assume a human taps apps: coarse permissions, single-device IPC, monolithic services. Those assumptions crack when devices call tools for you, finish work across endpoints, and recover in the field.",
+        "idea.p2": "RELang does not start with another compatibility layer. It changes the primitives: <strong>everything is a process; everything is a message</strong>. Failures recover through supervision trees. Authority comes only from granted capability handles — no ambient authority.",
+        "idea.p1t": "Let it crash — recover structurally",
+        "idea.p1d": "Restart a subtree first, instead of taking down the whole userspace. Hot upgrade targets components, not “flash again at the depot.”",
+        "idea.p2t": "No ambient authority",
+        "idea.p2d": "Knowing a name does not grant the camera or radio. Capabilities can attenuate, expire, and be audited — agents and apps share the same gate.",
+        "idea.p3t": "Location transparency",
+        "idea.p3d": "Actors on this device and another share the same messaging semantics. Multi-device is a runtime capability, not an account sync add-on.",
+        "idea.p4t": "Honest failure",
+        "idea.p4d": "Missing hardware or host returns unavailable — no invented neighbors, fake takeoffs, or fabricated inference success.",
+        "arch.kicker": "Architecture",
+        "arch.title": "One runtime across apps, services, and agents",
+        "arch.lede": "Developers see one RVM and capability model. Changing devices means changing HAL and product profile — not a different application runtime. UI state stays in processes; pixels stay on the Rust path.",
+        "arch.l1t": "Apps & agents",
+        "arch.l1d": "Gleam / Elixir / Erlang · messages · intents · tool schemas · capability leases",
+        "arch.l2t": "System supervision tree",
+        "arch.l2d": "framework · connectivity · media · UI shell · AI · field missions",
+        "arch.l3t": "RVM",
+        "arch.l3d": "Rust BEAM VM · interpret / JIT / AOT · Seed · Dist · Dirty",
+        "arch.l4t": "Native layer",
+        "arch.l4d": "Compositor · UI engine · HAL · accelerator runtime",
+        "arch.l5t": "Kernel (near term)",
+        "arch.l5d": "Linux · isolation · async I/O · scheduling",
+        "arch.rvm": "<strong>RVM</strong> carries BEAM semantics: lightweight processes, mailboxes, links/monitors, per-process heaps. Long work and inference run on Dirty threads so schedulers stay responsive.",
+        "arch.domain": "<strong>Domain</strong> draws trust boundaries: System owns policy and bridges; App owns missions; Agent acts only through tools and capabilities; vendor SDKs and untrusted native code land in Isolated.",
+        "arch.note": "Near-term kernels reuse mainline Linux and vendor BSPs — innovation stays in the runtime and framework, not a private driver universe.",
+        "why.kicker": "Value",
+        "why.title": "Whose problems it solves",
+        "why.v1t": "For product & delivery",
+        "why.v1d": "Vertical devices can sell recoverability, auditable agent work, and multi-terminal unity — without first winning a consumer app store.",
+        "why.v2t": "For system integrators",
+        "why.v2d": "Capabilities and Domains hard-code permission, crash, and bridge boundaries. Missing hardware fails honestly; bring-up does not rely on fake success.",
+        "why.v3t": "For fleets & field ops",
+        "why.v3d": "Mission software can hot-upgrade; modules can recover; fleets and ground stations share one mesh story instead of ad-hoc scripts.",
+        "why.windowT": "The window is architectural",
+        "why.windowD": "On-device models, NPUs, agent protocols, and memory-safe languages matured together. Legacy OSes still treat the App as the coarse unit; RELang uses processes, capabilities, and agents.",
+        "caps.kicker": "Capabilities",
+        "caps.title": "First-class system features — not bolt-ons",
+        "caps.c1t": "AI-agent native",
+        "caps.c1d": "An agent is a supervised process, not a floating chat bubble. Tool calls go through capabilities, confirmation, and quotas; audits follow the message path. External coding assistants can attach via MCP/LSP — RELang is not a Codex clone.",
+        "caps.c2t": "Many devices, one machine",
+        "caps.c2d": "Discovery, pairing, sessions, and partitions have explicit states. If transport is not ready, connectivity is not faked. Personal clusters and field fleets share the same semantics.",
+        "caps.c3t": "Unified accelerator surface",
+        "caps.c3d": "CPU, GPU, NPU, and TPU are backends of one accelerator class. Apps see tasks and model IDs; large tensors use handles. Inference runs isolated, away from the UI paint queue.",
+        "caps.c4t": "Declarative UI, native render",
+        "caps.c4d": "State and business logic live in BEAM processes; layout, text, and composition live in Rust — a controllable pixel path across phone, tablet, auto, and handheld.",
+        "caps.c5t": "Testable and replayable",
+        "caps.c5d": "Time, entropy, and input can be injected. Sessions can be recorded and replayed for agent audit and field incident reconstruction.",
+        "field.kicker": "Vertical · FieldCompanion",
+        "field.title": "Drones & robots: mission OS, not flight control",
+        "field.lede": "Companion flight and companion control share one vertical profile. RELang owns mission orchestration, perception loops, geofence/safety <strong>intent</strong>, multi-vehicle mesh, and OTA. Attitude loops, servo cycles, and safety PLCs stay external — bridged via MAVLink / ROS 2 and similar.",
+        "field.d1t": "UAV companion compute",
+        "field.d1d": "Onboard mission computers run inspection flows, vision, geofence coordination, and GCS linkage. The flight controller keeps final authority.",
+        "field.d1b": "Fit: industrial inspection, last-mile logistics, multi-vehicle ops · Not: replacing FC firmware",
+        "field.d2t": "Robotics & industrial edge",
+        "field.d2d": "Process actors, vision guidance, changeover, and HMI on industrial PCs / smart boxes. Motion control and SIL safety loops stay on dedicated stacks.",
+        "field.d2b": "Fit: AMR, inspection, arm-side boxes · Not: EtherCAT inner loops or safety PLC replacement",
+        "compare.kicker": "Compare",
+        "compare.title": "A familiar map, different primitives",
+        "compare.lede": "Android is a communication map — not a claim of feature parity or ecosystem collision.",
+        "compare.h0": "Layer",
+        "compare.r1a": "App runtime",
+        "compare.r1c": "RVM (interp / JIT / AOT)",
+        "compare.r2a": "Process spawn",
+        "compare.r3c": "Messages + domain channels",
+        "compare.r4a": "System services",
+        "compare.r4c": "Supervised services",
+        "compare.r5a": "App languages",
+        "compare.r6a": "Native extensions",
+        "compare.r7a": "Permissions",
+        "compare.r7c": "Capability handles",
+        "compare.r8c": "Declarative · Rust render",
+        "compare.note": "Non-goals: no full consumer-phone competition at launch; no 100% OTP compatibility; no chip-level driver stack reinvented.",
+        "access.kicker": "Next",
+        "access.title": "Public story and entry; proprietary product",
+        "access.body": "<strong>RELang OS is not open source.</strong> This site and the public GitHub repo carry narrative and contact only — no product source. The full stack is proprietary software and requires separate authorization (evaluation / partnership / NDA), not an “open download.”",
+        "access.cta1": "Request evaluation via Issues",
+        "access.cta2": "Marketing repo README",
+        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. See <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>."
+      }
+    };
+
+    const STORAGE_KEY = "relangos-lang";
+
+    function detectLang() {
+      const params = new URLSearchParams(location.search);
+      const q = params.get("lang");
+      if (q === "en" || q === "zh") return q;
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === "en" || saved === "zh") return saved;
+      } catch (_) {}
+      const nav = (navigator.language || "zh").toLowerCase();
+      return nav.startsWith("zh") ? "zh" : "en";
+    }
+
+    function applyLang(lang) {
+      const dict = I18N[lang] || I18N.zh;
+      document.documentElement.lang = lang === "en" ? "en" : "zh-Hans";
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] != null) el.textContent = dict[key];
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-html");
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+      document.title = lang === "en"
+        ? "RELang OS — AI-native operating system"
+        : "RELang OS — AI 代理原生操作系统";
+      document.getElementById("lang-zh").setAttribute("aria-pressed", String(lang === "zh"));
+      document.getElementById("lang-en").setAttribute("aria-pressed", String(lang === "en"));
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}
+      const url = new URL(location.href);
+      url.searchParams.set("lang", lang);
+      history.replaceState(null, "", url);
+    }
+
+    document.getElementById("lang-zh").addEventListener("click", () => applyLang("zh"));
+    document.getElementById("lang-en").addEventListener("click", () => applyLang("en"));
+
+    const menuBtn = document.getElementById("menu-btn");
+    const nav = document.getElementById("site-nav");
+    menuBtn.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+    nav.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    applyLang(detectLang());
+  </script>
 </body>
 </html>
