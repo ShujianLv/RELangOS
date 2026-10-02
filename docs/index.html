@@ -381,6 +381,36 @@
       font-size: 0.88rem !important;
     }
 
+    .visual {
+      margin: 1.35rem 0 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      background: var(--bg-elev);
+    }
+    .visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: middle;
+    }
+    .visual figcaption {
+      padding: 0.7rem 1rem 0.85rem;
+      font-size: 0.82rem;
+      color: var(--faint);
+      line-height: 1.5;
+      border-top: 1px solid var(--line);
+    }
+    .visual-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.35rem;
+    }
+    @media (min-width: 800px) {
+      .visual-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .visual-grid .visual { margin: 0; }
+
     .table-wrap {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -477,6 +507,10 @@
         <h2 data-i18n="vision.title"></h2>
         <p class="prose" data-i18n="vision.p1"></p>
         <p class="prose" data-i18n-html="vision.p2"></p>
+        <figure class="visual">
+          <img src="assets/relang-mesh-devices.jpg" width="1600" height="900" alt="" data-i18n-alt="img.mesh.alt" loading="lazy" />
+          <figcaption data-i18n="img.mesh.cap"></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -523,7 +557,11 @@
         <p class="kicker" data-i18n="arch.kicker"></p>
         <h2 data-i18n="arch.title"></h2>
         <p class="prose" data-i18n="arch.lede"></p>
-        <div class="grid-2">
+        <figure class="visual">
+          <img src="assets/relang-arch-layers.jpg" width="1600" height="900" alt="" data-i18n-alt="img.arch.alt" loading="lazy" />
+          <figcaption data-i18n="img.arch.cap"></figcaption>
+        </figure>
+        <div class="grid-2" style="margin-top:1.5rem;">
           <ul class="layers" aria-label="Architecture">
             <li><strong data-i18n="arch.l1t"></strong><span data-i18n="arch.l1d"></span></li>
             <li><strong data-i18n="arch.l2t"></strong><span data-i18n="arch.l2d"></span></li>
@@ -569,6 +607,10 @@
       <div class="wrap">
         <p class="kicker" data-i18n="caps.kicker"></p>
         <h2 data-i18n="caps.title"></h2>
+        <figure class="visual">
+          <img src="assets/relang-agent-caps.jpg" width="1600" height="900" alt="" data-i18n-alt="img.agent.alt" loading="lazy" />
+          <figcaption data-i18n="img.agent.cap"></figcaption>
+        </figure>
         <article class="feature">
           <h3 data-i18n="caps.c1t"></h3>
           <p data-i18n="caps.c1d"></p>
@@ -602,6 +644,16 @@
         <p class="kicker" data-i18n="field.kicker"></p>
         <h2 data-i18n="field.title"></h2>
         <p class="prose" data-i18n-html="field.lede"></p>
+        <div class="visual-grid">
+          <figure class="visual">
+            <img src="assets/relang-field-drone.jpg" width="1600" height="900" alt="" data-i18n-alt="img.drone.alt" loading="lazy" />
+            <figcaption data-i18n="img.drone.cap"></figcaption>
+          </figure>
+          <figure class="visual">
+            <img src="assets/relang-field-robot.jpg" width="1600" height="900" alt="" data-i18n-alt="img.robot.alt" loading="lazy" />
+            <figcaption data-i18n="img.robot.cap"></figcaption>
+          </figure>
+        </div>
         <div class="vert">
           <h3 data-i18n="field.d1t"></h3>
           <p data-i18n="field.d1d"></p>
@@ -765,7 +817,17 @@
         "access.body": "<strong>RELang OS 不是开源项目。</strong>本站与 GitHub 宣传仓只承载叙事与联系方式，不含产品源码。完整工程为专有软件，须另行授权（评估 / 合作 / NDA），不是「开源下载」。",
         "access.cta1": "通过 Issues 申请评估",
         "access.cta2": "宣传仓 README",
-        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>。"
+        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. 详见 <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>。",
+        "img.mesh.alt": "多设备 mesh 示意图：手机、平板与边缘终端经能力会话互联",
+        "img.mesh.cap": "个人设备集群：发现与会话就绪后才互通 — 不编造邻居。",
+        "img.arch.alt": "RELang OS 分层架构：应用与代理、系统监督树、RVM、原生层、内核",
+        "img.arch.cap": "一层 RVM 贯通应用、服务与代理；换设备换 HAL，不换运行时。",
+        "img.agent.alt": "代理能力闸示意图：工具调用经能力、确认与审计",
+        "img.agent.cap": "代理是被监督的进程：工具调用走能力租约与审计，不是悬浮聊天窗。",
+        "img.drone.alt": "无人机现场伴飞概念图：任务电脑与飞控分工",
+        "img.drone.cap": "FieldCompanion · 无人机：作业编排与围栏意图在 RELang；姿态环留在飞控。",
+        "img.robot.alt": "工业机器人伴控概念图：智能盒与运动控制栈分工",
+        "img.robot.cap": "FieldCompanion · 机器人：工艺 Actor 与视觉引导在边缘盒；伺服与安全 PLC 外置。"
       },
       en: {
         "nav.vision": "Vision",
@@ -863,7 +925,17 @@
         "access.body": "<strong>RELang OS is not open source.</strong> This site and the public GitHub repo carry narrative and contact only — no product source. The full stack is proprietary software and requires separate authorization (evaluation / partnership / NDA), not an “open download.”",
         "access.cta1": "Request evaluation via Issues",
         "access.cta2": "Marketing repo README",
-        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. See <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>."
+        "access.foot": "Copyright © 2026 RELang OS. All rights reserved. See <a href=\"https://github.com/ShujianLv/RELangOS/blob/main/LICENSE\">LICENSE</a>.",
+        "img.mesh.alt": "Multi-device mesh: phone, tablet, and edge nodes linked by capability sessions",
+        "img.mesh.cap": "Personal device cluster: communicate only after discovery and session are ready — no invented neighbors.",
+        "img.arch.alt": "RELang OS layer diagram: apps & agents, supervision tree, RVM, native layer, kernel",
+        "img.arch.cap": "One RVM across apps, services, and agents; change devices by changing HAL, not the runtime.",
+        "img.agent.alt": "Agent capability gate: tool calls through leases, confirmation, and audit",
+        "img.agent.cap": "An agent is a supervised process: tools go through capability leases and audit — not a floating chat bubble.",
+        "img.drone.alt": "UAV companion concept: mission computer vs flight controller roles",
+        "img.drone.cap": "FieldCompanion · UAV: mission orchestration and geofence intent on RELang; attitude loops stay on the FC.",
+        "img.robot.alt": "Industrial robot companion: smart box vs motion-control stack",
+        "img.robot.cap": "FieldCompanion · robots: process actors and vision on the edge box; servos and safety PLC stay external."
       }
     };
 
@@ -891,6 +963,10 @@
       document.querySelectorAll("[data-i18n-html]").forEach((el) => {
         const key = el.getAttribute("data-i18n-html");
         if (dict[key] != null) el.innerHTML = dict[key];
+      });
+      document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-alt");
+        if (dict[key] != null) el.setAttribute("alt", dict[key]);
       });
       document.title = lang === "en"
         ? "RELang OS — AI-native operating system"
