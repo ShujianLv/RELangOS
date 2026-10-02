@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RELang OS — AI-native, multi-device operating system built on RVM (Rust BEAM VM)." />
+  <title>RELang OS</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #e7ecf3;
+      --muted: #9aa8bc;
+      --accent: #5b9fd4;
+      --accent-dim: #3d6f9a;
+      --border: #2a3548;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 52rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header { margin-bottom: 2.5rem; }
+    h1 { font-size: 1.85rem; font-weight: 650; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+    .tagline { color: var(--muted); font-size: 1.05rem; margin: 0; }
+    .pill {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+    }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+    }
+    h2 { font-size: 1rem; margin: 0 0 0.75rem; color: var(--accent); font-weight: 600; }
+    ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    li { margin-bottom: 0.35rem; }
+    .grid { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.5rem 0.35rem; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-weight: 500; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
+    .en { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>RELang OS</h1>
+      <p class="tagline">面向 AI 代理与多设备协同的操作系统 · RVM 运行时 · 能力安全 · 监督树与热升级</p>
+      <span class="pill">Public site · Source in private repo</span>
+    </header>
+
+    <div class="grid grid-2">
+      <section>
+        <h2>定位</h2>
+        <p style="margin:0;color:var(--muted);font-size:0.95rem;">
+          应用运行在 <strong style="color:var(--text)">RVM</strong>（Rust 实现的 BEAM 虚拟机）上。
+          系统服务采用 Erlang/OTP 式监督树；UI 与 HAL 以 Rust 为主路径。
+        </p>
+      </section>
+      <section>
+        <h2>类比</h2>
+        <table>
+          <tr><th>Android</th><th>RELang OS</th></tr>
+          <tr><td>ART</td><td>RVM</td></tr>
+          <tr><td>Binder</td><td>消息 + 域间通道</td></tr>
+          <tr><td>Manifest 权限</td><td>能力（Capability）</td></tr>
+        </table>
+      </section>
+    </div>
+
+    <section>
+      <h2>差异化</h2>
+      <ul>
+        <li><strong style="color:var(--text)">AI 代理原生</strong> — 工具调用、配额、审计与 MCP 适配</li>
+        <li><strong style="color:var(--text)">多设备即一台机器</strong> — 集群会话与能力边界</li>
+        <li><strong style="color:var(--text)">永不重启</strong> — 子树恢复与组件热升级</li>
+        <li><strong style="color:var(--text)">垂直设备</strong> — 工业、AI 硬件、无人机伴飞、机器人边缘任务</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>现场伴飞 / 伴控（FieldCompanion）</h2>
+      <p style="margin:0;color:var(--muted);font-size:0.95rem;">
+        机载与边缘侧重 <em>任务与协同</em>：作业编排、感知推理、多机 mesh、OTA。
+        飞控与伺服硬实时留在外部栈，经 MAVLink / ROS 2 等桥接，不内嵌进 RVM 内环。
+      </p>
+    </section>
+
+    <section>
+      <h2>源码与仓库</h2>
+      <p style="margin:0;color:var(--muted);font-size:0.95rem;">
+        本站点对应 GitHub 公开宣传仓，<strong style="color:var(--text)">不含实现源码</strong>。
+        完整工程在私有仓库维护。合作与只读访问请通过
+        <a href="https://github.com/ShujianLv/relang-os-public/issues">Issues</a> 联系。
+      </p>
+    </section>
+
+    <footer>
+      <a href="https://github.com/ShujianLv/relang-os-public">GitHub 仓库</a>
+      · 维护说明见 <a href="setup.md">docs/setup.md</a>
+    </footer>
+
+    <p class="en">
+      <strong>RELang OS</strong> — AI-native OS on RVM (Rust BEAM VM). This page is the public face;
+      implementation source is not published here.
+    </p>
+  </div>
+</body>
+</html>
