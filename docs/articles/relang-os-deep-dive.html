@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="深入浅出：RELang OS —— 为代理与多端协同而生的操作系统。专有软件架构叙事。" />
+  <title>深入浅出：RELang OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e8eef6;
+      --muted: #8b9bb0;
+      --faint: #5c6b7e;
+      --line: rgba(232, 238, 246, 0.09);
+      --line-strong: rgba(232, 238, 246, 0.16);
+      --sea: #6eb6e0;
+      --bg: #0a0e14;
+      --bg-elev: #121a24;
+      --max: 46rem;
+      --font: "Noto Sans SC", "DM Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--sea); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 14, 20, 0.88);
+      border-bottom: 1px solid var(--line);
+    }
+    .bar-inner {
+      width: min(100% - 2rem, 70rem);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 3.25rem;
+    }
+    .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
+    .brand:hover { color: var(--sea); text-decoration: none; }
+    .bar-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.92rem; }
+    .bar-links a { color: var(--muted); }
+    .bar-links a:hover { color: var(--sea); }
+    main {
+      width: min(100% - 2rem, var(--max));
+      margin: 2.5rem auto 4rem;
+    }
+    #status {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    #content h1 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+    }
+    #content h2 {
+      font-size: 1.35rem;
+      margin: 2.4rem 0 0.85rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--line);
+    }
+    #content h3 {
+      font-size: 1.1rem;
+      margin: 1.6rem 0 0.6rem;
+      color: var(--ink);
+    }
+    #content p, #content li { color: var(--ink); }
+    #content blockquote {
+      margin: 1rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 3px solid var(--sea);
+      background: var(--bg-elev);
+      color: var(--muted);
+    }
+    #content blockquote p { margin: 0.35rem 0; }
+    #content table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      margin: 1rem 0 1.5rem;
+    }
+    #content th, #content td {
+      border: 1px solid var(--line-strong);
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    #content th { background: var(--bg-elev); color: var(--muted); font-weight: 600; }
+    #content pre {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+    #content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9em;
+    }
+    #content :not(pre) > code {
+      background: rgba(110, 182, 224, 0.12);
+      padding: 0.1em 0.35em;
+      border-radius: 0.25rem;
+    }
+    #content .mermaid {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 0.6rem;
+      padding: 1rem;
+      margin: 1.25rem 0 1.75rem;
+      overflow-x: auto;
+    }
+    #content hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 2rem 0;
+    }
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 2.5rem;
+      color: var(--faint);
+      font-size: 0.9rem;
+    }
+    footer .wrap {
+      width: min(100% - 2rem, 70rem);
+      margin-inline: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="brand" href="../index.html">RELang OS</a>
+      <nav class="bar-links" aria-label="Article">
+        <a href="./">文章索引</a>
+        <a href="./">文章索引</a>
+        <a href="../index.html#access">合作</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <p id="status">正在加载文章…</p>
+    <article id="content"></article>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <span>RELang OS · 技术文章</span>
+      <a href="https://github.com/ShujianLv/RELangOS">github.com/ShujianLv/RELangOS</a>
+      <a href="../index.html">返回官网</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script>
+    const ARTICLE_MD = "relang-os-deep-dive.md";
+    const statusEl = document.getElementById("status");
+    const contentEl = document.getElementById("content");
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "dark",
+      securityLevel: "loose",
+      fontFamily: "Noto Sans SC, DM Sans, sans-serif",
+    });
+
+    function renderMermaidBlocks() {
+      const blocks = contentEl.querySelectorAll("pre code.language-mermaid");
+      const jobs = [];
+      blocks.forEach(function (code, index) {
+        const pre = code.parentElement;
+        const graph = code.textContent;
+        const host = document.createElement("div");
+        host.className = "mermaid";
+        host.id = "mermaid-graph-" + index;
+        host.textContent = graph;
+        pre.replaceWith(host);
+        jobs.push(host);
+      });
+      if (jobs.length === 0) {
+        return Promise.resolve();
+      }
+      return mermaid.run({ nodes: jobs });
+    }
+
+    fetch(ARTICLE_MD, { cache: "no-cache" })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+        return response.text();
+      })
+      .then(function (markdown) {
+        contentEl.innerHTML = marked.parse(markdown);
+        statusEl.remove();
+        return renderMermaidBlocks();
+      })
+      .catch(function (error) {
+        statusEl.textContent = "文章加载失败：" + error.message + "。可直接打开同目录 mps-deep-dive.md。";
+      });
+  </script>
+</body>
+</html>

@@ -358,6 +358,7 @@ RVM 要回答的问题不是「能不能再实现一个虚拟机」，而是：
 
 | 入口 | 内容 |
 |------|------|
+| [RELang OS 深入浅出](./relang-os-deep-dive.html) | 整机架构地图 |
 | [MPS 深入浅出](./mps-deep-dive.html) | 开放手机平台标准 MPS |
 | [申请评估](https://github.com/ShujianLv/RELangOS/issues/new?template=evaluation.yml) | 获取专有架构专篇与联调材料 |
 | [RELang OS 官网](../index.html) | 产品叙事与合作入口 |
