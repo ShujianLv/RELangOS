@@ -46,6 +46,7 @@ git push -u origin main
 ## 日常更新
 
 - 产品叙事、路线图摘要、垂直场景：只改 **RELangOS** 的 README / `docs/index.html`。
+- 技术文章：放在 **`docs/articles/`**（Markdown 源 + HTML 阅读页）；索引见 `docs/articles/index.html`。MPS 等开放标准文需标明标准仓链接，并写清「RELang OS 为专有软件」。
 - 实现与测试：只在 **私有源码仓** 提交；勿把源码 copy 进宣传仓。
 
 ## 链接一致性

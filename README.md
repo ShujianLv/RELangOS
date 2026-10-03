@@ -30,6 +30,10 @@
 
 无人机伴飞 · 机器人与工业边缘 · 车机座舱 · 手机、手表与穿戴 · 仓储物流边缘 · 能源与基础设施巡检
 
+### 技术文章
+
+- [深入浅出：MPS](https://shujianlv.github.io/RELangOS/articles/mps-deep-dive.html) — 开放手机平台标准（Spec / 参考平台 / CTS）；标准仓 [ShujianLv/mps](https://github.com/ShujianLv/mps)
+
 ### 许可
 
 本仓库为公开宣传仓。完整产品为专有软件，详见 [LICENSE](./LICENSE)。
@@ -67,6 +71,10 @@ Agent-native · Many devices, one machine · Unified on-device compute · Consis
 ### Verticals
 
 UAV companion · Robotics & industrial edge · Automotive cockpit · Phones, watches & wearables · Warehouse & logistics edge · Energy & infrastructure inspection
+
+### Articles
+
+- [MPS deep dive](https://shujianlv.github.io/RELangOS/articles/mps-deep-dive.html) — open mobile platform standard (Spec / reference platform / CTS); standard repo [ShujianLv/mps](https://github.com/ShujianLv/mps)
 
 ### License
 

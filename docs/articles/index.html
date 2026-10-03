@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RELang OS 技术文章索引" />
+  <title>技术文章 · RELang OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e8eef6;
+      --muted: #8b9bb0;
+      --line: rgba(232, 238, 246, 0.09);
+      --line-strong: rgba(232, 238, 246, 0.16);
+      --sea: #6eb6e0;
+      --bg: #0a0e14;
+      --bg-elev: #121a24;
+      --font: "Noto Sans SC", "DM Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--sea); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+    .bar {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 14, 20, 0.88);
+      border-bottom: 1px solid var(--line);
+    }
+    .bar-inner, main, footer .wrap {
+      width: min(100% - 2rem, 46rem);
+      margin-inline: auto;
+    }
+    .bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 3.25rem;
+    }
+    .brand { font-weight: 700; color: var(--ink); text-decoration: none; }
+    main { padding: 2.5rem 0 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+    .lede { color: var(--muted); margin: 0 0 2rem; }
+    article {
+      display: block;
+      padding: 1.25rem 1.35rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 0.75rem;
+      background: var(--bg-elev);
+      margin-bottom: 1rem;
+    }
+    article h2 { margin: 0 0 0.4rem; font-size: 1.15rem; }
+    article p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    article .meta { margin-top: 0.75rem; font-size: 0.85rem; color: var(--sea); }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 0 2.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="brand" href="../index.html">RELang OS</a>
+      <a href="../index.html">返回官网</a>
+    </div>
+  </header>
+  <main>
+    <h1>技术文章</h1>
+    <p class="lede">宣传站技术阅读入口。MPS 为开放标准；RELang OS 为专有软件与第一参考 OS。</p>
+    <article>
+      <h2><a href="mps-deep-dive.html">深入浅出：MPS —— 让手机 OS 也能一次适配、多机运行</a></h2>
+      <p>Mobile Platform Standard：痛点、三角闭环（Spec / QEMU / CTS）、Device Model、Core 0.1 与认证口径。</p>
+      <p class="meta">开放标准仓 · <a href="https://github.com/ShujianLv/mps">ShujianLv/mps</a> · Markdown 源：<a href="mps-deep-dive.md">mps-deep-dive.md</a></p>
+    </article>
+  </main>
+  <footer>
+    <div class="wrap"><a href="../index.html">shujianlv.github.io/RELangOS</a></div>
+  </footer>
+</body>
+</html>
