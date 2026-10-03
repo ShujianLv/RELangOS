@@ -32,6 +32,7 @@
 
 ### 技术文章
 
+- [深入浅出：RVM](https://shujianlv.github.io/RELangOS/articles/rvm-deep-dive.html) — RELang OS 的运行时心脏（BEAM / Domain / Seed；专有软件架构叙事）
 - [深入浅出：MPS](https://shujianlv.github.io/RELangOS/articles/mps-deep-dive.html) — 开放手机平台标准（Spec / 参考平台 / CTS）；标准仓 [ShujianLv/mps](https://github.com/ShujianLv/mps)
 
 ### 许可
@@ -74,6 +75,7 @@ UAV companion · Robotics & industrial edge · Automotive cockpit · Phones, wat
 
 ### Articles
 
+- [RVM deep dive](https://shujianlv.github.io/RELangOS/articles/rvm-deep-dive.html) — the runtime heart of RELang OS (BEAM / Domain / Seed; proprietary architecture narrative)
 - [MPS deep dive](https://shujianlv.github.io/RELangOS/articles/mps-deep-dive.html) — open mobile platform standard (Spec / reference platform / CTS); standard repo [ShujianLv/mps](https://github.com/ShujianLv/mps)
 
 ### License
